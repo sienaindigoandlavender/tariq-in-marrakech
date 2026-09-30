@@ -21,7 +21,8 @@ Without `ANTHROPIC_API_KEY`, Ask Tariq falls back to keyword matching and the Wh
 ## Go live with Supabase
 
 1. Create a new Supabase project for this city (don't reuse another product's database).
-2. SQL editor → run `supabase/migrations/0001_init.sql`, then `supabase/seed.sql`.
+2. SQL editor → run `supabase/migrations/0001_init.sql`, then `0002_itinerary.sql`, then `supabase/seed.sql`.
+   Already live on 0001? Run `0002_itinerary.sql`, then re-run `supabase/seed.sql` (it upserts).
 3. Vercel → Settings → Environment Variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
    `SUPABASE_SERVICE_ROLE_KEY` (never prefix this one with `NEXT_PUBLIC_`), then redeploy.
 4. Supabase → Authentication → URL configuration: set the Site URL to your domain and add
@@ -63,3 +64,13 @@ repeated questions are the list of products to build next.
 | `/concierge` | Ask Tariq |
 | `/dispatch`, `/dispatch/tomorrow`, `/dispatch/partners` | Operator dashboard (auth) |
 | `/r/[code]` | Riad QR entry |
+
+## Legal pages
+
+`/booking-conditions`, `/privacy`, `/terms` and `/contact`. Company details come from the `NEXT_PUBLIC_LEGAL_*`,
+`NEXT_PUBLIC_TRANSPORT_LICENCE`, `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_CNDP_REF` and `NEXT_PUBLIC_VAT_INCLUDED` env vars
+(see `.env.example`); unset lines are hidden, never shown as placeholders. The texts are drafts written for this
+business model: have them reviewed by a Moroccan lawyer before launch, and file the CNDP declaration for the booking data.
+
+The privacy policy promises retention limits. Run `supabase/migrations/0003_retention.sql`, enable `pg_cron`, and schedule
+the purge as described at the bottom of that file.

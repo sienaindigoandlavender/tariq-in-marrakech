@@ -18,6 +18,7 @@ function normalise(row: Record<string, unknown>, addons: Record<string, unknown>
     was_eur: num(row.was_eur),
     cap: num(row.cap),
     private_per_car: num(row.private_per_car),
+    itinerary: Array.isArray(row.itinerary) ? (row.itinerary as Product["itinerary"]) : [],
     addons: addons
       .map((a) => ({ ...(a as unknown as Addon), eur: Number(a.eur) }))
       .sort((a, b) => a.sort - b.sort),

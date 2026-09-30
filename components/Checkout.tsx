@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { copy } from "@/lib/copy";
@@ -302,7 +303,19 @@ export function Checkout({ p }: { p: PublicProduct }) {
             {step < 3 ? C.continue : busy ? C.sending : C.confirm}
           </button>
         </div>
-        {step === 3 ? <p className="m-0 text-[12.5px] text-muted">{C.noPay}</p> : null}
+        {step === 3 ? (
+          <p className="m-0 text-[12.5px] text-muted">
+            {C.noPay} By confirming, you accept the{" "}
+            <Link href="/booking-conditions" target="_blank" className="font-bold text-ink">
+              booking conditions
+            </Link>{" "}
+            and{" "}
+            <Link href="/privacy" target="_blank" className="font-bold text-ink">
+              privacy policy
+            </Link>
+            .
+          </p>
+        ) : null}
       </form>
     </div>
   );

@@ -1,4 +1,6 @@
-import { BookSection, Hero, How, Promises, Solved } from "@/components/Explore";
+import { CategoryTiles, Hero, How, Promises, Rail } from "@/components/Explore";
+import { RAILS } from "@/lib/merch";
+import { CATEGORIES, type Category, type Product } from "@/lib/types";
 import { copy } from "@/lib/copy";
 import { OPERATOR_WHATSAPP } from "@/lib/config";
 import { getProducts, recommended, toPublic } from "@/lib/db";
@@ -7,7 +9,16 @@ import { SITE_URL } from "@/lib/seo";
 export const revalidate = 300;
 
 export default async function ExplorePage() {
-  const products = recommended(await getProducts()).map(toPublic);
+  const all = recommended(await getProducts());
+  const byId = new Map(all.map((p) => [p.id, p]));
+  const pick = (r: (typeof RAILS)[number]): Product[] =>
+    r.best
+      ? [...all.filter((p) => p.role === "cow" || p.badge), ...all.filter((p) => p.role === "lead")].slice(0, 4)
+      : r.ids
+        ? (r.ids.map((id) => byId.get(id)).filter(Boolean) as Product[])
+        : all.filter((p) => p.category === r.category);
+  const rails = RAILS.map((r) => ({ ...r, products: pick(r).map(toPublic) }));
+  const counts = Object.fromEntries(CATEGORIES.map((c) => [c, all.filter((p) => p.category === c).length])) as Record<Category, number>;
   const agency = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
@@ -26,8 +37,10 @@ export default async function ExplorePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(agency).replace(/</g, "\\u003c") }} />
       <Hero />
       <Promises />
-      <BookSection products={products} />
-      <Solved products={products} />
+      {rails.map((r) => (
+        <Rail key={r.key} id={r.key} h={r.h} p={r.p} href={r.href} products={r.products} />
+      ))}
+      <CategoryTiles counts={counts} />
       <How />
     </div>
   );

@@ -30,7 +30,7 @@ export function Poster({ scene, image_url, alt = "", uid, tag, badge, dist, clas
         <span className="absolute left-2.5 top-2.5 rounded-full bg-white/95 px-[9px] py-1 text-[11.5px] font-extrabold text-[#16162a]">{tag}</span>
       ) : null}
       {badge ? (
-        <span className="absolute right-2.5 top-2.5 rounded-full bg-sun px-[9px] py-1 text-[11.5px] font-extrabold text-sun-ink">{badge}</span>
+        <span className="absolute right-2.5 top-2.5 rounded-full bg-sun phone:left-2.5 phone:right-auto phone:top-[38px] px-[9px] py-1 text-[11.5px] font-extrabold text-sun-ink">{badge}</span>
       ) : null}
       {dist ? (
         <span className="absolute bottom-2.5 right-2.5 rounded-full bg-[rgb(16_12_36/.72)] px-[9px] py-1 text-[11.5px] font-bold text-white">{dist}</span>

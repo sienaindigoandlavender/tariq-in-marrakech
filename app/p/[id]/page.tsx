@@ -129,6 +129,21 @@ export default async function ProductPage({ params }: { params: { id: string } }
             </ul>
           </Section>
 
+          {p.itinerary.length ? (
+            <Section title={copy.product.itinerary}>
+              <ol className="m-0 grid list-none gap-0 p-0">
+                {p.itinerary.map((step, i) => (
+                  <li key={step.t + i} className="relative grid grid-cols-[112px_minmax(0,1fr)] gap-4 pb-4 last:pb-0 xs:grid-cols-[84px_minmax(0,1fr)] xs:gap-3">
+                    <span className="tnum pt-px text-sm font-extrabold text-blue">{step.t}</span>
+                    <span className="relative pl-5 before:absolute before:left-0 before:top-[7px] before:h-2.5 before:w-2.5 before:rounded-full before:border-2 before:border-blue before:bg-surface before:content-[''] after:absolute after:bottom-[-16px] after:left-[4px] after:top-[20px] after:w-0.5 after:bg-line after:content-[''] [li:last-child_&]:after:hidden">
+                      {step.s}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </Section>
+          ) : null}
+
           <Section title={copy.product.about}>
             <p className="m-0">{p.blurb}</p>
             <p className="m-0 mt-2 font-bold">{p.timing}</p>
