@@ -4,7 +4,7 @@ import { formatWhatsapp } from "@/lib/config";
 
 export function Footer() {
   return (
-    <footer className="mt-[30px] border-t border-line pb-[34px] pt-6 text-sm text-muted">
+    <footer className="mt-[30px] border-t border-line pb-[34px] pt-6 text-sm text-muted print:hidden">
       <div className="wrap flex flex-wrap justify-between gap-x-[26px] gap-y-2.5">
         <span>{copy.footer.tagline}</span>
         <span>

@@ -15,6 +15,8 @@
   --sun: 240 165 43;
   --sun-ink: 35 22 5;
   --rose: 217 83 111;
+  --rose-strong: 196 64 93; /* accessible text/chip shade of rose */
+  --rose-strong-ink: 255 255 255;
   --ok: 31 122 77;
   --warn: 181 86 31;
   --wa: 31 157 85;
@@ -34,6 +36,8 @@
     --blue-ink: 12 14 34;
     --sun: 245 182 74;
     --rose: 255 125 151;
+    --rose-strong: 255 125 151;
+    --rose-strong-ink: 22 22 42;
     --ok: 79 191 134;
     --warn: 240 138 76;
     --wa: 53 193 115;
@@ -51,6 +55,8 @@
   --blue-ink: 12 14 34;
   --sun: 245 182 74;
   --rose: 255 125 151;
+  --rose-strong: 255 125 151;
+  --rose-strong-ink: 22 22 42;
   --ok: 79 191 134;
   --warn: 240 138 76;
   --wa: 53 193 115;

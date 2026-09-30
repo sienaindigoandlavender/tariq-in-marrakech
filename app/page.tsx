@@ -1,19 +1,34 @@
+import { BookSection, Hero, How, Promises, Solved } from "@/components/Explore";
 import { copy } from "@/lib/copy";
+import { OPERATOR_WHATSAPP } from "@/lib/config";
+import { getProducts, recommended, toPublic } from "@/lib/db";
+import { SITE_URL } from "@/lib/seo";
 
-// Placeholder: the Explore page is built in step 3.
-export default function ExplorePage() {
+export const revalidate = 300;
+
+export default async function ExplorePage() {
+  const products = recommended(await getProducts()).map(toPublic);
+  const agency = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    name: `${copy.brand} ${copy.city}`,
+    url: SITE_URL,
+    telephone: `+${OPERATOR_WHATSAPP}`,
+    description: "Marrakech airport transfers, day trips, desert tours and trip services. Pay on arrival, free cancellation up to 24 h.",
+    address: { "@type": "PostalAddress", addressLocality: "Marrakech", addressCountry: "MA" },
+    areaServed: { "@type": "City", name: "Marrakech" },
+    paymentAccepted: "Cash, Credit Card",
+    currenciesAccepted: "EUR, MAD",
+    openingHours: "Mo-Su 08:00-22:00",
+  };
   return (
-    <div className="wrap py-10">
-      <h1 className="display text-[clamp(38px,6.4vw,78px)] leading-[.92]">
-        {copy.hero.h1} <em className="not-italic text-sun">{copy.hero.h1Em}</em>
-      </h1>
-      <div className="flex flex-wrap gap-x-6 gap-y-2.5 pb-2 pt-4 text-sm font-bold text-muted">
-        {copy.promises.map((p) => (
-          <span key={p} className="inline-flex items-center gap-2 before:h-2 before:w-2 before:rounded-full before:bg-sun before:content-['']">
-            {p}
-          </span>
-        ))}
-      </div>
+    <div className="wrap">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(agency).replace(/</g, "\\u003c") }} />
+      <Hero />
+      <Promises />
+      <BookSection products={products} />
+      <Solved products={products} />
+      <How />
     </div>
   );
 }

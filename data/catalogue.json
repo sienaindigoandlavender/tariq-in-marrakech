@@ -1,0 +1,1161 @@
+[
+  {
+    "id": "airport",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "lead",
+    "title": "Airport transfer",
+    "subtitle": "Transfer",
+    "blurb": "Driver waits at arrivals with your name. Flight tracked, 60 min free waiting.",
+    "timing": "Any time, day or night",
+    "duration": "20–30 min",
+    "km": 6,
+    "drive_time": "20 min",
+    "price_eur": 12,
+    "was_eur": 18,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "plane",
+    "image_url": null,
+    "highlights": [
+      "Driver waits at arrivals with a name board",
+      "Flight tracked, 60 minutes of free waiting",
+      "Walked to your riad door when the car can't reach it"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Meet and greet at arrivals",
+      "Fuel and airport fees"
+    ],
+    "excludes": [
+      "Porter (add-on)",
+      "Tips"
+    ],
+    "know_before": [
+      "Add your flight number in the notes so we can track delays",
+      "Inside the medina, cars stop at the nearest access point. A porter carries bags to the door"
+    ],
+    "sort": 10,
+    "active": true,
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return transfer to the airport",
+        "eur": 12,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "porter",
+        "label": "Porter to the riad door",
+        "eur": 5,
+        "per": "car",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "sim",
+        "label": "Local SIM, 20 GB, ready in the car",
+        "eur": 12,
+        "per": "unit",
+        "popular": false,
+        "sort": 30
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat fitted",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 40
+      }
+    ]
+  },
+  {
+    "id": "lastday",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "gap",
+    "title": "Last day, bags in the van",
+    "subtitle": "Transfer",
+    "blurb": "Checkout at noon, flight at night. Your bags ride with you all day, then we drop you at the airport.",
+    "timing": "Pickup at checkout",
+    "duration": "Checkout to flight",
+    "km": 6,
+    "drive_time": "your last day",
+    "price_eur": 25,
+    "was_eur": null,
+    "per": "car",
+    "cap": 4,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "plane",
+    "image_url": null,
+    "highlights": [
+      "No locker, no second taxi",
+      "Bags stay locked in the van while you use your last day",
+      "Dropped at the airport in time for your flight"
+    ],
+    "includes": [
+      "Van and driver from checkout to the airport",
+      "Secure luggage in the locked vehicle",
+      "Airport drop-off"
+    ],
+    "excludes": [
+      "Activities during the day (add-ons)",
+      "Meals"
+    ],
+    "know_before": [
+      "Tell us your flight time in the notes",
+      "Valuables and passports stay with you"
+    ],
+    "sort": 20,
+    "active": true,
+    "addons": [
+      {
+        "id": "trip",
+        "label": "Add a half-day trip to Ourika on the way",
+        "eur": 20,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "hammam",
+        "label": "Hammam and shower before the flight",
+        "eur": 25,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "id": "dinner",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "gap",
+    "title": "Dinner out, there and back",
+    "subtitle": "Transfer",
+    "blurb": "Tell us the restaurant and time. We book the table and drive you there and back to the medina.",
+    "timing": "Any evening",
+    "duration": "Evening",
+    "km": 5,
+    "drive_time": "evening",
+    "price_eur": 14,
+    "was_eur": null,
+    "per": "car",
+    "cap": 4,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "city",
+    "image_url": null,
+    "highlights": [
+      "Tell us the restaurant and time, we book the table",
+      "Driver waits nearby or comes back when you call",
+      "Home safe to the medina, even after midnight"
+    ],
+    "includes": [
+      "Table booking at the restaurant you name",
+      "Return transfer for up to 4 guests"
+    ],
+    "excludes": [
+      "Your meal and drinks",
+      "Returns after midnight (add-on)"
+    ],
+    "know_before": [
+      "We book the restaurant you choose. We don't recommend or take commission from restaurants"
+    ],
+    "sort": 30,
+    "active": true,
+    "addons": [
+      {
+        "id": "late",
+        "label": "Late return after midnight",
+        "eur": 6,
+        "per": "car",
+        "popular": false,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "id": "ourika",
+    "city": "marrakech",
+    "category": "exc",
+    "role": "lead",
+    "title": "Ourika Valley day trip",
+    "subtitle": "Day trip",
+    "blurb": "Atlas foothills, a Berber house visit and the Setti Fatma waterfalls.",
+    "timing": "Pickup 8:30",
+    "duration": "8 hours",
+    "km": 63,
+    "drive_time": "1 h 10",
+    "price_eur": 22,
+    "was_eur": 29,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": 70,
+    "badge": null,
+    "scene": "valley",
+    "image_url": null,
+    "highlights": [
+      "Drive into the High Atlas foothills",
+      "Tea in a Berber family house",
+      "Walk to the Setti Fatma waterfalls with a local guide"
+    ],
+    "includes": [
+      "Shared air-conditioned minivan",
+      "Pickup and drop-off at your riad or hotel",
+      "Driver"
+    ],
+    "excludes": [
+      "Lunch (add-on)",
+      "Waterfall guide tip",
+      "Private car (upgrade)"
+    ],
+    "know_before": [
+      "Wear shoes with grip for the waterfall path",
+      "The walk to the upper falls includes some rock scrambling"
+    ],
+    "sort": 40,
+    "active": true,
+    "addons": [
+      {
+        "id": "lunch",
+        "label": "Tagine lunch by the river",
+        "eur": 10,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "kit",
+        "label": "Day kit: water, snacks, sunscreen",
+        "eur": 9,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "quad",
+        "label": "1 h quad ride on the way back",
+        "eur": 35,
+        "per": "pp",
+        "popular": false,
+        "sort": 30
+      }
+    ]
+  },
+  {
+    "id": "ouzoud",
+    "city": "marrakech",
+    "category": "exc",
+    "role": "core",
+    "title": "Ouzoud Waterfalls",
+    "subtitle": "Day trip",
+    "blurb": "The tallest falls in North Africa, olive groves and macaques on the path down.",
+    "timing": "Pickup 7:30",
+    "duration": "10 hours",
+    "km": 150,
+    "drive_time": "2 h 45",
+    "price_eur": 24,
+    "was_eur": 27,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": 110,
+    "badge": null,
+    "scene": "falls",
+    "image_url": null,
+    "highlights": [
+      "The tallest waterfalls in North Africa",
+      "Barbary macaques on the path down",
+      "Olive groves and mills of the Azilal region"
+    ],
+    "includes": [
+      "Shared air-conditioned minivan",
+      "Pickup and drop-off",
+      "Guided walk to the base of the falls"
+    ],
+    "excludes": [
+      "Lunch (add-on)",
+      "Boat ride (add-on)"
+    ],
+    "know_before": [
+      "Around 2 h 45 each way by road",
+      "Don't feed the monkeys"
+    ],
+    "sort": 50,
+    "active": true,
+    "addons": [
+      {
+        "id": "lunch",
+        "label": "Lunch at the falls",
+        "eur": 10,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "boat",
+        "label": "Boat ride under the falls",
+        "eur": 5,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "id": "essaouira",
+    "city": "marrakech",
+    "category": "exc",
+    "role": "core",
+    "title": "Essaouira day trip",
+    "subtitle": "Day trip",
+    "blurb": "The walled port on the Atlantic. Argan cooperative stop, 5 hours free in town.",
+    "timing": "Pickup 7:30",
+    "duration": "11 hours",
+    "km": 190,
+    "drive_time": "2 h 45",
+    "price_eur": 25,
+    "was_eur": 29,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": 120,
+    "badge": null,
+    "scene": "ocean",
+    "image_url": null,
+    "highlights": [
+      "The walled port town on the Atlantic",
+      "Stop at an argan oil cooperative",
+      "About 5 hours free in the medina and harbour"
+    ],
+    "includes": [
+      "Shared air-conditioned minivan",
+      "Pickup and drop-off",
+      "Free time in town"
+    ],
+    "excludes": [
+      "Lunch (add-on)",
+      "Medina guide (add-on)"
+    ],
+    "know_before": [
+      "Bring a jacket, the ocean wind is cool even in summer"
+    ],
+    "sort": 60,
+    "active": true,
+    "addons": [
+      {
+        "id": "fish",
+        "label": "Grilled fish lunch at the harbour",
+        "eur": 15,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "guide",
+        "label": "2 h medina guide",
+        "eur": 10,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "id": "imlil",
+    "city": "marrakech",
+    "category": "exc",
+    "role": "core",
+    "title": "Atlas Mountains & Imlil",
+    "subtitle": "Day trip",
+    "blurb": "Three valleys, a mountain village walk and mint tea facing Toubkal.",
+    "timing": "Pickup 8:30",
+    "duration": "8 hours",
+    "km": 65,
+    "drive_time": "1 h 30",
+    "price_eur": 29,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": 80,
+    "badge": null,
+    "scene": "atlas",
+    "image_url": null,
+    "highlights": [
+      "Three valleys of the High Atlas",
+      "Walk through a mountain village",
+      "Mint tea with a view of Toubkal"
+    ],
+    "includes": [
+      "Shared air-conditioned minivan",
+      "Pickup and drop-off",
+      "Local mountain guide for the walk"
+    ],
+    "excludes": [
+      "Lunch (add-on)",
+      "Mule (add-on)",
+      "Trek kit (add-on)"
+    ],
+    "know_before": [
+      "Easy to moderate walking, about 2 hours",
+      "It is cooler in the mountains, bring a layer"
+    ],
+    "sort": 70,
+    "active": true,
+    "addons": [
+      {
+        "id": "kit",
+        "label": "Trek day kit waiting in the van",
+        "eur": 12,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "lunch",
+        "label": "Lunch in a village house",
+        "eur": 10,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "mule",
+        "label": "Mule for the walk",
+        "eur": 12,
+        "per": "unit",
+        "popular": false,
+        "sort": 30
+      }
+    ]
+  },
+  {
+    "id": "abh",
+    "city": "marrakech",
+    "category": "exc",
+    "role": "core",
+    "title": "Aït Benhaddou & Ouarzazate",
+    "subtitle": "Day trip",
+    "blurb": "Over the Tizi n'Tichka pass to the earthen ksar and the film studios.",
+    "timing": "Pickup 7:00",
+    "duration": "12 hours",
+    "km": 185,
+    "drive_time": "3 h",
+    "price_eur": 39,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": 140,
+    "badge": null,
+    "scene": "ksar",
+    "image_url": null,
+    "highlights": [
+      "Cross the Tizi n'Tichka pass, 2,260 m",
+      "The earthen ksar of Aït Benhaddou",
+      "Ouarzazate and its film studios"
+    ],
+    "includes": [
+      "Shared air-conditioned minivan",
+      "Pickup and drop-off",
+      "Driver"
+    ],
+    "excludes": [
+      "Lunch (add-on)",
+      "Studio entry (add-on)",
+      "Local guide in the ksar"
+    ],
+    "know_before": [
+      "A long day, about 3 hours each way on mountain roads",
+      "Motion-sickness bands help on the pass"
+    ],
+    "sort": 80,
+    "active": true,
+    "addons": [
+      {
+        "id": "lunch",
+        "label": "Lunch facing the ksar",
+        "eur": 12,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "studio",
+        "label": "Film studios entry",
+        "eur": 8,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "id": "sahara3",
+    "city": "marrakech",
+    "category": "des",
+    "role": "cow",
+    "title": "3-day Sahara, Merzouga",
+    "subtitle": "3 days",
+    "blurb": "Tichka pass, Aït Benhaddou, Dades gorges, a camel trek into the Erg Chebbi dunes and a night in camp.",
+    "timing": "Pickup 7:00",
+    "duration": "3 days, 2 nights",
+    "km": 560,
+    "drive_time": "3 days",
+    "price_eur": 139,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": 420,
+    "badge": "Best seller",
+    "scene": "dunes",
+    "image_url": null,
+    "highlights": [
+      "Tizi n'Tichka pass and Aït Benhaddou",
+      "A night by the Dades gorges",
+      "Camel trek into the Erg Chebbi dunes and a night in camp"
+    ],
+    "includes": [
+      "Transport and driver for 3 days",
+      "1 night hotel, 1 night desert camp",
+      "2 breakfasts and 2 dinners",
+      "Camel trek at sunset"
+    ],
+    "excludes": [
+      "Lunches",
+      "Luxury camp (upgrade)",
+      "4x4 dune ride (add-on)"
+    ],
+    "know_before": [
+      "Long driving days, about 9 hours to Merzouga",
+      "Desert nights are cold from November to March",
+      "Bring a small bag for the camp night"
+    ],
+    "sort": 90,
+    "active": true,
+    "addons": [
+      {
+        "id": "lux",
+        "label": "Luxury camp, private bathroom",
+        "eur": 60,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "dkit",
+        "label": "Desert night kit: scarf, headlamp, warm socks",
+        "eur": 15,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "4x4",
+        "label": "4x4 dune ride at sunset",
+        "eur": 30,
+        "per": "pp",
+        "popular": false,
+        "sort": 30
+      }
+    ]
+  },
+  {
+    "id": "zagora",
+    "city": "marrakech",
+    "category": "des",
+    "role": "core",
+    "title": "2-day desert, Zagora",
+    "subtitle": "2 days",
+    "blurb": "Aït Benhaddou, the Draa valley and a night in a desert camp.",
+    "timing": "Pickup 7:00",
+    "duration": "2 days, 1 night",
+    "km": 360,
+    "drive_time": "2 days",
+    "price_eur": 85,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": 260,
+    "badge": null,
+    "scene": "palms",
+    "image_url": null,
+    "highlights": [
+      "Aït Benhaddou on the way",
+      "The palm groves of the Draa valley",
+      "A night in a desert camp"
+    ],
+    "includes": [
+      "Transport and driver",
+      "1 night desert camp",
+      "Dinner and breakfast",
+      "Camel ride"
+    ],
+    "excludes": [
+      "Lunches",
+      "Luxury tent (upgrade)"
+    ],
+    "know_before": [
+      "Zagora has small dunes. For the big Sahara dunes, choose the 3-day Merzouga trip"
+    ],
+    "sort": 100,
+    "active": true,
+    "addons": [
+      {
+        "id": "lux",
+        "label": "Luxury tent with bathroom",
+        "eur": 45,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "dkit",
+        "label": "Desert night kit",
+        "eur": 15,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "id": "balloon",
+    "city": "marrakech",
+    "category": "act",
+    "role": "cow",
+    "title": "Hot air balloon at sunrise",
+    "subtitle": "Activity",
+    "blurb": "One hour over the palm groves and Atlas foothills. Berber breakfast after landing.",
+    "timing": "Pickup 5:30",
+    "duration": "4 hours with transfers",
+    "km": 30,
+    "drive_time": "sunrise",
+    "price_eur": 159,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": "Signature",
+    "scene": "balloon",
+    "image_url": null,
+    "highlights": [
+      "One hour in the air at sunrise",
+      "Over the palm groves with the Atlas behind",
+      "Berber breakfast after landing"
+    ],
+    "includes": [
+      "Pickup and drop-off",
+      "1 hour flight",
+      "Berber breakfast",
+      "Flight certificate"
+    ],
+    "excludes": [
+      "VIP basket (upgrade)",
+      "Photo and video pack (add-on)"
+    ],
+    "know_before": [
+      "Flights depend on the weather. If cancelled, you choose another date or a full refund",
+      "Not suitable during pregnancy or for children under 5"
+    ],
+    "sort": 110,
+    "active": true,
+    "addons": [
+      {
+        "id": "vip",
+        "label": "VIP basket, max 8 people",
+        "eur": 60,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "photos",
+        "label": "Photo and video pack",
+        "eur": 25,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "id": "agafay",
+    "city": "marrakech",
+    "category": "act",
+    "role": "cow",
+    "title": "Agafay dinner & stargazing",
+    "subtitle": "Evening",
+    "blurb": "Sunset in the stone desert, camel ride, three-course dinner and fire show.",
+    "timing": "Pickup 16:00",
+    "duration": "6 hours",
+    "km": 40,
+    "drive_time": "45 min",
+    "price_eur": 69,
+    "was_eur": 86,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": "Most booked",
+    "scene": "stone",
+    "image_url": null,
+    "highlights": [
+      "Sunset over the stone desert",
+      "Camel ride before dinner",
+      "Three-course dinner, music and fire show"
+    ],
+    "includes": [
+      "Return transport",
+      "20-minute camel ride",
+      "Three-course dinner and mint tea",
+      "Live entertainment"
+    ],
+    "excludes": [
+      "Drinks",
+      "Quad or buggy (add-ons)"
+    ],
+    "know_before": [
+      "Agafay is a stone desert 40 minutes away, not the Sahara",
+      "Bring a warm layer, evenings are cool"
+    ],
+    "sort": 120,
+    "active": true,
+    "addons": [
+      {
+        "id": "quad",
+        "label": "1 h quad ride before dinner",
+        "eur": 35,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "buggy",
+        "label": "1 h buggy, 2 seats",
+        "eur": 60,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "lux",
+        "label": "Luxury camp table",
+        "eur": 20,
+        "per": "pp",
+        "popular": false,
+        "sort": 30
+      }
+    ]
+  },
+  {
+    "id": "quad",
+    "city": "marrakech",
+    "category": "act",
+    "role": "core",
+    "title": "Quad biking in Agafay",
+    "subtitle": "Activity",
+    "blurb": "Two hours on desert tracks with a guide, mint tea in a Berber tent.",
+    "timing": "Pickup 9:00 or 14:00",
+    "duration": "4 hours with transfers",
+    "km": 40,
+    "drive_time": "2 h",
+    "price_eur": 39,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "quad",
+    "image_url": null,
+    "highlights": [
+      "Two hours on desert tracks",
+      "Guide rides with the group",
+      "Mint tea in a Berber tent"
+    ],
+    "includes": [
+      "Pickup and drop-off",
+      "Quad, helmet and scarf",
+      "Guide"
+    ],
+    "excludes": [
+      "Sunset dinner (add-on)"
+    ],
+    "know_before": [
+      "Driving licence not needed",
+      "Minimum age 16 to drive, children can ride as passengers"
+    ],
+    "sort": 130,
+    "active": true,
+    "addons": [
+      {
+        "id": "dinner",
+        "label": "Stay for sunset dinner",
+        "eur": 45,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "id": "camel",
+    "city": "marrakech",
+    "category": "act",
+    "role": "lead",
+    "title": "Camel ride in the Palmeraie",
+    "subtitle": "Activity",
+    "blurb": "One hour through the palm groves at sunset, tea with a Berber family.",
+    "timing": "Pickup 16:30",
+    "duration": "2 hours",
+    "km": 12,
+    "drive_time": "25 min",
+    "price_eur": 19,
+    "was_eur": 25,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "palms",
+    "image_url": null,
+    "highlights": [
+      "One hour through the palm groves",
+      "Golden light at sunset",
+      "Tea and bread with a Berber family"
+    ],
+    "includes": [
+      "Pickup and drop-off",
+      "Camel and handler",
+      "Tea"
+    ],
+    "excludes": [
+      "Quad (add-on)"
+    ],
+    "know_before": [
+      "Suitable for children with an adult"
+    ],
+    "sort": 140,
+    "active": true,
+    "addons": [
+      {
+        "id": "quad",
+        "label": "Add 1 h quad ride",
+        "eur": 30,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "id": "henna",
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "title": "Henna artist at your riad",
+    "subtitle": "At your riad",
+    "blurb": "She comes to you in the evening. Hands, from a simple line to a full bridal design.",
+    "timing": "18:00 to 22:00",
+    "duration": "1–2 hours",
+    "km": 0,
+    "drive_time": "at your riad",
+    "price_eur": 25,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "riad",
+    "image_url": null,
+    "highlights": [
+      "She comes to your riad in the evening",
+      "From a simple line to a full bridal design",
+      "Natural henna only"
+    ],
+    "includes": [
+      "Henna artist at your riad or hotel",
+      "Natural henna paste"
+    ],
+    "excludes": [
+      "Feet design (add-on)"
+    ],
+    "know_before": [
+      "We use natural henna only, never black henna",
+      "Let it dry 1–2 hours and avoid water for the night"
+    ],
+    "sort": 150,
+    "active": true,
+    "addons": [
+      {
+        "id": "feet",
+        "label": "Add feet design",
+        "eur": 10,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "id": "massage",
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "title": "Massage at your riad, 60 min",
+    "subtitle": "At your riad",
+    "blurb": "Argan oil massage in your room. Therapist brings the table and linen.",
+    "timing": "10:00 to 21:00",
+    "duration": "60 minutes",
+    "km": 0,
+    "drive_time": "at your riad",
+    "price_eur": 45,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "riad",
+    "image_url": null,
+    "highlights": [
+      "In your room, no taxi, no spa queue",
+      "Argan oil massage",
+      "Therapist brings the table and linen"
+    ],
+    "includes": [
+      "Qualified therapist",
+      "Massage table, oils and linen"
+    ],
+    "excludes": [
+      "90 minutes (upgrade)"
+    ],
+    "know_before": [
+      "Tell us in the notes if you prefer a female or male therapist"
+    ],
+    "sort": 160,
+    "active": true,
+    "addons": [
+      {
+        "id": "x90",
+        "label": "Make it 90 minutes",
+        "eur": 20,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "id": "chef",
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "title": "Private chef dinner in your riad",
+    "subtitle": "At your riad",
+    "blurb": "A home cook shops, cooks and serves a three-course Moroccan dinner where you stay.",
+    "timing": "Served from 19:30",
+    "duration": "Evening",
+    "km": 0,
+    "drive_time": "at your riad",
+    "price_eur": 35,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "riad",
+    "image_url": null,
+    "highlights": [
+      "A home cook shops at the souk for you",
+      "Three-course Moroccan dinner in your riad",
+      "Cleaned up after"
+    ],
+    "includes": [
+      "Shopping and ingredients",
+      "Cooking and service",
+      "Clean-up"
+    ],
+    "excludes": [
+      "Drinks",
+      "Cooking lesson (add-on)"
+    ],
+    "know_before": [
+      "Your riad needs to allow use of its kitchen. We check for you",
+      "Tell us allergies in the notes"
+    ],
+    "sort": 170,
+    "active": true,
+    "addons": [
+      {
+        "id": "lesson",
+        "label": "Cooking lesson before dinner",
+        "eur": 15,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "id": "trekkit",
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "title": "Trek day kit",
+    "subtitle": "Kit",
+    "blurb": "Almonds, dates, protein bar, electrolytes, 2 L water, sunscreen, blister plasters.",
+    "timing": "Waiting in your van",
+    "duration": "Delivered",
+    "km": 0,
+    "drive_time": "delivered",
+    "price_eur": 12,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "kit",
+    "image_url": null,
+    "highlights": [
+      "Packed for you, nothing to shop for",
+      "Waiting in your van on the way to the mountains",
+      "Everything a day on the trail needs"
+    ],
+    "includes": [
+      "Almonds, dates, protein bar",
+      "Electrolyte sachets",
+      "2 L water",
+      "Sunscreen and blister plasters"
+    ],
+    "excludes": [
+      "Toubkal upgrade (add-on)",
+      "Crampons and poles (add-on)"
+    ],
+    "know_before": [
+      "One kit per person"
+    ],
+    "sort": 180,
+    "active": true,
+    "addons": [
+      {
+        "id": "summit",
+        "label": "Toubkal upgrade: headlamp, gloves, hand warmers",
+        "eur": 17,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "crampons",
+        "label": "Crampons and poles rental",
+        "eur": 9,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "id": "desertkit",
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "title": "Desert night kit",
+    "subtitle": "Kit",
+    "blurb": "Scarf for the sand, headlamp, wet wipes, lip balm, warm socks, power bank.",
+    "timing": "Waiting in your van",
+    "duration": "Delivered",
+    "km": 0,
+    "drive_time": "delivered",
+    "price_eur": 15,
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "kit",
+    "image_url": null,
+    "highlights": [
+      "For the cold desert night",
+      "Waiting in your van on day 1",
+      "Keep the scarf, it's yours"
+    ],
+    "includes": [
+      "Scarf for sun and sand",
+      "Headlamp",
+      "Wet wipes and lip balm",
+      "Warm socks",
+      "Power bank"
+    ],
+    "excludes": [],
+    "know_before": [
+      "One kit per person"
+    ],
+    "sort": 190,
+    "active": true,
+    "addons": []
+  },
+  {
+    "id": "baby",
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "title": "Baby kit for your stay",
+    "subtitle": "Baby",
+    "blurb": "Travel cot, high chair and car seat, delivered and set up at your riad. Collected when you leave.",
+    "timing": "Delivered the day you arrive",
+    "duration": "Your whole stay",
+    "km": 0,
+    "drive_time": "for your stay",
+    "price_eur": 39,
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "baby",
+    "image_url": null,
+    "highlights": [
+      "Cot, high chair and car seat, set up before you arrive",
+      "Car seat fitted in your airport van",
+      "Collected when you leave"
+    ],
+    "includes": [
+      "Travel cot with mattress and sheet",
+      "High chair",
+      "Car seat or booster by age",
+      "Delivery, set-up and collection"
+    ],
+    "excludes": [
+      "Baby carrier (add-on)",
+      "Pushchair (add-on)"
+    ],
+    "know_before": [
+      "Pushchairs are hard work on medina lanes and steps. A carrier is easier",
+      "Tell us your baby's age in the notes"
+    ],
+    "sort": 200,
+    "active": true,
+    "addons": [
+      {
+        "id": "carrier",
+        "label": "Baby carrier for the medina lanes",
+        "eur": 10,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "pram",
+        "label": "Pushchair for Gueliz and gardens",
+        "eur": 12,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  }
+]

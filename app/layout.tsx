@@ -4,6 +4,7 @@ import { AppStateProvider } from "@/components/AppState";
 import { TopBar } from "@/components/TopBar";
 import { TabBar } from "@/components/TabBar";
 import { Footer } from "@/components/Footer";
+import { SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const display = Big_Shoulders_Display({
@@ -20,6 +21,8 @@ const body = Figtree({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  openGraph: { siteName: "Tariq", locale: "en_GB", type: "website" },
   title: { default: "Tariq · Marrakech tours, transfers and trip services", template: "%s | Tariq" },
   description:
     "Airport transfers, day trips, desert tours and the things nobody else sorts out in Marrakech. Pay on arrival, free cancellation up to 24 h.",

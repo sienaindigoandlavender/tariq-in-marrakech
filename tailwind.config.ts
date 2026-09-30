@@ -15,7 +15,7 @@ const config: Config = {
         line: token("line"),
         blue: { DEFAULT: token("blue"), ink: token("blue-ink") },
         sun: { DEFAULT: token("sun"), ink: token("sun-ink") },
-        rose: token("rose"),
+        rose: { DEFAULT: token("rose"), strong: token("rose-strong"), "strong-ink": token("rose-strong-ink") },
         ok: token("ok"),
         warn: token("warn"),
         wa: token("wa"),
@@ -26,7 +26,8 @@ const config: Config = {
       },
       borderRadius: { card: "16px", input: "12px" },
       maxWidth: { wrap: "1180px" },
-      screens: { phone: { max: "760px" } },
+      // Max-width breakpoints, widest first so narrower ones win.
+      screens: { tab: { max: "1020px" }, phone: { max: "760px" }, xs: { max: "480px" } },
       spacing: { tab: "64px" },
     },
   },
