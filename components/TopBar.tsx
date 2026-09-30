@@ -22,7 +22,7 @@ export function TopBar() {
 
   return (
     <header
-      className="sticky z-30 border-b border-line bg-bg/90 backdrop-blur-md"
+      className="sticky z-30 border-b border-line bg-bg/90 backdrop-blur-md print:hidden"
       style={{ top: "env(safe-area-inset-top, 0px)" }}
     >
       <div className="wrap flex h-[62px] items-center gap-[18px]">
