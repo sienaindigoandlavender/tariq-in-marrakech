@@ -47,8 +47,8 @@ export function TabBar() {
   return (
     <nav
       aria-label={copy.nav.tabs}
-      className="fixed inset-x-0 bottom-0 z-[35] hidden grid-cols-4 border-t border-line bg-bg/95 px-1.5 pt-1.5 backdrop-blur-md phone:grid"
-      style={{ paddingBottom: "calc(6px + env(safe-area-inset-bottom, 0px))" }}
+      className="fixed inset-x-0 bottom-0 z-[35] hidden grid-cols-4 items-center border-t border-line bg-bg/95 px-1.5 backdrop-blur-md phone:grid"
+      style={{ height: "calc(var(--tabh) + env(safe-area-inset-bottom, 0px))", paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
       {TABS.map((t) => {
         const active = t.match(path);
