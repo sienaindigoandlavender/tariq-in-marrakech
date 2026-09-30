@@ -18,6 +18,7 @@ function normalise(row: Record<string, unknown>, addons: Record<string, unknown>
     was_eur: num(row.was_eur),
     cap: num(row.cap),
     private_per_car: num(row.private_per_car),
+    itinerary: Array.isArray(row.itinerary) ? (row.itinerary as Product["itinerary"]) : [],
     addons: addons
       .map((a) => ({ ...(a as unknown as Addon), eur: Number(a.eur) }))
       .sort((a, b) => a.sort - b.sort),
@@ -36,8 +37,17 @@ async function load(): Promise<Product[]> {
     .eq("active", true)
     .order("sort");
   if (error) {
-    // Don't take the site (or the build) down: serve the seed catalogue and shout in the logs.
-    console.error(`[db] Catalogue load failed (${error.message}). Serving data/catalogue.json. Run supabase/migrations/*.sql and supabase/seed.sql.`);
+    // Schema not created or not seeded yet: serve the seed catalogue so builds and pages still work,
+    // and say so loudly in the logs. Any other error is real and must fail.
+    const missing = error.code === "PGRST205" || error.code === "42P01" || /could not find the table|does not exist/i.test(error.message);
+    if (missing) {
+      console.warn("[tariq] Supabase has no products table yet. Serving data/catalogue.json. Run supabase/migrations/*.sql then supabase/seed.sql.");
+      return local();
+    }
+    throw new Error(`Catalogue load failed: ${error.message}`);
+  }
+  if (!data?.length) {
+    console.warn("[tariq] Supabase products table is empty. Serving data/catalogue.json. Run supabase/seed.sql.");
     return local();
   }
   return (data ?? []).map(({ product_addons, ...row }) =>

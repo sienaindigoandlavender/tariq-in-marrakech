@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { copy } from "@/lib/copy";
@@ -314,7 +315,17 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
         <button type="submit" disabled={busy} className="min-h-[54px] rounded-full bg-blue px-[18px] text-base font-extrabold text-blue-ink disabled:opacity-60">
           {cta}
         </button>
-        <p className="m-0 -mt-1 text-center text-[12.5px] text-muted">{payNow ? `${C.paypalNote} ${C.paidNotice}` : C.noPay}</p>
+        <p className="m-0 -mt-1 text-center text-[12.5px] text-muted">
+          {payNow ? `${C.paypalNote} ${C.paidNotice}` : C.noPay} By confirming, you accept the{" "}
+          <Link href="/booking-conditions" target="_blank" className="font-bold text-ink">
+            booking conditions
+          </Link>{" "}
+          and{" "}
+          <Link href="/privacy" target="_blank" className="font-bold text-ink">
+            privacy policy
+          </Link>
+          .
+        </p>
       </form>
 
       <aside className="sticky top-[86px] phone:hidden" aria-label={C.summary}>

@@ -34,7 +34,7 @@ const icon = {
 
 const TABS = [
   { href: "/", label: copy.nav.explore, icon: icon.explore, match: (p: string) => p === "/" },
-  { href: "/#book", label: copy.nav.book, icon: icon.book, match: (p: string) => p.startsWith("/c/") || p.startsWith("/p/") || p.startsWith("/book/") },
+  { href: "/c/all", label: copy.nav.book, icon: icon.book, match: (p: string) => p.startsWith("/c/") || p.startsWith("/p/") || p.startsWith("/book/") },
   { href: "/concierge", label: copy.nav.tariq, icon: icon.tariq, match: (p: string) => p.startsWith("/concierge") },
   { href: "/trip", label: copy.nav.myTrip, icon: icon.trip, match: (p: string) => p.startsWith("/trip") || p.startsWith("/done/"), count: true },
 ];

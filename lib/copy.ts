@@ -45,6 +45,12 @@ export const copy = {
   ],
 
   book: { h: "Book", p: "Final prices. Nothing to pay until the day." },
+  rails: {
+    seeAll: "See all",
+    browseH: "Browse by what you need",
+    browseAll: "Everything",
+    count: (n: number) => `${n} ${n === 1 ? "option" : "options"}`,
+  },
 
   listing: {
     date: "Date",
@@ -192,6 +198,13 @@ export const copy = {
     laterP: "Book your spot and pay nothing today.",
     highlights: "Highlights",
     about: "About this booking",
+    itinerary: "How it runs",
+    totalFor: "Total for",
+    guest: "guest",
+    guests: "guests",
+    cars: "cars",
+    mostAdd: "Most travellers add:",
+    payDay: "pay on the day",
     includes: "What's included",
     excludes: "Not included",
     pickupH: "Pickup and meeting",

@@ -14,7 +14,7 @@ export function AskBar() {
   return (
     <>
       <form
-        className="flex max-w-[620px] gap-2 rounded-full bg-white p-1.5 shadow-[0_8px_30px_rgb(0_0_0/.18)]"
+        className="flex w-full min-w-0 max-w-[620px] gap-2 rounded-full bg-white p-1.5 shadow-[0_8px_30px_rgb(0_0_0/.18)]"
         onSubmit={(e) => {
           e.preventDefault();
           go(q);

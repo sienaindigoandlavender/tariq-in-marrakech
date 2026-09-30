@@ -2,7 +2,7 @@
 // Painted poster scenes (pure SVG), ported from the prototype's scene(type).
 // Placeholders until real photos from the partner's trips exist.
 
-export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby"] as const;
+export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby","henna","spa","tagine","luggage","night","nightkit"] as const;
 
 function palm(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M-2 0 q4 -40 1 -80 l3 0 q4 40 0 80z"/><path d="M1 -80 q-26 -8 -40 6 q18 -14 40 -2z"/><path d="M1 -80 q26 -10 42 4 q-20 -12 -42 -1z"/><path d="M1 -80 q-18 -22 -36 -18 q20 -2 36 16z"/><path d="M1 -80 q18 -24 38 -20 q-22 0 -38 18z"/><path d="M1 -80 q-4 -24 -18 -34 q14 14 16 34z"/></g>`}
 function camel(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M0 -14 q3 -9 10 -10 q5 -10 12 -4 q6 -7 11 0 q3 -2 4 -8 q1 -6 5 -5 q4 1 3 5 l-4 8 q-3 7 -7 9 l0 19 h-2.5 l-1.5 -15 h-14 l-1.5 15 h-2.5 l0 -16 q-6 -1 -5 -6z"/></g>`}
@@ -12,7 +12,9 @@ export function sceneSvg(type: string, uid: string = type): string {
     city:["#f6b26b","#e0607e","#fff1c9"], plane:["#8ec5ff","#dff0ff","#fffbe6"], valley:["#bfe3f2","#f3f7e8","#fff6d6"],
     falls:["#a9d8f0","#e8f6f2","#fff6d6"], ocean:["#9ad0f5","#e9f6ff","#fffbe9"], atlas:["#7fb2e5","#dbeafc","#ffffff"],
     ksar:["#f3c27a","#f7e2b8","#fff4d6"], balloon:["#ffc9a8","#ffe9d2","#fff3dd"], stone:["#2b2a5c","#c9637a","#ffd27a"],
-    quad:["#f5d7a1","#fbeed4","#fff6e3"], palms:["#f59e5b","#fbd38a","#fff0c2"], dunes:["#f7a441","#fbd6a0","#fff3cf"]
+    quad:["#f5d7a1","#fbeed4","#fff6e3"], palms:["#f59e5b","#fbd38a","#fff0c2"], dunes:["#f7a441","#fbd6a0","#fff3cf"],
+    henna:["#e39a72","#f8dcc6","#fff1e2"], spa:["#cfe3dc","#f5efe6","#fffaf0"], tagine:["#2a2447","#6b3f5e","#ffd27a"],
+    luggage:["#bcd7ff","#eef5ff","#fffbe6"], night:["#15142e","#4a2c5a","#fff4d0"], nightkit:["#161433","#3d2a55","#fff4d0"]
   } as Record<string, string[]>)[type]||["#ddd","#eee","#fff"];
   let g=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${S[0]}"/><stop offset="1" stop-color="${S[1]}"/></linearGradient></defs><rect width="400" height="250" fill="url(#${id})"/>`;
   const sun=(x: number, y: number, r: number)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${S[2]}"/>`;
@@ -54,6 +56,38 @@ export function sceneSvg(type: string, uid: string = type): string {
      <rect x="0" y="70" width="400" height="180" fill="#e7c9a0"/>${[30,150,270].map(x=>`<path d="M${x} 250 V140 q50 -70 100 0 V250z" fill="#b8744a"/><path d="M${x+14} 250 V146 q36 -52 72 0 V250z" fill="#f2b35e"/>`).join("")}
      <ellipse cx="200" cy="232" rx="70" ry="12" fill="#3f8f8a"/><ellipse cx="200" cy="228" rx="18" ry="5" fill="#9fd8d2"/>${[80,200,320].map(x=>`<circle cx="${x}" cy="118" r="6" fill="#ffd27a"/><circle cx="${x}" cy="118" r="14" fill="#ffd27a" opacity=".25"/>`).join("")}`;break;
    case "kit": g+=sun(310,60,24)+`<path d="M0 190 q100 -30 200 -5 t200 0 V250 H0z" fill="#c9965f"/><g transform="translate(150 70)"><rect x="0" y="20" width="100" height="120" rx="22" fill="#1f3fbf"/><rect x="18" y="0" width="64" height="40" rx="18" fill="none" stroke="#1f3fbf" stroke-width="10"/><rect x="18" y="70" width="64" height="48" rx="10" fill="#f0a52b"/><path d="M50 70 V118" stroke="#1f3fbf" stroke-width="4"/><rect x="10" y="40" width="80" height="12" rx="6" fill="#16308f"/></g>`;break;
+   case "henna": g+=sun(330,56,26)+`<path d="M0 210 H400 V250 H0z" fill="#c9764f"/>
+     <g transform="translate(150 44)"><rect x="8" y="78" width="96" height="112" rx="44" fill="#e2ab82"/>${[[10,24,70],[32,6,86],[54,0,92],[76,12,80]].map(([x,y,h])=>`<rect x="${x}" y="${y}" width="20" height="${h}" rx="10" fill="#e2ab82"/>`).join("")}<rect x="-26" y="104" width="22" height="64" rx="11" transform="rotate(-38 -15 136)" fill="#e2ab82"/>
+     <g fill="none" stroke="#7a2e1a" stroke-width="2.2" stroke-linecap="round"><circle cx="56" cy="138" r="16"/><circle cx="56" cy="138" r="7"/><path d="M20 112 q36 -22 72 0"/>${[20,42,64,86].map(x=>`<path d="M${x} 50 q-5 8 0 16 q5 8 0 16"/>`).join("")}</g>
+     <g fill="#7a2e1a">${Array.from({length:12},(_,i)=>`<circle cx="${56+26*Math.cos(i*Math.PI/6)}" cy="${138+26*Math.sin(i*Math.PI/6)}" r="2.4"/>`).join("")}${[20,42,64,86].map(x=>`<circle cx="${x}" cy="40" r="3"/>`).join("")}</g></g>
+     <g transform="translate(300 150) rotate(28)"><path d="M0 0 L14 0 L7 60z" fill="#5a2a14"/><rect x="-2" y="-8" width="18" height="10" rx="3" fill="#f0a52b"/></g>`;break;
+   case "spa": g+=`<path d="M0 170 H400 V250 H0z" fill="#e3d6c3"/><path d="M0 170 H400" stroke="#cdbda4" stroke-width="2"/>
+     ${[[70,120,"#ffffff"],[70,96,"#f2e6d6"],[70,72,"#ffffff"]].map(([x,y,c])=>`<rect x="${x}" y="${y}" width="120" height="26" rx="13" fill="${c}" stroke="#d8cab5" stroke-width="2"/><circle cx="${Number(x)+13}" cy="${Number(y)+13}" r="7" fill="none" stroke="#d8cab5" stroke-width="2"/>`).join("")}
+     <ellipse cx="290" cy="166" rx="62" ry="14" fill="#c9a87f"/><path d="M228 150 q62 40 124 0z" fill="#b88f63"/>${[[262,146,"#d9536f"],[286,142,"#f08aa0"],[308,147,"#d9536f"],[276,152,"#f5b64a"],[300,153,"#f08aa0"]].map(([x,y,c])=>`<circle cx="${x}" cy="${y}" r="7" fill="${c}"/>`).join("")}
+     <rect x="215" y="96" width="22" height="50" rx="4" fill="#fff8ec" stroke="#d8cab5" stroke-width="2"/><path d="M226 96 V88" stroke="#5a3a2a" stroke-width="2"/><path d="M226 72 q8 9 0 16 q-8 -7 0 -16z" fill="#f0a52b"/><circle cx="226" cy="82" r="14" fill="#ffd27a" opacity=".3"/>
+     <path d="M340 70 q-40 10 -44 60 q40 -10 44 -60z" fill="#6f9e7d"/><path d="M340 70 q-26 30 -44 60" stroke="#4e7a5c" stroke-width="2" fill="none"/>`;break;
+   case "tagine": g+=`${Array.from({length:18},(_,i)=>`<circle cx="${(i*71)%400}" cy="${(i*23)%70+8}" r="1.2" fill="#fff" opacity=".75"/>`).join("")}
+     <path d="M60 0 V40" stroke="#c9a15a" stroke-width="2"/><g transform="translate(60 40)"><path d="M-12 0 h24 l6 26 h-36z" fill="#f0a52b"/><path d="M-18 26 h36 l-6 10 h-24z" fill="#c07a22"/><circle cx="0" cy="18" r="30" fill="#ffd27a" opacity=".22"/></g>
+     <path d="M340 0 V30" stroke="#c9a15a" stroke-width="2"/><g transform="translate(340 30) scale(.8)"><path d="M-12 0 h24 l6 26 h-36z" fill="#f0a52b"/><path d="M-18 26 h36 l-6 10 h-24z" fill="#c07a22"/><circle cx="0" cy="18" r="30" fill="#ffd27a" opacity=".22"/></g>
+     <path d="M0 196 H400 V250 H0z" fill="#8a4a2a"/><path d="M0 196 H400" stroke="#6b3620" stroke-width="3"/>
+     <ellipse cx="200" cy="192" rx="112" ry="16" fill="#b0503f"/><ellipse cx="200" cy="186" rx="96" ry="12" fill="#d0673f"/>
+     <path d="M126 184 Q200 40 274 184z" fill="#d9693a"/><path d="M150 184 Q200 70 250 184" fill="none" stroke="#f0a52b" stroke-width="3" opacity=".7"/><circle cx="200" cy="106" r="9" fill="#b0503f"/>
+     <g fill="none" stroke="#fff" stroke-width="2.5" opacity=".55" stroke-linecap="round"><path d="M190 92 q-8 -12 0 -22 q8 -10 0 -22"/><path d="M210 92 q8 -12 0 -22 q-8 -10 0 -22"/></g>`;break;
+   case "luggage": g+=sun(330,56,22)+`<path d="M0 200 H400 V250 H0z" fill="#7e8a97"/><path d="M0 222 H400" stroke="#fff" stroke-width="3" stroke-dasharray="24 18"/>
+     <g transform="translate(70 104)"><path d="M0 30 q0 -30 30 -30 h150 q22 0 34 18 l26 36 v42 h-240z" fill="#1f3fbf"/><rect x="18" y="12" width="56" height="34" rx="6" fill="#cfe0ff"/><rect x="84" y="12" width="56" height="34" rx="6" fill="#cfe0ff"/><path d="M150 12 h40 l22 34 h-62z" fill="#cfe0ff"/>
+     <circle cx="52" cy="96" r="18" fill="#16162a"/><circle cx="196" cy="96" r="18" fill="#16162a"/><circle cx="52" cy="96" r="7" fill="#9aa7b4"/><circle cx="196" cy="96" r="7" fill="#9aa7b4"/></g>
+     <g transform="translate(250 44)"><rect x="0" y="16" width="56" height="74" rx="10" fill="#f0a52b"/><path d="M18 16 V4 h20 V16" fill="none" stroke="#c07a22" stroke-width="5"/><path d="M14 30 V78 M42 30 V78" stroke="#c07a22" stroke-width="4"/></g>
+     <g transform="translate(318 70)"><rect x="0" y="10" width="40" height="52" rx="8" fill="#d9536f"/><path d="M12 10 V2 h16 V10" fill="none" stroke="#a83e55" stroke-width="4"/></g>`;break;
+   case "night": g+=`<circle cx="320" cy="56" r="20" fill="${S[2]}"/><circle cx="330" cy="50" r="18" fill="#15142e"/>${Array.from({length:22},(_,i)=>`<circle cx="${(i*61)%400}" cy="${(i*19)%90+6}" r="1.2" fill="#fff" opacity=".8"/>`).join("")}
+     <path d="M0 150 L60 120 L130 142 L200 112 L270 140 L340 118 L400 138 V250 H0z" fill="#2c2350"/>
+     <rect x="176" y="80" width="26" height="100" fill="#3a2d5e"/><rect x="183" y="66" width="12" height="15" fill="#3a2d5e"/><circle cx="189" cy="61" r="4" fill="#ffd27a"/>
+     <rect x="0" y="170" width="400" height="80" fill="#3a2d5e"/>${Array.from({length:14},(_,i)=>`<rect x="${14+i*28}" y="184" width="8" height="12" fill="#ffd27a" opacity="${i%3?0.9:0.35}"/>`).join("")}
+     <path d="M0 150 q100 30 200 0 t200 0" stroke="#ffd27a" stroke-width="1.2" fill="none" opacity=".6"/>${Array.from({length:16},(_,i)=>`<circle cx="${i*26+8}" cy="${150+14*Math.sin((i*26+8)/400*Math.PI*2)}" r="2.6" fill="#ffd27a"/>`).join("")}
+     <g transform="translate(110 206)"><rect x="0" y="6" width="120" height="26" rx="10" fill="#f0a52b"/><path d="M20 6 q10 -18 30 -18 h30 q18 0 26 18z" fill="#f0a52b"/><circle cx="26" cy="34" r="9" fill="#15142e"/><circle cx="96" cy="34" r="9" fill="#15142e"/><path d="M120 16 L190 8 L190 30z" fill="#fff4d0" opacity=".35"/></g>`;break;
+   case "nightkit": g+=`${Array.from({length:30},(_,i)=>`<circle cx="${(i*53)%400}" cy="${(i*31)%120+6}" r="${i%4?1:1.8}" fill="#fff" opacity=".85"/>`).join("")}<circle cx="80" cy="54" r="16" fill="${S[2]}"/>
+     <path d="M0 170 q100 -50 200 -10 q100 -40 200 0 V250 H0z" fill="#5b3b6e"/><path d="M0 205 q120 -30 240 -5 t160 0 V250 H0z" fill="#3d2a55"/>
+     <g transform="translate(150 110)"><rect x="0" y="20" width="80" height="96" rx="18" fill="#1f3fbf"/><rect x="14" y="0" width="52" height="34" rx="15" fill="none" stroke="#1f3fbf" stroke-width="8"/><rect x="14" y="58" width="52" height="40" rx="8" fill="#f0a52b"/></g>
+     <g transform="translate(270 132)"><path d="M10 0 h20 l6 10 h-32z" fill="#c07a22"/><rect x="6" y="10" width="28" height="40" rx="6" fill="#f5b64a"/><rect x="12" y="16" width="16" height="28" rx="4" fill="#fff4d0"/><circle cx="20" cy="30" r="34" fill="#ffd27a" opacity=".18"/></g>`;break;
    case "baby": g+=`<path d="M0 200 H400 V250 H0z" fill="#f2c7b5"/>${sun(320,70,26)}<g transform="translate(120 80)"><path d="M0 60 q0 -60 70 -60 v60z" fill="#d9536f"/><path d="M0 60 h120 q0 40 -40 40 h-50 q-30 0 -30 -40z" fill="#1f3fbf"/><path d="M120 60 l30 -40" stroke="#1c1b2e" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="120" r="14" fill="#1c1b2e"/><circle cx="100" cy="120" r="14" fill="#1c1b2e"/><circle cx="20" cy="120" r="5" fill="#f0a52b"/><circle cx="100" cy="120" r="5" fill="#f0a52b"/></g>`;break;
   }
     return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" style="display:block;width:100%;height:100%">${g}</svg>`;

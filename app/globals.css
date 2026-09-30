@@ -92,3 +92,12 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Legal and long-form text */
+.legal p { margin: 0 0 0.75rem; line-height: 1.65; }
+.legal p:last-child { margin-bottom: 0; }
+.legal ul { list-style: disc; margin: 0 0 0.75rem; padding-left: 1.25rem; display: grid; gap: 0.4rem; line-height: 1.6; }
+.legal li::marker { color: rgb(var(--blue)); }
+.legal a { color: rgb(var(--blue)); font-weight: 700; text-underline-offset: 2px; }
+.legal strong { font-weight: 800; }
+.legal h3 { margin: 1rem 0 0.4rem; font-size: 16px; font-weight: 800; }

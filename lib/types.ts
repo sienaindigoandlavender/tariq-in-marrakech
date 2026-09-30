@@ -44,6 +44,8 @@ export type Product = {
   includes: string[];
   excludes: string[];
   know_before: string[];
+  /** Product page timeline. */
+  itinerary: { t: string; s: string }[];
   sort: number;
   active: boolean;
   addons: Addon[];

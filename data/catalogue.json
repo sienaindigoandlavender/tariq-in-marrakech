@@ -72,6 +72,20 @@
         "popular": false,
         "sort": 40
       }
+    ],
+    "itinerary": [
+      {
+        "t": "On landing",
+        "s": "Your driver tracks the flight and waits at arrivals with your name"
+      },
+      {
+        "t": "20–30 min",
+        "s": "Drive to the medina or your hotel"
+      },
+      {
+        "t": "Arrival",
+        "s": "Walked to your riad door, or met by the porter at the car access point"
+      }
     ]
   },
   {
@@ -92,7 +106,7 @@
     "cap": 4,
     "private_per_car": null,
     "badge": null,
-    "scene": "plane",
+    "scene": "luggage",
     "image_url": null,
     "highlights": [
       "No locker, no second taxi",
@@ -131,6 +145,24 @@
         "popular": false,
         "sort": 20
       }
+    ],
+    "itinerary": [
+      {
+        "t": "Checkout",
+        "s": "We collect you and your bags from the riad"
+      },
+      {
+        "t": "During the day",
+        "s": "Bags stay locked in the van while you use your last day"
+      },
+      {
+        "t": "Evening",
+        "s": "Shower and change if you added the hammam"
+      },
+      {
+        "t": "Flight time",
+        "s": "Dropped at the airport with time to spare"
+      }
     ]
   },
   {
@@ -151,7 +183,7 @@
     "cap": 4,
     "private_per_car": null,
     "badge": null,
-    "scene": "city",
+    "scene": "night",
     "image_url": null,
     "highlights": [
       "Tell us the restaurant and time, we book the table",
@@ -179,6 +211,24 @@
         "per": "car",
         "popular": false,
         "sort": 10
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "You name the restaurant and time, we book the table"
+      },
+      {
+        "t": "Evening",
+        "s": "Pickup at your riad or the nearest car access point"
+      },
+      {
+        "t": "After dinner",
+        "s": "Driver waits nearby or comes back when you message"
+      },
+      {
+        "t": "Home",
+        "s": "Back to the medina, door or nearest access point"
       }
     ]
   },
@@ -248,6 +298,28 @@
         "popular": false,
         "sort": 30
       }
+    ],
+    "itinerary": [
+      {
+        "t": "08:30",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "09:45",
+        "s": "Tea in a Berber family house in the foothills"
+      },
+      {
+        "t": "11:00",
+        "s": "Walk to the Setti Fatma waterfalls with a local guide"
+      },
+      {
+        "t": "13:30",
+        "s": "Lunch by the river, if you added it"
+      },
+      {
+        "t": "17:30",
+        "s": "Back in Marrakech"
+      }
     ]
   },
   {
@@ -307,6 +379,28 @@
         "popular": false,
         "sort": 20
       }
+    ],
+    "itinerary": [
+      {
+        "t": "07:30",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "10:15",
+        "s": "Arrive at Ouzoud, guided walk down to the base of the falls"
+      },
+      {
+        "t": "12:30",
+        "s": "Lunch facing the falls, if you added it"
+      },
+      {
+        "t": "14:00",
+        "s": "Free time, boat ride under the falls if you added it"
+      },
+      {
+        "t": "18:30",
+        "s": "Back in Marrakech"
+      }
     ]
   },
   {
@@ -364,6 +458,28 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "07:30",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "09:00",
+        "s": "Stop at an argan oil cooperative"
+      },
+      {
+        "t": "10:30",
+        "s": "Arrive in Essaouira"
+      },
+      {
+        "t": "10:30–15:30",
+        "s": "Free time in the medina, ramparts and harbour"
+      },
+      {
+        "t": "19:30",
+        "s": "Back in Marrakech"
       }
     ]
   },
@@ -433,6 +549,28 @@
         "popular": false,
         "sort": 30
       }
+    ],
+    "itinerary": [
+      {
+        "t": "08:30",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "09:45",
+        "s": "Through the Asni valley into the High Atlas"
+      },
+      {
+        "t": "10:30",
+        "s": "Walk through a mountain village with a local guide"
+      },
+      {
+        "t": "12:30",
+        "s": "Mint tea facing Toubkal, lunch if you added it"
+      },
+      {
+        "t": "17:00",
+        "s": "Back in Marrakech"
+      }
     ]
   },
   {
@@ -492,6 +630,32 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "07:00",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "09:30",
+        "s": "Over the Tizi n'Tichka pass, 2,260 m"
+      },
+      {
+        "t": "11:30",
+        "s": "Aït Benhaddou, walk up through the ksar"
+      },
+      {
+        "t": "13:30",
+        "s": "Lunch facing the ksar, if you added it"
+      },
+      {
+        "t": "15:00",
+        "s": "Ouarzazate and the film studios"
+      },
+      {
+        "t": "20:00",
+        "s": "Back in Marrakech"
       }
     ]
   },
@@ -563,6 +727,20 @@
         "popular": false,
         "sort": 30
       }
+    ],
+    "itinerary": [
+      {
+        "t": "Day 1",
+        "s": "Tizi n'Tichka pass, Aït Benhaddou, night by the Dades gorges"
+      },
+      {
+        "t": "Day 2",
+        "s": "Todra gorges, then Merzouga. Camel trek into the Erg Chebbi dunes at sunset, dinner and night in camp"
+      },
+      {
+        "t": "Day 3",
+        "s": "Sunrise over the dunes, breakfast, long drive back to Marrakech by about 20:00"
+      }
     ]
   },
   {
@@ -621,6 +799,16 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "Day 1",
+        "s": "Tichka pass, Aït Benhaddou, the Draa valley palm groves, camel ride and night in camp"
+      },
+      {
+        "t": "Day 2",
+        "s": "Sunrise, breakfast, drive back to Marrakech by about 19:00"
       }
     ]
   },
@@ -681,6 +869,28 @@
         "per": "unit",
         "popular": false,
         "sort": 20
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "05:30",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "06:15",
+        "s": "Tea while the balloons inflate"
+      },
+      {
+        "t": "Sunrise",
+        "s": "One hour in the air over the palm groves"
+      },
+      {
+        "t": "08:00",
+        "s": "Berber breakfast after landing, flight certificate"
+      },
+      {
+        "t": "10:00",
+        "s": "Back in Marrakech"
       }
     ]
   },
@@ -750,6 +960,28 @@
         "popular": false,
         "sort": 30
       }
+    ],
+    "itinerary": [
+      {
+        "t": "16:00",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "17:00",
+        "s": "Camel ride in the stone desert"
+      },
+      {
+        "t": "Sunset",
+        "s": "Watch the light go down over the Agafay hills"
+      },
+      {
+        "t": "19:30",
+        "s": "Three-course dinner, music and fire show"
+      },
+      {
+        "t": "22:30",
+        "s": "Back in Marrakech"
+      }
     ]
   },
   {
@@ -800,6 +1032,24 @@
         "popular": true,
         "sort": 10
       }
+    ],
+    "itinerary": [
+      {
+        "t": "09:00 or 14:00",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "45 min later",
+        "s": "Safety briefing, helmet and scarf"
+      },
+      {
+        "t": "2 hours",
+        "s": "Desert tracks with the guide, a stop for mint tea"
+      },
+      {
+        "t": "After",
+        "s": "Back in Marrakech, or stay for the sunset dinner if you added it"
+      }
     ]
   },
   {
@@ -849,6 +1099,24 @@
         "popular": true,
         "sort": 10
       }
+    ],
+    "itinerary": [
+      {
+        "t": "16:30",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "17:00",
+        "s": "One hour through the palm groves"
+      },
+      {
+        "t": "Sunset",
+        "s": "Tea and bread with a Berber family"
+      },
+      {
+        "t": "19:00",
+        "s": "Back in Marrakech"
+      }
     ]
   },
   {
@@ -869,7 +1137,7 @@
     "cap": null,
     "private_per_car": null,
     "badge": null,
-    "scene": "riad",
+    "scene": "henna",
     "image_url": null,
     "highlights": [
       "She comes to your riad in the evening",
@@ -898,6 +1166,24 @@
         "popular": true,
         "sort": 10
       }
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose a time between 18:00 and 22:00"
+      },
+      {
+        "t": "Arrival",
+        "s": "The artist comes to your riad or hotel"
+      },
+      {
+        "t": "1–2 hours",
+        "s": "Design and application"
+      },
+      {
+        "t": "After",
+        "s": "Let it dry 1–2 hours, no water for the night"
+      }
     ]
   },
   {
@@ -918,7 +1204,7 @@
     "cap": null,
     "private_per_car": null,
     "badge": null,
-    "scene": "riad",
+    "scene": "spa",
     "image_url": null,
     "highlights": [
       "In your room, no taxi, no spa queue",
@@ -946,6 +1232,20 @@
         "popular": true,
         "sort": 10
       }
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose a time between 10:00 and 21:00, and a female or male therapist"
+      },
+      {
+        "t": "Arrival",
+        "s": "The therapist brings the table, oils and linen"
+      },
+      {
+        "t": "60 or 90 min",
+        "s": "Argan oil massage in your room"
+      }
     ]
   },
   {
@@ -966,7 +1266,7 @@
     "cap": null,
     "private_per_car": null,
     "badge": null,
-    "scene": "riad",
+    "scene": "tagine",
     "image_url": null,
     "highlights": [
       "A home cook shops at the souk for you",
@@ -996,6 +1296,24 @@
         "per": "pp",
         "popular": true,
         "sort": 10
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "Afternoon",
+        "s": "The cook shops at the souk for your dinner"
+      },
+      {
+        "t": "18:00",
+        "s": "Cooking lesson in the riad kitchen, if you added it"
+      },
+      {
+        "t": "19:30",
+        "s": "Three-course Moroccan dinner served where you stay"
+      },
+      {
+        "t": "After",
+        "s": "Kitchen cleaned up"
       }
     ]
   },
@@ -1056,6 +1374,20 @@
         "popular": false,
         "sort": 20
       }
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "One kit per person, Toubkal upgrade optional"
+      },
+      {
+        "t": "Pickup",
+        "s": "Your kit is waiting in the van"
+      },
+      {
+        "t": "On the trail",
+        "s": "Snacks, water, electrolytes and first aid for the day"
+      }
     ]
   },
   {
@@ -1076,7 +1408,7 @@
     "cap": null,
     "private_per_car": null,
     "badge": null,
-    "scene": "kit",
+    "scene": "nightkit",
     "image_url": null,
     "highlights": [
       "For the cold desert night",
@@ -1096,7 +1428,21 @@
     ],
     "sort": 190,
     "active": true,
-    "addons": []
+    "addons": [],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "One kit per person"
+      },
+      {
+        "t": "Day 1 pickup",
+        "s": "Your kit is waiting in the van"
+      },
+      {
+        "t": "Camp night",
+        "s": "Headlamp, warm socks and a scarf for the cold desert night"
+      }
+    ]
   },
   {
     "id": "baby",
@@ -1155,6 +1501,24 @@
         "per": "unit",
         "popular": false,
         "sort": 20
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "Before you arrive",
+        "s": "Tell us your baby's age in the notes"
+      },
+      {
+        "t": "Arrival day",
+        "s": "Cot and high chair set up at your riad, car seat fitted in the airport van"
+      },
+      {
+        "t": "During your stay",
+        "s": "Message us on WhatsApp if anything needs changing"
+      },
+      {
+        "t": "Departure",
+        "s": "We collect everything when you leave"
       }
     ]
   }

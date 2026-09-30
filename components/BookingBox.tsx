@@ -8,7 +8,19 @@ import { useBookingSheet } from "./booking/BookingSheet";
 import { Icon } from "./Icons";
 import { PriceFrom } from "./ProductCard";
 
-type P = Pick<PublicProduct, "id" | "price_eur" | "was_eur" | "per">;
+type P = Pick<PublicProduct, "id" | "price_eur" | "was_eur" | "per" | "addons">;
+
+/** Upsell priming: the add-on most travellers pick, shown before the booking sheet opens. */
+function Popular({ p }: { p: P }) {
+  const { money } = useAppState();
+  const a = p.addons.find((x) => x.popular);
+  if (!a) return null;
+  return (
+    <p className="m-0 rounded-input bg-soft px-3 py-2.5 text-[13.5px] leading-snug">
+      <span className="font-extrabold">{copy.product.mostAdd}</span> {a.label}, <span className="tnum font-bold">+{money(a.eur)}</span> {perLabel(a.per)}
+    </p>
+  );
+}
 
 function useCheck() {
   return useBookingSheet().open;
@@ -20,6 +32,7 @@ export function BookingBox({ p }: { p: P }) {
   return (
     <aside className="sticky top-[86px] grid gap-3.5 rounded-card border border-line bg-surface p-5 shadow-[0_8px_30px_rgb(0_0_0/.06)]">
       <PriceFrom p={p} size="lg" />
+      <Popular p={p} />
       <button type="button" onClick={check} className="min-h-[48px] rounded-full bg-blue px-[18px] text-base font-extrabold text-blue-ink">
         {copy.product.check}
       </button>
