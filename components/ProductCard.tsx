@@ -40,7 +40,7 @@ export function PriceFrom({ p, size = "md" }: { p: Pick<CardProduct, "price_eur"
       {off ? (
         <>
           <span className="tnum text-[13px] text-muted line-through">{money(p.was_eur!)}</span>
-          <span className="rounded-md bg-rose px-1.5 py-px text-[11.5px] font-extrabold text-white">−{off}%</span>
+          <span className="rounded-md bg-rose-strong px-1.5 py-px text-[11.5px] font-extrabold text-rose-strong-ink">−{off}%</span>
         </>
       ) : null}
       <span className="text-[12.5px] font-semibold text-muted">{copy.price.from}</span>

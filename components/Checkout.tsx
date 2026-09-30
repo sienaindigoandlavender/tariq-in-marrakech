@@ -250,7 +250,7 @@ export function Checkout({ p }: { p: PublicProduct }) {
                     <span>
                       <b className="block font-bold">
                         {a.label}
-                        {a.popular ? <span className="text-xs font-bold text-rose"> · {C.popular}</span> : null}
+                        {a.popular ? <span className="text-xs font-bold text-rose-strong"> · {C.popular}</span> : null}
                       </b>
                       <small className="text-[13px] text-muted">{perLabel(a.per)}</small>
                     </span>

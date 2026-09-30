@@ -15,7 +15,7 @@ const config: Config = {
         line: token("line"),
         blue: { DEFAULT: token("blue"), ink: token("blue-ink") },
         sun: { DEFAULT: token("sun"), ink: token("sun-ink") },
-        rose: token("rose"),
+        rose: { DEFAULT: token("rose"), strong: token("rose-strong"), "strong-ink": token("rose-strong-ink") },
         ok: token("ok"),
         warn: token("warn"),
         wa: token("wa"),
