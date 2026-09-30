@@ -24,10 +24,10 @@ function normalise(row: Record<string, unknown>, addons: Record<string, unknown>
   };
 }
 
+const local = () => (catalogue as unknown as Product[]).filter((p) => p.active && p.city === CITY);
+
 async function load(): Promise<Product[]> {
-  if (!hasSupabase) {
-    return (catalogue as unknown as Product[]).filter((p) => p.active && p.city === CITY);
-  }
+  if (!hasSupabase) return local();
   const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false } });
   const { data, error } = await sb
     .from("products")
@@ -35,18 +35,30 @@ async function load(): Promise<Product[]> {
     .eq("city", CITY)
     .eq("active", true)
     .order("sort");
-  if (error) throw new Error(`Catalogue load failed: ${error.message}`);
+  if (error) {
+    // Don't take the site (or the build) down: serve the seed catalogue and shout in the logs.
+    console.error(`[db] Catalogue load failed (${error.message}). Serving data/catalogue.json. Run supabase/migrations/*.sql and supabase/seed.sql.`);
+    return local();
+  }
   return (data ?? []).map(({ product_addons, ...row }) =>
     normalise(row as Record<string, unknown>, (product_addons ?? []) as Record<string, unknown>[]),
   );
 }
 
+// One load per server instance per minute; pages still revalidate on their own schedule.
+let memo: { at: number; p: Promise<Product[]> } | null = null;
+
 export async function getProducts(): Promise<Product[]> {
-  return (await load()).sort((a, b) => a.sort - b.sort);
+  if (!memo || Date.now() - memo.at > 60_000) {
+    const p = load().then((l) => l.sort((a, b) => a.sort - b.sort));
+    memo = { at: Date.now(), p };
+    p.catch(() => (memo = null));
+  }
+  return [...(await memo.p)];
 }
 
 export async function getProduct(id: string): Promise<Product | null> {
-  return (await load()).find((p) => p.id === id) ?? null;
+  return (await getProducts()).find((p) => p.id === id) ?? null;
 }
 
 export async function getProductsByCategory(cat: Category): Promise<Product[]> {
