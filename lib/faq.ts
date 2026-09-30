@@ -84,12 +84,12 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
     },
     {
       id: "journeys",
-      h: "Day trips and journeys",
+      h: "Day trips, desert treks and tours",
       items: [
         {
           q: "What's the difference between Agafay and the Sahara?",
-          a: "Agafay is a stone desert 40 minutes from Marrakech, good for a sunset dinner. The big Sahara dunes at Merzouga are about 9 hours away by road, so they need the 3-day trip, or 4 days if you finish in Fes.",
-          link: ["/c/des", "Tours & journeys"],
+          a: "Agafay is a stone desert 40 minutes from Marrakech, good for a sunset dinner. The big Sahara dunes at Merzouga are about 9 hours away by road, so they need the 3-day trek, or 4 days if you finish in Fes.",
+          link: ["/c/des", "Desert treks"],
         },
         {
           q: "Shared or private?",
@@ -117,7 +117,7 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
         {
           q: "Can I rent baby gear?",
           a: "Yes. The baby kit, with a travel cot, high chair and car seat, is delivered and set up at your riad.",
-          link: ["/c/kit", "Kits & baby"],
+          link: ["/c/svc", "Concierge, kits & baby"],
         },
       ],
     },

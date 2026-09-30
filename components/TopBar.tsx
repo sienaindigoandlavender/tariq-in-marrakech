@@ -7,12 +7,11 @@ import { Logo } from "./Logo";
 import { CURRENCIES, useAppState } from "./AppState";
 
 const MENU: { href: string; label: string; short?: string }[] = [
+  { href: "/c/trf", label: copy.nav.transfers },
   { href: "/c/exc", label: copy.nav.dayTrips },
   { href: "/c/des", label: copy.nav.desert },
-  { href: "/c/trf", label: copy.nav.transfers },
+  { href: "/c/act", label: copy.nav.tours },
   { href: "/c/svc", label: copy.nav.atRiad },
-  { href: "/c/kit", label: copy.nav.kits, short: "Kits" },
-  { href: "/packages", label: copy.nav.packages },
 ];
 
 export function TopBar() {
