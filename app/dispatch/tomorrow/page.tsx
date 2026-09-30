@@ -24,7 +24,9 @@ export default async function TomorrowPage() {
     .eq("city", CITY)
     .eq("date", day)
     .not("status", "in", "(cancelled,noshow,pending_payment)");
-  const timing = new Map((await getProducts()).map((p) => [p.id, p.timing]));
+  const all = await getProducts();
+  const timing = new Map(all.map((p) => [p.id, p.timing]));
+  const nonref = new Set(all.filter((p) => !p.refundable).map((p) => p.id));
   const rows = ((data ?? []) as Row[])
     .map((b) => ({ ...b, timing: timing.get(b.product_id) ?? "", min: pickupMinutes(timing.get(b.product_id) ?? "") }))
     .sort((a, b) => a.min - b.min || a.product_title.localeCompare(b.product_title));
@@ -48,7 +50,7 @@ export default async function TomorrowPage() {
                 <span>
                   {b.lead_name} · <a className="tnum font-bold" href={`tel:${b.phone.replace(/[^\d+]/g, "")}`}>{b.phone}</a> · {b.ref} · due €{Math.round(dueOnDay(b))}{b.payment_status === "paid" ? " (prepaid)" : ""}
                 </span>
-                <StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} />
+                <StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} refundable={!nonref.has(b.product_id)} />
               </div>
             </li>
           ))}

@@ -23,3 +23,14 @@ export function isYmd(s: unknown): s is string {
 export function fmtDate(ymd: string, opts: Intl.DateTimeFormatOptions = { weekday: "long", day: "numeric", month: "long" }): string {
   return new Date(ymd + "T12:00:00Z").toLocaleDateString("en-GB", { ...opts, timeZone: "UTC" });
 }
+
+/** First bookable date for a product: tomorrow, or later when it needs more notice. */
+export function earliest(p: { lead_days?: number | null }): string {
+  return addDays(today(), Math.max(1, Number(p.lead_days) || 1));
+}
+
+/** A preferred date if it's still bookable for this product, otherwise the first bookable one. */
+export function bookable(p: { lead_days?: number | null }, d?: string | null): string {
+  const min = earliest(p);
+  return d && isYmd(d) && d >= min ? d : min;
+}

@@ -86,7 +86,10 @@
         "t": "Arrival",
         "s": "Walked to your riad door, or met by the porter at the car access point"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "driver",
@@ -177,7 +180,10 @@
         "popular": false,
         "sort": 40
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "lastday",
@@ -254,7 +260,10 @@
         "t": "Flight time",
         "s": "Dropped at the airport with time to spare"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "dinner",
@@ -321,7 +330,10 @@
         "t": "Home",
         "s": "Back to the medina, door or nearest access point"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "ourika",
@@ -411,7 +423,10 @@
         "t": "17:30",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "ouzoud",
@@ -492,7 +507,10 @@
         "t": "18:30",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "essaouira",
@@ -572,7 +590,10 @@
         "t": "19:30",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "imlil",
@@ -662,7 +683,10 @@
         "t": "17:00",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "abh",
@@ -748,7 +772,10 @@
         "t": "20:00",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "sahara3",
@@ -832,7 +859,10 @@
         "t": "Day 3",
         "s": "Sunrise over the dunes, breakfast, long drive back to Marrakech by about 20:00"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "zagora",
@@ -900,6 +930,156 @@
       {
         "t": "Day 2",
         "s": "Sunrise, breakfast, drive back to Marrakech by about 19:00"
+      }
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
+  },
+  {
+    "city": "marrakech",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": 780,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "id": "fes4",
+    "category": "des",
+    "role": "cow",
+    "title": "4-day Sahara to Fes",
+    "subtitle": "4 days, one way",
+    "blurb": "Marrakech to Fes the long way: the Atlas, the gorges, a night in the Merzouga dunes, and on to Fes.",
+    "timing": "Pickup 7:00",
+    "duration": "4 days, 3 nights",
+    "km": 960,
+    "drive_time": "4 days",
+    "price_eur": 189,
+    "per": "pp",
+    "scene": "dunes",
+    "highlights": [
+      "Ends in Fes, no drive back",
+      "Todra gorges and the Dades valley",
+      "A night in the Merzouga dunes"
+    ],
+    "includes": [
+      "Transport and driver",
+      "3 nights (hotel, camp, hotel)",
+      "Dinners and breakfasts",
+      "Camel ride at sunset"
+    ],
+    "excludes": [
+      "Lunches",
+      "Luxury tent (upgrade)"
+    ],
+    "know_before": [
+      "One way: you finish at your hotel in Fes",
+      "Long driving days. Take the front seat if you get carsick"
+    ],
+    "sort": 102,
+    "addons": [
+      {
+        "id": "lux",
+        "label": "Luxury tent with bathroom",
+        "eur": 45,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "dkit",
+        "label": "Desert night kit",
+        "eur": 15,
+        "per": "pp",
+        "popular": false,
+        "sort": 20
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "Day 1",
+        "s": "Tizi n'Tichka pass, Aït Benhaddou, night in the Dades valley"
+      },
+      {
+        "t": "Day 2",
+        "s": "Todra gorges, Erfoud, camel ride into the dunes, night in camp"
+      },
+      {
+        "t": "Day 3",
+        "s": "Sunrise, then north through Midelt and the cedar forest"
+      },
+      {
+        "t": "Day 4",
+        "s": "Ifrane, then drop-off at your hotel in Fes"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": 320,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "id": "atlas2",
+    "category": "des",
+    "role": "core",
+    "title": "2-day Atlas trek, Imlil",
+    "subtitle": "2 days",
+    "blurb": "Walk Berber villages below Toubkal and sleep in a mountain guesthouse. Guide and mule included.",
+    "timing": "Pickup 8:00",
+    "duration": "2 days, 1 night",
+    "km": 130,
+    "drive_time": "1h30 each way",
+    "price_eur": 99,
+    "per": "pp",
+    "scene": "atlas",
+    "highlights": [
+      "Five to six hours walking a day, no summit",
+      "Night in a Berber guesthouse",
+      "Mule carries your bag"
+    ],
+    "includes": [
+      "Transport from your riad",
+      "Licensed mountain guide",
+      "1 night guesthouse",
+      "Dinner, breakfast and lunches",
+      "Mule for bags"
+    ],
+    "excludes": [
+      "Trek kit (add-on)",
+      "Tips"
+    ],
+    "know_before": [
+      "Good walking shoes. Nights are cold, even in summer",
+      "Not a Toubkal summit trip"
+    ],
+    "sort": 104,
+    "addons": [
+      {
+        "id": "tkit",
+        "label": "Trek kit waiting in the van",
+        "eur": 12,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "Day 1",
+        "s": "Drive to Imlil, walk over the Tizi n'Mzik pass, night in a village guesthouse"
+      },
+      {
+        "t": "Day 2",
+        "s": "Walk the Ait Mizane valley back to Imlil, drive back to your riad"
       }
     ]
   },
@@ -983,7 +1163,10 @@
         "t": "10:00",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "agafay",
@@ -1073,7 +1256,10 @@
         "t": "22:30",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "quad",
@@ -1141,7 +1327,10 @@
         "t": "After",
         "s": "Back in Marrakech, or stay for the sunset dinner if you added it"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "camel",
@@ -1208,7 +1397,10 @@
         "t": "19:00",
         "s": "Back in Marrakech"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "henna",
@@ -1216,7 +1408,7 @@
     "category": "svc",
     "role": "gap",
     "title": "Henna artist at your riad",
-    "subtitle": "At your riad",
+    "subtitle": "Concierge",
     "blurb": "She comes to you in the evening. Hands, from a simple line to a full bridal design.",
     "timing": "18:00 to 22:00",
     "duration": "1–2 hours",
@@ -1275,7 +1467,10 @@
         "t": "After",
         "s": "Let it dry 1–2 hours, no water for the night"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "massage",
@@ -1283,7 +1478,7 @@
     "category": "svc",
     "role": "gap",
     "title": "Massage at your riad, 60 min",
-    "subtitle": "At your riad",
+    "subtitle": "Concierge",
     "blurb": "Argan oil massage in your room. Therapist brings the table and linen.",
     "timing": "10:00 to 21:00",
     "duration": "60 minutes",
@@ -1337,7 +1532,10 @@
         "t": "60 or 90 min",
         "s": "Argan oil massage in your room"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "chef",
@@ -1345,7 +1543,7 @@
     "category": "svc",
     "role": "gap",
     "title": "Private chef dinner in your riad",
-    "subtitle": "At your riad",
+    "subtitle": "Concierge",
     "blurb": "A home cook shops, cooks and serves a three-course Moroccan dinner where you stay.",
     "timing": "Served from 19:30",
     "duration": "Evening",
@@ -1374,6 +1572,8 @@
       "Cooking lesson (add-on)"
     ],
     "know_before": [
+      "Book at least 3 days ahead: the cook plans and shops for you",
+      "Paid online when you book. Non-refundable",
       "Your riad needs to allow use of its kitchen. We check for you",
       "Tell us allergies in the notes"
     ],
@@ -1405,6 +1605,148 @@
       {
         "t": "After",
         "s": "Kitchen cleaned up"
+      }
+    ],
+    "lead_days": 3,
+    "prepay_only": true,
+    "refundable": false
+  },
+  {
+    "city": "marrakech",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "id": "barber",
+    "category": "svc",
+    "role": "gap",
+    "title": "Barber at your riad",
+    "subtitle": "Concierge",
+    "blurb": "A proper Marrakech barber comes to you. Cut, hot-towel shave, beard shaped.",
+    "timing": "10:00 to 21:00",
+    "duration": "45–60 min",
+    "km": 0,
+    "drive_time": "at your riad",
+    "price_eur": 20,
+    "per": "pp",
+    "scene": "barber",
+    "highlights": [
+      "Comes to your riad or hotel",
+      "Hot-towel straight-razor shave",
+      "Fresh blade for every client"
+    ],
+    "includes": [
+      "Barber at your riad",
+      "Cut or shave",
+      "All tools, new blades"
+    ],
+    "excludes": [
+      "Tips"
+    ],
+    "know_before": [
+      "Tell us in the notes: cut, shave or both",
+      "Kids welcome"
+    ],
+    "sort": 172,
+    "addons": [
+      {
+        "id": "both",
+        "label": "Cut and shave together",
+        "eur": 12,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose a time between 10:00 and 21:00"
+      },
+      {
+        "t": "Arrival",
+        "s": "The barber comes to your riad"
+      },
+      {
+        "t": "45–60 min",
+        "s": "Cut, shave or both"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 2,
+    "prepay_only": false,
+    "refundable": true,
+    "id": "photo",
+    "category": "svc",
+    "role": "gap",
+    "title": "Photographer in the medina",
+    "subtitle": "Concierge",
+    "blurb": "One hour walking the medina with a local photographer. Edited photos in your inbox within 48 hours.",
+    "timing": "Golden hour, 8:00 or 17:00",
+    "duration": "1 hour",
+    "km": 0,
+    "drive_time": "starts at your riad",
+    "price_eur": 89,
+    "per": "flat",
+    "scene": "camera",
+    "highlights": [
+      "Starts at your riad door",
+      "The spots, without the crowds",
+      "30+ edited photos in 48 hours"
+    ],
+    "includes": [
+      "1-hour shoot for up to 6 people",
+      "30+ edited photos",
+      "Online gallery"
+    ],
+    "excludes": [
+      "Prints",
+      "Extra hours (add-on)"
+    ],
+    "know_before": [
+      "Book at least 2 days ahead",
+      "Proposal? Tell us in the notes, we plan it quietly"
+    ],
+    "sort": 174,
+    "addons": [
+      {
+        "id": "hour",
+        "label": "Extra hour, second location",
+        "eur": 60,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose morning or evening golden hour"
+      },
+      {
+        "t": "Start",
+        "s": "Photographer meets you at your riad"
+      },
+      {
+        "t": "1 hour",
+        "s": "Walk and shoot through the medina"
+      },
+      {
+        "t": "Within 48 h",
+        "s": "Edited gallery in your inbox"
       }
     ]
   },
@@ -1479,7 +1821,10 @@
         "t": "On the trail",
         "s": "Snacks, water, electrolytes and first aid for the day"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "desertkit",
@@ -1533,7 +1878,10 @@
         "t": "Camp night",
         "s": "Headlamp, warm socks and a scarf for the cold desert night"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   },
   {
     "id": "baby",
@@ -1611,6 +1959,9 @@
         "t": "Departure",
         "s": "We collect everything when you leave"
       }
-    ]
+    ],
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true
   }
 ]

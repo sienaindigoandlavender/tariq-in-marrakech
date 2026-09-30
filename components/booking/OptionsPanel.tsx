@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { copy } from "@/lib/copy";
-import { fmtDate, tomorrow } from "@/lib/dates";
+import { earliest, fmtDate } from "@/lib/dates";
 import { perLabel } from "@/lib/format";
 import { price } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
@@ -49,11 +49,12 @@ export function OptionsPanel({ p, sel, onChange }: { p: PublicProduct; sel: Sele
           {pill("date", "clock", sel.date ? fmtDate(sel.date, { weekday: "short", day: "numeric", month: "short" }) : C.date, `${C.date}: ${sel.date ? fmtDate(sel.date) : "not set"}`)}
           {pill("guests", "users", `${sel.guests} ${sel.guests === 1 ? "guest" : "guests"}`, `${C.participants}: ${sel.guests}`)}
         </div>
+        {p.lead_days > 1 ? <p className="m-0 text-[12.5px] font-bold text-muted">Book at least {p.lead_days} days ahead{p.prepay_only ? ". Paid online when you book" : ""}{p.refundable ? "" : ", non-refundable"}.</p> : null}
         {open === "date" ? (
           <div className="rounded-input border border-line p-3">
             <Calendar
               value={sel.date}
-              min={tomorrow()}
+              min={earliest(p)}
               onChange={(d) => {
                 set({ date: d });
                 setOpen(null);

@@ -18,10 +18,10 @@ const icon = {
       <path d="M4 10h16M9 3v4M15 3v4" />
     </>
   ),
-  tariq: (
+  plan: (
     <>
-      <path d="M5 18l-1 3 4-2h9a3 3 0 003-3V7a3 3 0 00-3-3H7a3 3 0 00-3 3v8a3 3 0 001 3z" />
-      <path d="M9 10h.01M12 10h.01M15 10h.01" />
+      <path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z" />
+      <path d="M9 4v14M15 6v14" />
     </>
   ),
   trip: (
@@ -35,7 +35,7 @@ const icon = {
 const TABS = [
   { href: "/", label: copy.nav.explore, icon: icon.explore, match: (p: string) => p === "/" },
   { href: "/c/all", label: copy.nav.book, icon: icon.book, match: (p: string) => p.startsWith("/c/") || p.startsWith("/p/") || p.startsWith("/book/") },
-  { href: "/concierge", label: copy.nav.tariq, icon: icon.tariq, match: (p: string) => p.startsWith("/concierge") },
+  { href: "/plan", label: "Plan", icon: icon.plan, match: (p: string) => p.startsWith("/plan") || p.startsWith("/packages") },
   { href: "/trip", label: copy.nav.myTrip, icon: icon.trip, match: (p: string) => p.startsWith("/trip") || p.startsWith("/done/"), count: true },
 ];
 

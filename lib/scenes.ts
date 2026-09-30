@@ -2,7 +2,7 @@
 // Painted poster scenes (pure SVG), ported from the prototype's scene(type).
 // Placeholders until real photos from the partner's trips exist.
 
-export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby","henna","spa","tagine","luggage","night","nightkit","road"] as const;
+export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby","henna","spa","tagine","luggage","night","nightkit","road","barber","camera"] as const;
 
 function palm(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M-2 0 q4 -40 1 -80 l3 0 q4 40 0 80z"/><path d="M1 -80 q-26 -8 -40 6 q18 -14 40 -2z"/><path d="M1 -80 q26 -10 42 4 q-20 -12 -42 -1z"/><path d="M1 -80 q-18 -22 -36 -18 q20 -2 36 16z"/><path d="M1 -80 q18 -24 38 -20 q-22 0 -38 18z"/><path d="M1 -80 q-4 -24 -18 -34 q14 14 16 34z"/></g>`}
 function camel(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M0 -14 q3 -9 10 -10 q5 -10 12 -4 q6 -7 11 0 q3 -2 4 -8 q1 -6 5 -5 q4 1 3 5 l-4 8 q-3 7 -7 9 l0 19 h-2.5 l-1.5 -15 h-14 l-1.5 15 h-2.5 l0 -16 q-6 -1 -5 -6z"/></g>`}
@@ -14,7 +14,8 @@ export function sceneSvg(type: string, uid: string = type): string {
     ksar:["#f3c27a","#f7e2b8","#fff4d6"], balloon:["#ffc9a8","#ffe9d2","#fff3dd"], stone:["#2b2a5c","#c9637a","#ffd27a"],
     quad:["#f5d7a1","#fbeed4","#fff6e3"], palms:["#f59e5b","#fbd38a","#fff0c2"], dunes:["#f7a441","#fbd6a0","#fff3cf"],
     henna:["#e39a72","#f8dcc6","#fff1e2"], spa:["#cfe3dc","#f5efe6","#fffaf0"], tagine:["#2a2447","#6b3f5e","#ffd27a"],
-    luggage:["#bcd7ff","#eef5ff","#fffbe6"], night:["#15142e","#4a2c5a","#fff4d0"], nightkit:["#161433","#3d2a55","#fff4d0"], road:["#9fcbf2","#f3ecd9","#fff6d6"]
+    luggage:["#bcd7ff","#eef5ff","#fffbe6"], night:["#15142e","#4a2c5a","#fff4d0"], nightkit:["#161433","#3d2a55","#fff4d0"], road:["#9fcbf2","#f3ecd9","#fff6d6"],
+    barber:["#1f6f78","#cfe6e3","#fff4d6"], camera:["#f6b26b","#fbe3c4","#fff4d6"]
   } as Record<string, string[]>)[type]||["#ddd","#eee","#fff"];
   let g=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${S[0]}"/><stop offset="1" stop-color="${S[1]}"/></linearGradient></defs><rect width="400" height="250" fill="url(#${id})"/>`;
   const sun=(x: number, y: number, r: number)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${S[2]}"/>`;
@@ -94,6 +95,15 @@ export function sceneSvg(type: string, uid: string = type): string {
      <g transform="translate(212 150)"><path d="M0 22 q0 -22 22 -22 h70 q14 0 22 12 l14 18 v24 h-128z" fill="#1f3fbf"/><rect x="12" y="8" width="32" height="18" rx="4" fill="#cfe0ff"/><rect x="50" y="8" width="32" height="18" rx="4" fill="#cfe0ff"/><path d="M88 8 h14 l12 18 h-26z" fill="#cfe0ff"/>
      <circle cx="28" cy="54" r="10" fill="#16162a"/><circle cx="106" cy="54" r="10" fill="#16162a"/><circle cx="28" cy="54" r="4" fill="#9aa7b4"/><circle cx="106" cy="54" r="4" fill="#9aa7b4"/></g>
      ${palm(60,206,.8,"#5b6b2f")}${palm(372,196,.7,"#5b6b2f")}`;break;
+   case "barber": g+=`<path d="M0 200 H400 V250 H0z" fill="#2c4f55"/>${Array.from({length:10},(_,i)=>`<path d="M${i*40} 200 l20 0 l-20 50z" fill="#24444a"/>`).join("")}
+     <g transform="translate(70 40)"><rect x="0" y="0" width="34" height="150" rx="17" fill="#fff"/><clipPath id="${id}-p"><rect x="0" y="0" width="34" height="150" rx="17"/></clipPath><g clip-path="url(#${id}-p)">${Array.from({length:9},(_,i)=>`<path d="M-10 ${i*22-10} L44 ${i*22+14} L44 ${i*22+24} L-10 ${i*22}z" fill="${i%2?"#1f3fbf":"#d9536f"}"/>`).join("")}</g><rect x="-4" y="-10" width="42" height="14" rx="7" fill="#c9a24a"/><rect x="-4" y="146" width="42" height="14" rx="7" fill="#c9a24a"/></g>
+     <g transform="translate(200 60)"><rect x="0" y="0" width="150" height="110" rx="55" fill="#ffffff" opacity=".85" stroke="#c9a24a" stroke-width="6"/>
+     <g transform="translate(38 30) rotate(-20)"><rect x="0" y="0" width="70" height="12" rx="3" fill="#9aa7b4"/><rect x="0" y="12" width="70" height="10" rx="3" fill="#1c1b2e"/></g>
+     <g transform="translate(60 62)"><circle cx="0" cy="0" r="10" fill="none" stroke="#1c1b2e" stroke-width="5"/><circle cx="30" cy="0" r="10" fill="none" stroke="#1c1b2e" stroke-width="5"/><path d="M8 -6 L46 -34 M22 -6 L-16 -34" stroke="#9aa7b4" stroke-width="5" stroke-linecap="round"/></g></g>`;break;
+   case "camera": g+=sun(320,64,26)+`<path d="M0 170 L60 150 L60 110 L90 110 L90 140 L140 130 L140 90 L170 70 L200 90 L200 150 L260 140 L260 100 L290 100 L290 150 L400 160 V250 H0z" fill="#c07a44" opacity=".7"/><path d="M0 205 H400 V250 H0z" fill="#b0503f"/>
+     <g transform="translate(130 96)"><rect x="0" y="16" width="140" height="92" rx="16" fill="#1c1b2e"/><rect x="18" y="4" width="40" height="18" rx="5" fill="#1c1b2e"/><rect x="104" y="26" width="18" height="10" rx="3" fill="#f0a52b"/>
+     <circle cx="70" cy="62" r="34" fill="#3a3960"/><circle cx="70" cy="62" r="24" fill="#1f3fbf"/><circle cx="70" cy="62" r="12" fill="#0e0e22"/><circle cx="62" cy="54" r="5" fill="#fff" opacity=".7"/></g>
+     ${palm(50,226,.8,"#5b6b2f")}${palm(360,230,.9,"#5b6b2f")}`;break;
    case "baby": g+=`<path d="M0 200 H400 V250 H0z" fill="#f2c7b5"/>${sun(320,70,26)}<g transform="translate(120 80)"><path d="M0 60 q0 -60 70 -60 v60z" fill="#d9536f"/><path d="M0 60 h120 q0 40 -40 40 h-50 q-30 0 -30 -40z" fill="#1f3fbf"/><path d="M120 60 l30 -40" stroke="#1c1b2e" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="120" r="14" fill="#1c1b2e"/><circle cx="100" cy="120" r="14" fill="#1c1b2e"/><circle cx="20" cy="120" r="5" fill="#f0a52b"/><circle cx="100" cy="120" r="5" fill="#f0a52b"/></g>`;break;
   }
     return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" style="display:block;width:100%;height:100%">${g}</svg>`;

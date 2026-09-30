@@ -6,10 +6,11 @@ import { offPct, perLabel } from "@/lib/format";
 import type { PublicProduct } from "@/lib/types";
 import { useAppState } from "./AppState";
 import { Poster, distLabel } from "./Poster";
+import { rules } from "@/lib/rules";
 
 type CardProduct = Pick<
   PublicProduct,
-  "id" | "title" | "subtitle" | "blurb" | "duration" | "price_eur" | "was_eur" | "per" | "badge" | "scene" | "image_url" | "km" | "drive_time"
+  "id" | "title" | "subtitle" | "blurb" | "duration" | "price_eur" | "was_eur" | "per" | "badge" | "scene" | "image_url" | "km" | "drive_time" | "lead_days" | "prepay_only" | "refundable"
 >;
 
 export function Heart({ id, className = "" }: { id: string; className?: string }) {
@@ -50,15 +51,25 @@ export function PriceFrom({ p, size = "md" }: { p: Pick<CardProduct, "price_eur"
   );
 }
 
-export function Assurances({ className = "" }: { className?: string }) {
+export function Assurances({ p, className = "" }: { p?: Parameters<typeof rules>[0]; className?: string }) {
+  const r = rules(p ?? {});
   return (
-    <div className={`grid gap-0.5 text-[13px] font-bold text-ok ${className}`}>
-      <span className="inline-flex items-center gap-1.5">
-        <Check /> {copy.listing.freeCancel}
-      </span>
-      <span className="inline-flex items-center gap-1.5">
-        <Check /> {copy.listing.payOnArrival}
-      </span>
+    <div className={`grid gap-0.5 text-[13px] font-bold ${className}`}>
+      {r.refundable ? (
+        <span className="inline-flex items-center gap-1.5 text-ok">
+          <Check /> {copy.listing.freeCancel}
+        </span>
+      ) : null}
+      {r.prepay ? (
+        <span className="text-muted">
+          {r.leadNote ?? r.payShort}
+          {r.refundable ? "" : " · Non-refundable"}
+        </span>
+      ) : (
+        <span className="inline-flex items-center gap-1.5 text-ok">
+          <Check /> {copy.listing.payOnArrival}
+        </span>
+      )}
     </div>
   );
 }
@@ -85,7 +96,7 @@ export function ProductCard({ p, uid }: { p: CardProduct; uid?: string }) {
         <h3 className="m-0 text-[16.5px] font-extrabold leading-tight group-hover:underline">{p.title}</h3>
         <p className="m-0 line-clamp-2 text-sm text-muted">{p.blurb}</p>
         <span className="text-[13px] font-semibold text-muted">{p.duration}</span>
-        <Assurances />
+        <Assurances p={p} />
         <PriceFrom p={p} />
       </Link>
     </article>

@@ -113,7 +113,7 @@ export function Rail({ id, h, p, href, products }: { id: string; h: string; p: s
   );
 }
 
-const TILE_SCENE: Record<Category, string> = { exc: "valley", des: "dunes", act: "balloon", trf: "plane", svc: "henna", kit: "nightkit" };
+const TILE_SCENE: Record<Category, string> = { exc: "valley", des: "dunes", act: "balloon", trf: "plane", svc: "tagine", kit: "nightkit" };
 
 export function CategoryTiles({ counts }: { counts: Record<Category, number> }) {
   const cats = Object.keys(TILE_SCENE) as Category[];

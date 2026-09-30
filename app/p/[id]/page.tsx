@@ -1,3 +1,4 @@
+import { rules } from "@/lib/rules";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   if (!p) return {};
   return {
     title: productSeoTitle(p),
-    description: `${p.blurb} ${p.timing}. From €${p.price_eur}. Pay on arrival, free cancellation up to 24 h.`,
+    description: `${p.blurb} ${p.timing}. From €${p.price_eur}. ${p.prepay_only ? "Book online" : "Pay on arrival"}${p.refundable ? ", free cancellation up to 24 h" : ""}.`,
     alternates: { canonical: `/p/${p.id}` },
     openGraph: { title: productSeoTitle(p), description: p.blurb, type: "website", images: p.image_url ? [p.image_url] : undefined },
   };
@@ -33,11 +34,13 @@ function facts(p: Product): { icon: Parameters<typeof Icon>[0]["name"]; label: s
   if (p.category === "svc") f.push({ icon: "pin", label: copy.product.factAtRiad });
   else if (p.category === "kit") f.push({ icon: "pin", label: copy.product.factDelivered });
   else f.push({ icon: "pin", label: copy.product.factPickup });
-  if (p.category === "svc") f.push({ icon: "users", label: copy.product.factAtRiad });
+  if (p.category === "svc") f.push({ icon: "users", label: "Just your group" });
   else if (p.per === "car") f.push({ icon: "users", label: copy.product.factPrivateCar });
   else if (p.private_per_car) f.push({ icon: "users", label: copy.product.factSharedPrivate });
   else if (p.category !== "kit") f.push({ icon: "users", label: copy.product.factShared });
-  f.push({ icon: "shield", label: copy.product.factCancel }, { icon: "wallet", label: copy.product.factPay });
+  const r = rules(p);
+  f.push({ icon: "shield", label: r.cancelFact }, { icon: "wallet", label: r.payFact });
+  if (r.leadNote) f.push({ icon: "clock", label: r.leadNote });
   return f;
 }
 
@@ -197,6 +200,10 @@ export default async function ProductPage({ params }: { params: { id: string } }
               </ul>
             </Section>
           ) : null}
+          <p className="m-0 mt-6 text-[15px] text-muted">
+            More questions? See the <Link href="/faq">FAQ</Link> or{" "}
+            <Link href={p.refundable ? "/booking-conditions#cancel-you" : "/booking-conditions#non-refundable"}>cancellation terms</Link>.
+          </p>
         </div>
 
         <div className="phone:hidden">

@@ -76,7 +76,7 @@ function Extras({ b }: { b: Row }) {
   return <>{x.length ? x.join(", ") : "–"}</>;
 }
 
-export function Days({ rows }: { rows: Row[] }) {
+export function Days({ rows, nonref = [] }: { rows: Row[]; nonref?: string[] }) {
   if (!rows.length) {
     return <p className="rounded-card bg-soft p-7 text-center text-muted">No bookings match. New bookings appear here grouped by day, with pickup, guests, extras and phone.</p>;
   }
@@ -111,7 +111,7 @@ export function Days({ rows }: { rows: Row[] }) {
                   {b.lead_name} · <a className="tnum font-bold" href={`tel:${b.phone.replace(/[^\d+]/g, "")}`}>{b.phone}</a> ·{" "}
                   <a className="font-bold text-wa" href={waHref(b.phone)} target="_blank" rel="noopener">WhatsApp</a>
                 </span>
-                <StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} />
+                <StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} refundable={!nonref.includes(b.product_id)} />
               </li>
             ))}
           </ul>
@@ -142,7 +142,7 @@ export function Days({ rows }: { rows: Row[] }) {
                       </span>
                     </td>
                     <td className="tnum whitespace-nowrap font-bold">{eur(dueOnDay(b))}<span className="mt-1 block"><PayBadge b={b} /></span></td>
-                    <td><StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} /></td>
+                    <td><StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} refundable={!nonref.includes(b.product_id)} /></td>
                   </tr>
                 ))}
               </tbody>

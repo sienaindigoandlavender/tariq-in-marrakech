@@ -16,7 +16,20 @@ type Msg = { role: "user" | "assistant"; text: string; picks: string[]; thinking
 const K = copy.concierge;
 const MAX = 500;
 
-export function Concierge({ products }: { products: Lite[] }) {
+export type Seed = { text: string; n: number } | null;
+
+export function Concierge({
+  products,
+  variant = "page",
+  seed = null,
+  onNavigate,
+}: {
+  products: Lite[];
+  variant?: "page" | "panel";
+  seed?: Seed;
+  onNavigate?: () => void;
+}) {
+  const panel = variant === "panel";
   const router = useRouter();
   const sp = useSearchParams();
   const { money, prefs } = useAppState();
@@ -67,7 +80,10 @@ export function Concierge({ products }: { products: Lite[] }) {
               else if (ev.t === "products") update((m) => ({ ...m, picks: [...new Set([...m.picks, ...ev.ids])] }));
               else if (ev.t === "fallback") update((m) => ({ ...m, thinking: false, text: ev.text, picks: ev.ids, wa: !ev.ids.length }));
               else if (ev.t === "error") update((m) => ({ ...m, thinking: false, text: (m.thinking ? "" : m.text + "\n\n") + ev.text }));
-              else if (ev.t === "open") router.push(`/book/${ev.id}?date=${prefs.date}&guests=${prefs.guests}&src=concierge`);
+              else if (ev.t === "open") {
+                onNavigate?.();
+                router.push(`/book/${ev.id}?date=${prefs.date}&guests=${prefs.guests}&src=concierge`);
+              }
             }
           }
           update((m) => (m.thinking ? { ...m, thinking: false, text: K.error, wa: true } : m));
@@ -77,23 +93,32 @@ export function Concierge({ products }: { products: Lite[] }) {
       }
       setBusy(false);
     },
-    [busy, msgs, prefs, router],
+    [busy, msgs, prefs, router, onNavigate],
   );
 
-  // A question handed over from the hero ask bar.
+  // A question handed over from the hero ask bar (page: ?q=, panel: seed).
   const handed = useRef(false);
   useEffect(() => {
+    if (panel) return;
     const first = sp.get("q");
     if (first && !handed.current) {
       handed.current = true;
       ask(first);
       router.replace("/concierge", { scroll: false });
     } else inputRef.current?.focus({ preventScroll: true });
-  }, [sp, ask, router]);
+  }, [sp, ask, router, panel]);
+  const lastSeed = useRef(0);
+  useEffect(() => {
+    if (!panel) return;
+    if (seed && seed.n !== lastSeed.current) {
+      lastSeed.current = seed.n;
+      ask(seed.text);
+    } else inputRef.current?.focus({ preventScroll: true });
+  }, [seed, ask, panel]);
 
   return (
-    <div className="mx-auto flex min-h-[calc(100dvh-200px)] max-w-[760px] flex-col gap-3.5 pb-4 pt-[22px]">
-      <div className="flex items-center gap-3.5">
+    <div className={panel ? "flex h-full min-h-0 flex-col" : "mx-auto flex min-h-[calc(100dvh-200px)] max-w-[760px] flex-col gap-3.5 pb-4 pt-[22px]"}>
+      <div className={panel ? "hidden" : "flex items-center gap-3.5"}>
         <div className="grid h-[46px] w-[46px] flex-none place-items-center rounded-[14px] bg-blue font-display text-[26px] font-black text-blue-ink">T</div>
         <div>
           <h1 className="m-0 text-xl font-extrabold">{K.h}</h1>
@@ -101,7 +126,7 @@ export function Concierge({ products }: { products: Lite[] }) {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3" aria-live="polite">
+      <div className={panel ? "no-scrollbar flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-4 py-3" : "flex flex-1 flex-col gap-3"} aria-live="polite">
         <div className="max-w-[86%] self-start whitespace-pre-wrap rounded-[18px] rounded-bl-md bg-soft px-3.5 py-2.5 text-[15px]">{K.hi}</div>
         {msgs.map((m, i) =>
           m.role === "user" ? (
@@ -116,9 +141,9 @@ export function Concierge({ products }: { products: Lite[] }) {
                 </div>
               ) : null}
               {m.picks.length ? (
-                <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-2.5">
+                <div className={panel ? "grid gap-2" : "grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-2.5"}>
                   {m.picks.map(byId).filter((p): p is Lite => Boolean(p)).map((p) => (
-                    <Link key={p.id} href={`/p/${p.id}`} className="grid grid-cols-[72px_minmax(0,1fr)] items-center gap-2.5 rounded-[14px] border border-line bg-surface p-2 no-underline hover:border-blue">
+                    <Link key={p.id} href={`/p/${p.id}`} onClick={() => onNavigate?.()} className="grid grid-cols-[72px_minmax(0,1fr)] items-center gap-2.5 rounded-[14px] border border-line bg-surface p-2 no-underline hover:border-blue">
                       <Poster scene={p.scene} image_url={p.image_url} uid={`k${i}-${p.id}`} className="!aspect-square rounded-[10px]" />
                       <span>
                         <b className="block text-sm leading-tight">{p.title}</b>
@@ -142,7 +167,7 @@ export function Concierge({ products }: { products: Lite[] }) {
       </div>
 
       {!msgs.length ? (
-        <div className="flex flex-wrap gap-2">
+        <div className={`flex flex-wrap gap-2 ${panel ? "px-4 pb-2" : ""}`}>
           {K.suggestions.map((s) => (
             <button key={s} type="button" onClick={() => ask(s)} className="min-h-[40px] rounded-full border border-line bg-surface px-3 text-[13.5px] font-bold">
               {s}
@@ -158,7 +183,11 @@ export function Concierge({ products }: { products: Lite[] }) {
           setQ("");
           ask(t);
         }}
-        className="sticky bottom-[calc(env(safe-area-inset-bottom,0px)+10px)] z-20 flex gap-2 rounded-full border border-line bg-surface p-1.5 shadow-[0_6px_24px_rgb(0_0_0/.08)] phone:bottom-[calc(var(--tabh)+env(safe-area-inset-bottom,0px)+10px)]"
+        className={
+          panel
+            ? "m-3 mt-1 flex gap-2 rounded-full border border-line bg-surface p-1.5"
+            : "sticky bottom-[calc(env(safe-area-inset-bottom,0px)+10px)] z-20 flex gap-2 rounded-full border border-line bg-surface p-1.5 shadow-[0_6px_24px_rgb(0_0_0/.08)] phone:bottom-[calc(var(--tabh)+env(safe-area-inset-bottom,0px)+10px)]"
+        }
       >
         <input
           ref={inputRef}

@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-// Keeps the operator's Supabase session fresh. Only runs on operator routes.
+// Keeps the Supabase session fresh. Runs on operator routes and the customer account page.
 export async function middleware(req: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -22,4 +22,4 @@ export async function middleware(req: NextRequest) {
   return res;
 }
 
-export const config = { matcher: ["/dispatch/:path*", "/api/dispatch/:path*", "/login"] };
+export const config = { matcher: ["/dispatch/:path*", "/api/dispatch/:path*", "/login", "/account"] };

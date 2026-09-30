@@ -39,7 +39,7 @@ export default async function PlanPage({ searchParams }: { searchParams: { packa
               {[
                 ["Send your request", "Free and with no obligation."],
                 ["Get your plan", "A real person replies on WhatsApp with a plan and prices."],
-                ["Confirm what you like", "Pay online or on the day. Free cancellation up to 24 h."],
+                ["Confirm what you like", "Pay online or on the day. Most bookings cancel free up to 24 h."],
               ].map(([b, s], i) => (
                 <li key={b} className="grid grid-cols-[28px_minmax(0,1fr)] gap-2.5">
                   <span className="tnum grid h-7 w-7 place-items-center rounded-full bg-blue text-sm font-extrabold text-blue-ink">{i + 1}</span>

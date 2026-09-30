@@ -12,7 +12,7 @@ import { ProductCard } from "./ProductCard";
 const T = copy.trip;
 
 export function MyTrip({ products }: { products: PublicProduct[] }) {
-  const { trip, saved, money, payMoney, ready } = useAppState();
+  const { trip, saved, money, payMoney, ready, user, accounts } = useAppState();
   if (!ready) return <div className="min-h-[40vh]" />;
 
   const rows = [...trip].filter((m) => m.payment !== "paypal").sort((a, b) => a.date.localeCompare(b.date) || a.ref.localeCompare(b.ref));
@@ -77,8 +77,8 @@ export function MyTrip({ products }: { products: PublicProduct[] }) {
             <Link href="/p/airport" className="min-h-[44px] rounded-full bg-blue px-4 py-2.5 font-extrabold text-blue-ink no-underline">
               {products.find((p) => p.id === "airport")?.title ?? copy.nav.book}
             </Link>
-            <Link href="/concierge" className="min-h-[44px] rounded-full border border-line px-4 py-2.5 font-extrabold text-ink no-underline">
-              {copy.nav.ask}
+            <Link href="/plan" className="min-h-[44px] rounded-full border border-line px-4 py-2.5 font-extrabold text-ink no-underline">
+              {copy.nav.plan}
             </Link>
           </div>
         </div>
@@ -86,7 +86,14 @@ export function MyTrip({ products }: { products: PublicProduct[] }) {
 
       {savedProducts.length ? (
         <section className="pt-8">
-          <h2 className="display m-0 mb-4 text-[28px]">{T.saved}</h2>
+          <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
+            <h2 className="display m-0 text-[28px]">{T.saved}</h2>
+            {accounts ? (
+              <Link href="/account" className="text-sm font-bold">
+                {user ? "Synced to your account" : "Saved on this device only. Create a free account →"}
+              </Link>
+            ) : null}
+          </div>
           <div className="grid grid-cols-3 gap-x-[18px] gap-y-6 phone:grid-cols-2 phone:gap-x-3">
             {savedProducts.map((p) => (
               <ProductCard key={p.id} p={p} uid={`s-${p.id}`} />

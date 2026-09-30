@@ -22,7 +22,7 @@ Without `ANTHROPIC_API_KEY`, Ask Tariq falls back to keyword matching and the Wh
 
 1. Create a new Supabase project for this city (don't reuse another product's database).
 2. SQL editor → run, in order: `supabase/migrations/0001_init.sql`, `0002_payments.sql`, `0003_itinerary.sql`,
-   `0004_retention.sql`, `0005_leads.sql`, then `supabase/seed.sql`. Each migration runs once; the seed can be re-run (it upserts).
+   `0004_retention.sql`, `0005_leads.sql`, `0006_accounts_rules.sql`, then `supabase/seed.sql`. Each migration runs once; the seed can be re-run (it upserts).
 3. Vercel → Settings → Environment Variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
    `SUPABASE_SERVICE_ROLE_KEY` (never prefix this one with `NEXT_PUBLIC_`), then redeploy.
 4. Supabase → Authentication → URL configuration: set the Site URL to your domain and add
@@ -32,6 +32,15 @@ Without `ANTHROPIC_API_KEY`, Ask Tariq falls back to keyword matching and the Wh
    insert into operators (user_id) select id from auth.users where email = 'partner@example.com';
    ```
    They sign in at `/login` with a magic link.
+6. Customer accounts (wishlist at `/account`): Authentication → Providers → Email must allow new sign-ups.
+   Customers get no access beyond their own wishlist rows; `/dispatch` still checks the `operators` table.
+
+## Booking rules per product
+
+`lead_days` (minimum notice), `prepay_only` (Pay now only) and `refundable` live on each product in
+`data/catalogue.json` and the `products` table. The private chef is 3 days, prepay-only, non-refundable. They are enforced
+in the calendar, at checkout and again in `/api/bookings`. In dispatch, a non-refundable prepaid booking offers
+"Cancel (no refund)" or an explicit "Refund".
 
 ## Booking and payment
 

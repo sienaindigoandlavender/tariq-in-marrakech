@@ -10,14 +10,14 @@ const MENU: { href: string; label: string; short?: string }[] = [
   { href: "/c/exc", label: copy.nav.dayTrips },
   { href: "/c/des", label: copy.nav.desert },
   { href: "/c/trf", label: copy.nav.transfers },
-  { href: "/c/svc", label: copy.nav.atRiad, short: "Riad" },
+  { href: "/c/svc", label: copy.nav.atRiad },
   { href: "/c/kit", label: copy.nav.kits, short: "Kits" },
   { href: "/packages", label: copy.nav.packages },
 ];
 
 export function TopBar() {
   const path = usePathname();
-  const { currency, setCurrency, trip } = useAppState();
+  const { currency, setCurrency, trip, saved, user } = useAppState();
 
   return (
     <header
@@ -69,16 +69,19 @@ export function TopBar() {
             <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M6 9l6 6 6-6" /></svg>
           </label>
           <Link
-            href="/concierge"
-            aria-label={copy.nav.ask}
-            title={copy.nav.ask}
-            aria-current={path.startsWith("/concierge") ? "page" : undefined}
-            className={`grid h-10 w-10 place-items-center rounded-full no-underline hover:bg-soft tab:hidden ${path.startsWith("/concierge") ? "bg-soft text-blue" : "text-ink"}`}
+            href="/account"
+            aria-label={`Wishlist${saved.length ? `, ${saved.length} saved` : ""}${user ? "" : ". Sign in or create an account"}`}
+            title={user ? "Wishlist" : "Wishlist and account"}
+            aria-current={path.startsWith("/account") ? "page" : undefined}
+            className={`relative grid h-10 w-10 flex-none place-items-center rounded-full no-underline hover:bg-soft ${path.startsWith("/account") ? "bg-soft" : ""}`}
           >
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M5 18l-1 3 4-2h9a3 3 0 003-3V7a3 3 0 00-3-3H7a3 3 0 00-3 3v8a3 3 0 001 3z" />
-              <path d="M9 10h.01M12 10h.01M15 10h.01" />
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill={saved.length ? "rgb(var(--rose))" : "none"} stroke={saved.length ? "rgb(var(--rose))" : "currentColor"} strokeWidth="2" strokeLinejoin="round" className="text-ink">
+              <path d="M12 20s-7-4.4-9.2-9A5 5 0 0112 5.6 5 5 0 0121.2 11C19 15.6 12 20 12 20z" />
             </svg>
+            {saved.length ? (
+              <span className="tnum absolute -right-0.5 -top-0.5 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-ink px-1 text-[10.5px] font-extrabold text-bg">{saved.length}</span>
+            ) : null}
+            {user ? <span className="absolute bottom-1 right-1 h-2 w-2 rounded-full bg-ok ring-2 ring-bg" aria-hidden="true" /> : null}
           </Link>
           <Link
             href="/plan"

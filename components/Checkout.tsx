@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { copy } from "@/lib/copy";
-import { fmtDate, isYmd, tomorrow } from "@/lib/dates";
+import { formatWhatsapp, waLink } from "@/lib/config";
+import { rules } from "@/lib/rules";
+import { bookable, earliest, fmtDate, isYmd } from "@/lib/dates";
 import { price, type PriceLine, type PriceResult } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
 import { formatMoney, isGuideCurrency, useAppState } from "./AppState";
@@ -69,7 +71,8 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
-  const [pay, setPay] = useState<Pay>("later");
+  const R = rules(p);
+  const [pay, setPay] = useState<Pay>(R.prepay ? "now" : "later");
   const [err, setErr] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
@@ -83,7 +86,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
     const qd = sp.get("date");
     const qm = sp.get("mode");
     const next: Selection = {
-      date: isYmd(qd) && qd >= tomorrow() ? qd : prefs.date || tomorrow(),
+      date: bookable(p, isYmd(qd) ? qd : prefs.date),
       guests: clampG(Number(sp.get("guests")) || prefs.guests),
       mode: qm === "private" && p.private_per_car ? "private" : "shared",
       adds: (sp.get("adds") ?? "").split(",").filter((a) => p.addons.some((x) => x.id === a)),
@@ -100,7 +103,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
       try {
         const d = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || "null") as Draft | null;
         if (d && d.id === p.id) {
-          if (isYmd(d.date) && d.date >= tomorrow()) next.date = d.date;
+          if (isYmd(d.date) && d.date >= earliest(p)) next.date = d.date;
           next.guests = clampG(d.guests);
           next.mode = d.mode === "private" && p.private_per_car ? "private" : "shared";
           next.adds = d.adds.filter((a) => p.addons.some((x) => x.id === a));
@@ -121,7 +124,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
 
   const submit = async () => {
     setErr("");
-    if (!isYmd(sel.date) || sel.date < tomorrow()) {
+    if (!isYmd(sel.date) || sel.date < earliest(p)) {
       setEditing(true);
       return setErr(C.errors.date);
     }
@@ -204,12 +207,13 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
       <ul className="m-0 grid list-none gap-1.5 p-0 text-sm">
         <li className="flex items-center gap-2"><Icon name="clock" size={18} />{sel.date ? fmtDate(sel.date) : "–"} · {p.timing}</li>
         <li className="flex items-center gap-2"><Icon name="users" size={18} />{sel.guests} {sel.guests === 1 ? "guest" : "guests"} · {optionText}</li>
-        <li className="flex items-start gap-2 text-ok"><span className="mt-0.5"><Icon name="shield" size={18} /></span><span className="font-bold">{C.cancelPolicy}</span></li>
+        <li className={`flex items-start gap-2 ${R.refundable ? "text-ok" : "text-ink"}`}><span className="mt-0.5"><Icon name="shield" size={18} /></span><span className="font-bold">{R.cancelPolicy}</span></li>
+        {R.leadNote ? <li className="flex items-center gap-2 text-muted"><Icon name="clock" size={18} />{R.leadNote}. {R.payFact}.</li> : null}
       </ul>
       <div className="border-t border-line pt-3">
         <Lines r={r} money={money} />
         <div className="mt-2 flex items-baseline justify-between">
-          <b>{payNow ? C.payNow : C.total}</b>
+          <b>{payNow ? C.payNow : R.prepay ? "Total, paid when you book" : C.total}</b>
           <b className="tnum text-2xl">{money(r.total)}</b>
         </div>
       </div>
@@ -293,18 +297,34 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
                 <small className="text-muted">{C.payNowS}</small>
               </label>
             ) : null}
+            {R.prepay && !payNowAvailable ? (
+              <div className="grid gap-2 rounded-input bg-soft p-3.5 text-sm">
+                <b>This one is paid when you book.</b>
+                <span className="text-muted">Online payment isn&rsquo;t switched on yet. Message us and we&rsquo;ll send a secure payment link.</span>
+                <a href={waLink(`Hi Tariq, I'd like to book: ${p.title}, ${sel.date ? fmtDate(sel.date) : ""}, ${sel.guests} guests.`)} target="_blank" rel="noopener" className="w-fit rounded-full bg-wa px-4 py-2.5 font-extrabold text-white no-underline">
+                  WhatsApp {formatWhatsapp()}
+                </a>
+              </div>
+            ) : null}
+            {R.prepay ? null : (
             <label className={payCard}>
               <input type="radio" name="pay" value="later" checked={pay === "later"} onChange={() => setPay("later")} className="absolute opacity-0" />
               <b className="text-base">{C.payLater}</b>
               <small className="text-muted">{C.payLaterS}</small>
             </label>
+            )}
+            {R.prepay && payNowAvailable ? (
+              <p className="m-0 text-[13px] text-muted">
+                {R.leadNote ? `${R.leadNote}. ` : ""}Paid online when you book{R.refundable ? "." : ". Non-refundable once booked."}
+              </p>
+            ) : null}
           </fieldset>
         </Section>
 
         {/* phone: the total sits right above the button */}
         <div className="hidden items-start justify-between gap-4 rounded-input bg-soft p-3.5 phone:flex">
           <div className="min-w-0 flex-1 text-sm font-bold">
-            {payNow ? C.payNow : C.total}
+            {payNow ? C.payNow : R.prepay ? "Total, paid when you book" : C.total}
             <div className="mt-1.5"><Lines r={r} money={money} /></div>
           </div>
           <span className="tnum text-[26px] font-extrabold leading-none">{money(r.total)}</span>
@@ -318,11 +338,11 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
         <p role="alert" className="m-0 min-h-[1em] text-[13px] font-bold text-warn">
           {err}
         </p>
-        <button type="submit" disabled={busy} className="min-h-[54px] rounded-full bg-blue px-[18px] text-base font-extrabold text-blue-ink disabled:opacity-60">
+        <button type="submit" disabled={busy || (R.prepay && !payNowAvailable)} className="min-h-[54px] rounded-full bg-blue px-[18px] text-base font-extrabold text-blue-ink disabled:opacity-60">
           {cta}
         </button>
         <p className="m-0 -mt-1 text-center text-[12.5px] text-muted">
-          {payNow ? `${C.paypalNote} ${C.paidNotice}` : C.noPay} By confirming, you accept the{" "}
+          {payNow ? `${C.paypalNote} ${C.paidNotice}${R.refundable ? "" : " Non-refundable once booked."}` : R.prepay ? `Paid in full before the date is confirmed.${R.refundable ? "" : " Non-refundable once booked."}` : C.noPay} By confirming, you accept the{" "}
           <Link href="/booking-conditions" target="_blank" className="font-bold text-ink">
             booking conditions
           </Link>{" "}

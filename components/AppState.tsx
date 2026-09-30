@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { supabaseBrowser } from "@/lib/supabase/browser";
+import { hasSupabase } from "@/lib/supabase/env";
 import { GBP_RATE, MAD_RATE, USD_RATE } from "@/lib/config";
 import { isYmd, tomorrow } from "@/lib/dates";
 
@@ -79,6 +81,10 @@ type AppState = {
   removeTrip: (ref: string) => void;
   saved: string[];
   toggleSaved: (id: string) => void;
+  /** Signed-in customer (wishlist synced across devices), or null. */
+  user: { id: string; email: string | null } | null;
+  accounts: boolean;
+  signOut: () => Promise<void>;
   prefs: Prefs;
   setPrefs: (p: Partial<Prefs>) => void;
   last: LastDetails | null;
@@ -107,6 +113,8 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
   const [saved, setSaved] = useState<string[]>([]);
   const [prefs, setPrefsState] = useState<Prefs>({ date: "", guests: 2 });
   const [last, setLastState] = useState<LastDetails | null>(null);
+  const [user, setUser] = useState<{ id: string; email: string | null } | null>(null);
+  const userRef = useRef<string | null>(null);
 
   useEffect(() => {
     const c = readJSON<Currency>(CUR_KEY, "EUR");
@@ -157,12 +165,59 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  // Wishlist sync. Signed out: this device only. Signed in: merged with the account's list on sign-in,
+  // and every heart is written through (RLS limits each customer to their own rows).
+  useEffect(() => {
+    if (!hasSupabase) return;
+    const sb = supabaseBrowser();
+    const sync = async (u: { id: string; email?: string | null } | null) => {
+      if (!u) {
+        userRef.current = null;
+        setUser(null);
+        return;
+      }
+      if (userRef.current === u.id) return;
+      userRef.current = u.id;
+      setUser({ id: u.id, email: u.email ?? null });
+      const local = readJSON<string[]>(SAVED_KEY, []);
+      const { data } = await sb.from("wishlists").select("product_id").eq("user_id", u.id);
+      const remote = (data ?? []).map((r) => r.product_id as string);
+      const missing = local.filter((id) => !remote.includes(id));
+      if (missing.length) await sb.from("wishlists").upsert(missing.map((product_id) => ({ user_id: u.id, product_id })), { onConflict: "user_id,product_id" });
+      const merged = [...new Set([...remote, ...local])];
+      writeJSON(SAVED_KEY, merged);
+      setSaved(merged);
+    };
+    sb.auth.getUser().then(({ data }) => sync(data.user));
+    const { data: sub } = sb.auth.onAuthStateChange((_e, session) => {
+      sync(session?.user ?? null);
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
   const toggleSaved = useCallback((id: string) => {
     setSaved((prev) => {
-      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
+      const on = prev.includes(id);
+      const next = on ? prev.filter((x) => x !== id) : [...prev, id];
       writeJSON(SAVED_KEY, next);
+      const uid = userRef.current;
+      if (uid && hasSupabase) {
+        const t = supabaseBrowser().from("wishlists");
+        // Postgrest builders only run when awaited or then'd.
+        (on ? t.delete().eq("user_id", uid).eq("product_id", id) : t.upsert({ user_id: uid, product_id: id }, { onConflict: "user_id,product_id" })).then(
+          () => undefined,
+          () => undefined,
+        );
+      }
       return next;
     });
+  }, []);
+
+  const signOut = useCallback(async () => {
+    if (!hasSupabase) return;
+    await supabaseBrowser().auth.signOut();
+    userRef.current = null;
+    setUser(null);
   }, []);
 
   const setPrefs = useCallback((p: Partial<Prefs>) => {
@@ -179,8 +234,8 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ ready, currency, setCurrency, money, payMoney, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast }),
-    [ready, currency, setCurrency, money, payMoney, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast],
+    () => ({ ready, currency, setCurrency, money, payMoney, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, user, accounts: hasSupabase, signOut, prefs, setPrefs, last, setLast }),
+    [ready, currency, setCurrency, money, payMoney, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, user, signOut, prefs, setPrefs, last, setLast],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

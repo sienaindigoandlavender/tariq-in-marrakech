@@ -8,9 +8,9 @@ export const copy = {
     tabs: "Tabs",
     explore: "Explore",
     dayTrips: "Day trips",
-    desert: "Desert",
+    desert: "Journeys",
     transfers: "Transfers",
-    atRiad: "At your riad",
+    atRiad: "Concierge",
     kits: "Kits & baby",
     ask: "Ask Tariq",
     packages: "Packages",
@@ -24,10 +24,10 @@ export const copy = {
   categories: {
     all: "All",
     exc: "Day trips",
-    des: "Desert",
+    des: "Tours & journeys",
     act: "Activities",
     trf: "Transfers",
-    svc: "At your riad",
+    svc: "Concierge",
     kit: "Kits & baby",
   },
 
@@ -46,7 +46,7 @@ export const copy = {
     "Free cancellation up to 24 h",
   ],
 
-  book: { h: "Book", p: "Final prices. Nothing to pay until the day." },
+  book: { h: "Book", p: "Final prices. No booking fees." },
   rails: {
     seeAll: "See all",
     browseH: "Browse by what you need",
@@ -111,7 +111,7 @@ export const copy = {
   price: {
     pp: "per person",
     car: "per car",
-    flat: "per stay",
+    flat: "per booking",
     unit: "each",
     from: "from",
   },

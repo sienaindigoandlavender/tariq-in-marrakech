@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { copy } from "@/lib/copy";
 import { CITY } from "@/lib/config";
-import { isYmd, tomorrow, addDays } from "@/lib/dates";
+import { isYmd, tomorrow, addDays, today, fmtDate } from "@/lib/dates";
 import { getProduct } from "@/lib/db";
 import { price } from "@/lib/pricing";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
@@ -33,6 +33,8 @@ export async function POST(req: Request) {
   // Validate. Any client-sent total is ignored: the server prices the booking itself.
   const date = str(body.date, 10);
   if (!isYmd(date) || date < tomorrow() || date > addDays(tomorrow(), 400)) return bad(E.date, "date");
+  const earliest = addDays(today(), Math.max(1, product.lead_days));
+  if (date < earliest) return bad(`${product.title} needs at least ${product.lead_days} days' notice. Choose ${fmtDate(earliest)} or later.`, "date");
   const guests = Number(body.guests);
   const maxGuests = product.per === "car" ? 9 : 14;
   if (!Number.isInteger(guests) || guests < 1 || guests > maxGuests) return bad("Choose between 1 and " + maxGuests + " guests.", "guests");
@@ -52,7 +54,13 @@ export async function POST(req: Request) {
 
   // Riad QR attribution: only a known, active partner code counts.
   const admin = supabaseAdmin();
-  if (payNow && (!admin || !paypalEnabled())) return bad("Online payment isn't available right now. Choose pay on the day.", "payment", 503);
+  if (product.prepay_only && !payNow) return bad("This service is paid online when you book.", "payment");
+  if (payNow && (!admin || !paypalEnabled()))
+    return bad(
+      product.prepay_only ? "Online payment isn't available right now. Message us on WhatsApp to book this one." : "Online payment isn't available right now. Choose pay on the day.",
+      "payment",
+      503,
+    );
   let partner_code: string | null = null;
   const cookieCode = cookies().get("tq_partner")?.value?.toUpperCase();
   if (cookieCode && admin) {

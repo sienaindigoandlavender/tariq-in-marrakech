@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { copy } from "@/lib/copy";
-import { tomorrow } from "@/lib/dates";
+import { bookable } from "@/lib/dates";
 import { price } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
 import { useAppState } from "../AppState";
@@ -46,7 +46,7 @@ function Sheet({ p, onClose, sel: saved, setSel }: { p: PublicProduct; onClose: 
   const router = useRouter();
   const { prefs, setPrefs, money } = useAppState();
   const sel: Selection = saved ?? {
-    date: prefs.date && prefs.date >= tomorrow() ? prefs.date : tomorrow(),
+    date: bookable(p, prefs.date),
     guests: Math.min(maxGuests(p), Math.max(1, prefs.guests || 2)),
     mode: "shared",
     adds: [],
@@ -107,7 +107,7 @@ function Sheet({ p, onClose, sel: saved, setSel }: { p: PublicProduct; onClose: 
         <footer className="flex items-center justify-between gap-3 border-t border-line px-5 pt-3" style={{ paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }}>
           <div className="leading-tight">
             <b className="tnum block text-xl">{money(total)}</b>
-            <small className="font-bold text-ok">{copy.listing.freeCancel}</small>
+            {p.refundable ? <small className="font-bold text-ok">{copy.listing.freeCancel}</small> : <small className="font-bold text-muted">Non-refundable</small>}
           </div>
           <button type="button" onClick={go} className="min-h-[50px] rounded-full bg-blue px-7 text-base font-extrabold text-blue-ink">
             {C.continue}

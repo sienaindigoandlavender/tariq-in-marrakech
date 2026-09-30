@@ -15,18 +15,28 @@ const CHIP: Record<BookingStatus, string> = {
   cancelled: "bg-line text-muted",
 };
 
-export function StatusControls({ refCode, status: initial, prepaid = false }: { refCode: string; status: BookingStatus; prepaid?: boolean }) {
+export function StatusControls({
+  refCode,
+  status: initial,
+  prepaid = false,
+  refundable = true,
+}: {
+  refCode: string;
+  status: BookingStatus;
+  prepaid?: boolean;
+  refundable?: boolean;
+}) {
   const router = useRouter();
   const [status, setStatus] = useState(initial);
   const [err, setErr] = useState("");
   const [pending, start] = useTransition();
 
-  const set = async (s: BookingStatus) => {
+  const set = async (s: BookingStatus, refund?: boolean) => {
     if (s === status) return;
     const prev = status;
     setStatus(s);
     setErr("");
-    const res = await fetch("/api/dispatch/status", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ref: refCode, status: s }) });
+    const res = await fetch("/api/dispatch/status", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ref: refCode, status: s, refund }) });
     if (!res.ok) {
       setStatus(prev);
       const data = await res.json().catch(() => ({}));
@@ -52,7 +62,28 @@ export function StatusControls({ refCode, status: initial, prepaid = false }: { 
           No-show
         </button>
       ) : null}
-      {status === "confirmed" || status === "reminded" ? (
+      {(status === "confirmed" || status === "reminded") && prepaid && !refundable ? (
+        <>
+          <button
+            type="button"
+            onClick={() => {
+              if (window.confirm(`Guest cancels ${refCode}. Non-refundable: cancel and KEEP the payment?`)) set("cancelled", false);
+            }}
+            className="min-h-[36px] whitespace-nowrap rounded-full px-2 text-xs font-bold text-warn underline"
+          >
+            Cancel (no refund)
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              if (window.confirm(`We cancel ${refCode}, or goodwill: refund the guest in full on PayPal?`)) set("cancelled", true);
+            }}
+            className="min-h-[36px] whitespace-nowrap rounded-full px-2 text-xs font-bold text-muted underline"
+          >
+            Refund
+          </button>
+        </>
+      ) : status === "confirmed" || status === "reminded" ? (
         <button
           type="button"
           onClick={() => {

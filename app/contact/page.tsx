@@ -103,7 +103,7 @@ export default function ContactPage() {
         <div>
           <h2 className="m-0 mb-2 text-lg font-extrabold">Before you message</h2>
           <p className="m-0 text-[15px] text-muted">
-            Many questions are answered instantly by <Link href="/concierge">Ask Tariq</Link>, and your bookings are all in{" "}
+            Most questions are answered in our <Link href="/faq">FAQ</Link> or instantly by <Link href="/concierge">Ask Tariq</Link>, and your bookings are all in{" "}
             <Link href="/trip">My trip</Link> on this device.
           </p>
         </div>

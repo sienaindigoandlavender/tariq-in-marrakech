@@ -9,6 +9,6 @@ export const RAILS: RailDef[] = [
   { key: "solved", h: "Solved before you ask", p: "The things nobody else sorts out for you, delivered in the van that's already coming.", href: "/c/kit", ids: FIXES },
   { key: "trf", h: "Getting in, around and out", p: "Airport, dinner rides and your last day.", href: "/c/trf", category: "trf" },
   { key: "exc", h: "Day trips from Marrakech", p: "Pickup at your riad, back by dinner.", href: "/c/exc", category: "exc" },
-  { key: "des", h: "Into the desert", p: "Real Sahara dunes need three days. Zagora does it in two.", href: "/c/des", category: "des" },
+  { key: "des", h: "Tours & journeys", p: "Two to four days: the Sahara, the Atlas, and on to Fes.", href: "/c/des", category: "des" },
   { key: "act", h: "Evenings and adventures", p: "Balloons at sunrise, Agafay at sunset.", href: "/c/act", category: "act" },
 ];

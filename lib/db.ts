@@ -18,6 +18,9 @@ function normalise(row: Record<string, unknown>, addons: Record<string, unknown>
     was_eur: num(row.was_eur),
     cap: num(row.cap),
     private_per_car: num(row.private_per_car),
+    lead_days: Math.max(1, Number(row.lead_days ?? 1)),
+    prepay_only: row.prepay_only === true,
+    refundable: row.refundable !== false,
     itinerary: Array.isArray(row.itinerary) ? (row.itinerary as Product["itinerary"]) : [],
     addons: addons
       .map((a) => ({ ...(a as unknown as Addon), eur: Number(a.eur) }))
@@ -25,7 +28,10 @@ function normalise(row: Record<string, unknown>, addons: Record<string, unknown>
   };
 }
 
-const local = () => (catalogue as unknown as Product[]).filter((p) => p.active && p.city === CITY);
+const local = () =>
+  (catalogue as unknown as Record<string, unknown>[])
+    .filter((p) => p.active && p.city === CITY)
+    .map(({ addons, ...p }) => normalise(p, (addons ?? []) as Record<string, unknown>[]));
 
 async function load(): Promise<Product[]> {
   if (!hasSupabase) return local();

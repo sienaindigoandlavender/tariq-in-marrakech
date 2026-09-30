@@ -5,10 +5,11 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const code = url.searchParams.get("code");
   const nextParam = url.searchParams.get("next") ?? "/dispatch";
-  const next = nextParam.startsWith("/dispatch") ? nextParam : "/dispatch";
+  const next = nextParam.startsWith("/dispatch") || nextParam === "/account" ? nextParam : "/dispatch";
+  const back = next === "/account" ? "/account?error=1" : "/login?error=1";
   if (code) {
     const { error } = await supabaseServer().auth.exchangeCodeForSession(code);
     if (!error) return NextResponse.redirect(new URL(next, url.origin));
   }
-  return NextResponse.redirect(new URL("/login?error=1", url.origin));
+  return NextResponse.redirect(new URL(back, url.origin));
 }

@@ -48,6 +48,12 @@ export type Product = {
   itinerary: { t: string; s: string }[];
   sort: number;
   active: boolean;
+  /** Minimum days between today and the service date (1 = tomorrow). */
+  lead_days: number;
+  /** Must be paid online at booking; no pay-on-the-day option. */
+  prepay_only: boolean;
+  /** False = no refund after booking. */
+  refundable: boolean;
   addons: Addon[];
 };
 

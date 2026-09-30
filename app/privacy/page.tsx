@@ -56,6 +56,11 @@ function buildSections(payNow: boolean): LegalSection[] {
           Your travel dates, the number of adults and children, the kind of trip, what you need, your budget range, your name, WhatsApp number, email if you
           give it, and anything you write in the notes.
         </p>
+        <h3 id="accounts">When you create an account</h3>
+        <p>
+          Your email address, used only to send you sign-in links, and the list of products you saved to your wishlist. An account is optional: you can book
+          without one.
+        </p>
         <h3>When you ask Tariq, our concierge</h3>
         <p>The text of your questions and the products suggested in reply.</p>
         <h3>When you arrive through a riad&rsquo;s QR card</h3>
@@ -66,7 +71,7 @@ function buildSections(payNow: boolean): LegalSection[] {
         </p>
         <p>
           {payNow ? "We never see or store your card number: online payments are handled by PayPal. " : "We do not ask for payment card details. "}We don&rsquo;t ask
-          for passport numbers, and we don&rsquo;t need an email address to book. Please don&rsquo;t put sensitive information in the notes or
+          for passport numbers, and we don&rsquo;t need an email address or an account to book. Please don&rsquo;t put sensitive information in the notes or
           the concierge chat beyond what we need to deliver your booking safely.
         </p>
       </>
@@ -149,6 +154,7 @@ function buildSections(payNow: boolean): LegalSection[] {
         <li>Booking notes, which can contain allergy or health information: cleared 90 days after the date of your service.</li>
         <li>Concierge questions: stored without being linked to your name, number or booking, and deleted after 24 months.</li>
         <li>Trip requests that don&rsquo;t become a booking: deleted after 12 months.</li>
+        <li>Accounts and wishlists: until you ask us to delete your account. Deleting it removes your email and wishlist.</li>
         <li>Technical logs: kept by our hosting provider for a short period, usually under 30 days.</li>
       </ul>
     ),
@@ -171,7 +177,7 @@ function buildSections(payNow: boolean): LegalSection[] {
             <strong>The riad partner code</strong> (a cookie for 30 days), if you arrived by scanning a riad&rsquo;s QR card.
           </li>
           <li>
-            <strong>A sign-in cookie</strong> for our team&rsquo;s dispatch board only.
+            <strong>A sign-in cookie</strong>, only if you sign in to your account (or, for our team, the dispatch board).
           </li>
         </ul>
       </>

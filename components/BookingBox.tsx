@@ -1,5 +1,6 @@
 "use client";
 
+import { rules } from "@/lib/rules";
 import { copy } from "@/lib/copy";
 import { perLabel } from "@/lib/format";
 import type { PublicProduct } from "@/lib/types";
@@ -8,7 +9,7 @@ import { useBookingSheet } from "./booking/BookingSheet";
 import { Icon } from "./Icons";
 import { PriceFrom } from "./ProductCard";
 
-type P = Pick<PublicProduct, "id" | "price_eur" | "was_eur" | "per" | "addons">;
+type P = Pick<PublicProduct, "id" | "price_eur" | "was_eur" | "per" | "addons" | "lead_days" | "prepay_only" | "refundable">;
 
 /** Upsell priming: the add-on most travellers pick, shown before the booking sheet opens. */
 function Popular({ p }: { p: P }) {
@@ -39,11 +40,11 @@ export function BookingBox({ p }: { p: P }) {
       <ul className="m-0 grid list-none gap-2.5 border-t border-line p-0 pt-3.5 text-[13.5px]">
         <li className="grid grid-cols-[20px_minmax(0,1fr)] gap-2">
           <span className="text-ok"><Icon name="shield" size={20} /></span>
-          <span><b className="block">{copy.product.flexH}</b><span className="text-muted">{copy.product.flexP}</span></span>
+          <span><b className="block">{rules(p).cancelH}</b><span className="text-muted">{rules(p).cancelP}</span></span>
         </li>
         <li className="grid grid-cols-[20px_minmax(0,1fr)] gap-2">
           <span className="text-ok"><Icon name="wallet" size={20} /></span>
-          <span><b className="block">{copy.product.laterH}</b><span className="text-muted">{copy.product.laterP}</span></span>
+          <span><b className="block">{rules(p).payH}</b><span className="text-muted">{rules(p).leadNote ? `${rules(p).leadNote}. ` : ""}{rules(p).payP}</span></span>
         </li>
       </ul>
     </aside>

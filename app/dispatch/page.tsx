@@ -27,14 +27,16 @@ export default async function DispatchPage({ searchParams }: { searchParams: Rec
   q = status ? q.eq("status", status) : q.neq("status", "pending_payment");
   if (product) q = q.eq("product_id", product);
   const { data, error } = await q;
-  const products = (await getProducts()).map(({ id, title }) => ({ id, title }));
+  const all = await getProducts();
+  const products = all.map(({ id, title }) => ({ id, title }));
+  const nonref = all.filter((p) => !p.refundable).map((p) => p.id);
 
   return (
     <DispatchShell gate={gate} active="bookings">
       <div className="mb-3"><LiveRefresh /></div>
       <Kpis rows={(data ?? []) as Row[]} today={t} />
       <Filters from={from} to={to} status={status} product={product} products={products} />
-      {error ? <p role="alert" className="font-bold text-warn">Could not load bookings: {error.message}</p> : <Days rows={(data ?? []) as Row[]} />}
+      {error ? <p role="alert" className="font-bold text-warn">Could not load bookings: {error.message}</p> : <Days rows={(data ?? []) as Row[]} nonref={nonref} />}
     </DispatchShell>
   );
 }

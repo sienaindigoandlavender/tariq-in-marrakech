@@ -58,7 +58,7 @@ function buildSections(payNow: boolean): LegalSection[] {
         <p>
           Prices are set in euros. Prices shown in dirhams are converted at a fixed indicative rate and rounded; on the day you may pay the dirham or euro
           amount shown on your confirmation. Prices shown in US dollars or pounds sterling are a guide at an approximate rate; you always pay in euros or
-          dirhams. Each product page says whether the price is per person, per car or per stay, and lists what is included and
+          dirhams. Each product page says whether the price is per person, per car or per booking, and lists what is included and
           what is not.
         </p>
         <p>
@@ -84,7 +84,7 @@ function buildSections(payNow: boolean): LegalSection[] {
           <p>
             At checkout you choose how to pay. <strong>Pay now</strong>: you pay the full price online through PayPal, by PayPal balance or card, and your
             booking is confirmed once the payment is approved. Nothing is due on the day. <strong>Reserve now, pay on the day</strong>: nothing is charged
-            when you book, and you pay on the day as described below.
+            when you book, and you pay on the day as described below. A few services, marked on the product page, can only be booked with Pay now.
           </p>
         ) : (
           <p>Nothing is charged when you book. You pay on the day of the service, before it starts.</p>
@@ -122,7 +122,7 @@ function buildSections(payNow: boolean): LegalSection[] {
     body: (
       <>
         <p>
-          Cancellation is <strong>free up to 24 hours before your pickup time</strong>. Reply CANCEL to your WhatsApp confirmation, or message us with your
+          Cancellation is <strong>free up to 24 hours before your pickup time</strong>, except for the <a href="#non-refundable">non-refundable services</a> below. Reply CANCEL to your WhatsApp confirmation, or message us with your
           booking reference. You receive a written acknowledgement.
         </p>
         <p>
@@ -134,6 +134,13 @@ function buildSections(payNow: boolean): LegalSection[] {
           ) : null}
           If you chose to pay on the day and cancel less than 24 hours before pickup, or you are not at the pickup point, nothing is charged, but we keep a
           record of the late cancellation or no-show and may ask for a deposit before accepting future bookings.
+        </p>
+        <p id="non-refundable">
+          <strong>Advance-booked, non-refundable services.</strong> Some services are planned and shopped for you days ahead. Today this is the private
+          chef dinner. They must be booked at least the number of days shown on the product page (3 days for the private chef), are paid in full{" "}
+          {payNow ? "online when you book" : "through a secure payment link we send you before the booking is confirmed"}, and are{" "}
+          <strong>non-refundable once booked</strong>, whenever you cancel. The product page and checkout say clearly when a service is non-refundable. If{" "}
+          <em>we</em> cancel such a service, you are refunded in full, as below.
         </p>
         <p>
           Hot air balloon flights, desert camps and some supplier services may have their own cut-off times, which are shown on the product page and override

@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { copy } from "@/lib/copy";
+import { askTariq } from "./ChatWidget";
 
 export function AskBar() {
-  const router = useRouter();
   const [q, setQ] = useState("");
   const go = (text: string) => {
     const t = text.trim();
-    if (t) router.push(`/concierge?q=${encodeURIComponent(t.slice(0, 500))}`);
+    if (!t) return;
+    askTariq(t);
+    setQ("");
   };
   return (
     <>

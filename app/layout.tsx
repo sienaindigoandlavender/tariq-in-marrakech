@@ -4,6 +4,8 @@ import { AppStateProvider } from "@/components/AppState";
 import { TopBar } from "@/components/TopBar";
 import { TabBar } from "@/components/TabBar";
 import { Footer } from "@/components/Footer";
+import { ChatWidget } from "@/components/ChatWidget";
+import { getProducts } from "@/lib/db";
 import { SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
@@ -35,7 +37,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const lite = (await getProducts()).map(({ id, title, price_eur, per, scene, image_url }) => ({ id, title, price_eur, per, scene, image_url }));
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
@@ -44,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="phone:pb-[calc(var(--tabh)+24px+env(safe-area-inset-bottom,0px))]">{children}</main>
           <Footer />
           <TabBar />
+          <ChatWidget products={lite} />
         </AppStateProvider>
       </body>
     </html>
