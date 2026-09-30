@@ -26,7 +26,8 @@ const config: Config = {
       },
       borderRadius: { card: "16px", input: "12px" },
       maxWidth: { wrap: "1180px" },
-      screens: { phone: { max: "760px" } },
+      // Max-width breakpoints, widest first so narrower ones win.
+      screens: { tab: { max: "1020px" }, phone: { max: "760px" }, xs: { max: "480px" } },
       spacing: { tab: "64px" },
     },
   },

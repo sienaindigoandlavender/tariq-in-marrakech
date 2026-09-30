@@ -45,6 +45,23 @@ export const copy = {
   ],
 
   book: { h: "Book", p: "Final prices. Nothing to pay until the day." },
+
+  listing: {
+    date: "Date",
+    guests: "Guests",
+    fewer: "Fewer guests",
+    more: "More guests",
+    sort: "Sort",
+    sortRecommended: "Recommended",
+    sortLow: "Price low to high",
+    sortHigh: "Price high to low",
+    results: (n: number) => `${n} ${n === 1 ? "result" : "results"}`,
+    freeCancel: "Free cancellation",
+    payOnArrival: "Pay on arrival",
+    save: "Save",
+    unsave: "Remove from saved",
+    empty: "Nothing in this category yet.",
+  },
   solved: {
     h: "Solved before you ask",
     p: "The things nobody else sorts out for you. Added to any booking, delivered in the van that's already coming.",
