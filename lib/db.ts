@@ -55,9 +55,9 @@ export async function getProductsByCategory(cat: Category): Promise<Product[]> {
 
 /** Strip the internal role before handing products to client components. */
 export function toPublic(p: Product): PublicProduct {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { role, ...rest } = p;
-  return rest;
+  const rest: Partial<Product> = { ...p };
+  delete rest.role;
+  return rest as PublicProduct;
 }
 
 /** "Recommended" order: cows and badged first, then leads, then by sort. */
