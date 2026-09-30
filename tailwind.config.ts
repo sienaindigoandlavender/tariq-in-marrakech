@@ -29,6 +29,7 @@ const config: Config = {
       // Max-width breakpoints, widest first so narrower ones win.
       screens: { tab: { max: "1020px" }, phone: { max: "760px" }, xs: { max: "480px" } },
       spacing: { tab: "64px" },
+      keyframes: { sheet: { from: { transform: "translateY(24px)", opacity: "0" }, to: { transform: "none", opacity: "1" } } },
     },
   },
   plugins: [],

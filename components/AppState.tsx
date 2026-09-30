@@ -24,6 +24,8 @@ export type TripItem = {
   lines: { kind: "base" | "private" | "addon"; label: string; qty: number; unit_eur: number; eur: number }[];
   total: number;
   persisted: boolean;
+  /** on_arrival | paypal (awaiting capture) | paid (captured online) */
+  payment?: "on_arrival" | "paypal" | "paid";
 };
 
 export type Prefs = { date: string; guests: number };
@@ -69,6 +71,8 @@ type AppState = {
   money: (eur: number) => string;
   trip: TripItem[];
   addTrip: (t: TripItem) => void;
+  updateTrip: (ref: string, patch: Partial<TripItem>) => void;
+  removeTrip: (ref: string) => void;
   saved: string[];
   toggleSaved: (id: string) => void;
   prefs: Prefs;
@@ -124,6 +128,22 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const updateTrip = useCallback((ref: string, patch: Partial<TripItem>) => {
+    setTrip((prev) => {
+      const next = prev.map((t) => (t.ref === ref ? { ...t, ...patch } : t));
+      writeJSON(TRIP_KEY, next);
+      return next;
+    });
+  }, []);
+
+  const removeTrip = useCallback((ref: string) => {
+    setTrip((prev) => {
+      const next = prev.filter((t) => t.ref !== ref);
+      writeJSON(TRIP_KEY, next);
+      return next;
+    });
+  }, []);
+
   const toggleSaved = useCallback((id: string) => {
     setSaved((prev) => {
       const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
@@ -146,8 +166,8 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ ready, currency, setCurrency, money, trip, addTrip, saved, toggleSaved, prefs, setPrefs, last, setLast }),
-    [ready, currency, setCurrency, money, trip, addTrip, saved, toggleSaved, prefs, setPrefs, last, setLast],
+    () => ({ ready, currency, setCurrency, money, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast }),
+    [ready, currency, setCurrency, money, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

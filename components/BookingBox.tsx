@@ -1,41 +1,45 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { copy } from "@/lib/copy";
 import { perLabel } from "@/lib/format";
 import type { PublicProduct } from "@/lib/types";
 import { useAppState } from "./AppState";
-import { DateGuests } from "./Listing";
-import { Assurances, PriceFrom } from "./ProductCard";
+import { useBookingSheet } from "./booking/BookingSheet";
+import { Icon } from "./Icons";
+import { PriceFrom } from "./ProductCard";
 
 type P = Pick<PublicProduct, "id" | "price_eur" | "was_eur" | "per">;
 
-function useCheck(id: string) {
-  const router = useRouter();
-  const { prefs } = useAppState();
-  return () => router.push(`/book/${id}?date=${prefs.date}&guests=${prefs.guests}`);
+function useCheck() {
+  return useBookingSheet().open;
 }
 
 /** Desktop: sticky right column. */
 export function BookingBox({ p }: { p: P }) {
-  const check = useCheck(p.id);
+  const check = useCheck();
   return (
     <aside className="sticky top-[86px] grid gap-3.5 rounded-card border border-line bg-surface p-5 shadow-[0_8px_30px_rgb(0_0_0/.06)]">
       <PriceFrom p={p} size="lg" />
-      <div className="grid grid-cols-2 gap-3">
-        <DateGuests compact />
-      </div>
       <button type="button" onClick={check} className="min-h-[48px] rounded-full bg-blue px-[18px] text-base font-extrabold text-blue-ink">
         {copy.product.check}
       </button>
-      <Assurances />
+      <ul className="m-0 grid list-none gap-2.5 border-t border-line p-0 pt-3.5 text-[13.5px]">
+        <li className="grid grid-cols-[20px_minmax(0,1fr)] gap-2">
+          <span className="text-ok"><Icon name="shield" size={20} /></span>
+          <span><b className="block">{copy.product.flexH}</b><span className="text-muted">{copy.product.flexP}</span></span>
+        </li>
+        <li className="grid grid-cols-[20px_minmax(0,1fr)] gap-2">
+          <span className="text-ok"><Icon name="wallet" size={20} /></span>
+          <span><b className="block">{copy.product.laterH}</b><span className="text-muted">{copy.product.laterP}</span></span>
+        </li>
+      </ul>
     </aside>
   );
 }
 
 /** Phone: sticky bar that sits directly above the bottom tab bar. */
 export function MobileBookBar({ p }: { p: P }) {
-  const check = useCheck(p.id);
+  const check = useCheck();
   const { money } = useAppState();
   return (
     <div

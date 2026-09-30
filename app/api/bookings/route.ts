@@ -6,6 +6,7 @@ import { isYmd, tomorrow, addDays } from "@/lib/dates";
 import { getProduct } from "@/lib/db";
 import { price } from "@/lib/pricing";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
+import { createOrder, paypalEnabled } from "@/lib/paypal";
 import { makeRef } from "@/lib/refs";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { Booking, BookingSource } from "@/lib/types";
@@ -45,11 +46,13 @@ export async function POST(req: Request) {
   const digits = phone.replace(/\D/g, "");
   if (digits.length < 8 || digits.length > 15 || !/^[+\d\s().-]+$/.test(phone)) return bad(E.phone, "phone");
   const notes = str(body.notes, 1000) || null;
+  const payNow = body.payment === "paypal";
 
   const r = price(product, { guests, mode, addonIds });
 
   // Riad QR attribution: only a known, active partner code counts.
   const admin = supabaseAdmin();
+  if (payNow && (!admin || !paypalEnabled())) return bad("Online payment isn't available right now. Choose pay on the day.", "payment", 503);
   let partner_code: string | null = null;
   const cookieCode = cookies().get("tq_partner")?.value?.toUpperCase();
   if (cookieCode && admin) {
@@ -59,7 +62,7 @@ export async function POST(req: Request) {
   const requested = body.source === "concierge" ? "concierge" : "web";
   const source: BookingSource = partner_code ? "riad_qr" : requested;
 
-  const booking: Omit<Booking, "ref" | "created_at"> = {
+  const booking: Omit<Booking, "ref" | "created_at" | "payment_method" | "payment_status" | "paid_eur"> = {
     city: CITY,
     product_id: product.id,
     product_title: product.title,
@@ -77,16 +80,19 @@ export async function POST(req: Request) {
     base_eur: r.base,
     extra_eur: r.extra,
     total_eur: r.total,
-    status: "confirmed",
+    status: payNow ? "pending_payment" : "confirmed",
     source,
     partner_code,
   };
+  const payment = payNow
+    ? { payment_method: "paypal", payment_status: "pending" }
+    : { payment_method: "on_arrival", payment_status: "unpaid" };
 
   let ref = makeRef();
   let persisted = false;
   if (admin) {
     for (let i = 0; i < 4; i++) {
-      const { error } = await admin.from("bookings").insert({ ...booking, ref });
+      const { error } = await admin.from("bookings").insert({ ...booking, ...payment, ref });
       if (!error) {
         persisted = true;
         break;
@@ -103,8 +109,30 @@ export async function POST(req: Request) {
     console.warn(`[bookings] Supabase not configured: ${ref} was not stored. The guest's WhatsApp message is the only record.`);
   }
 
+  let approve_url: string | null = null;
+  if (payNow && admin) {
+    const origin = new URL(req.url).origin;
+    try {
+      const o = await createOrder({
+        ref,
+        description: `${product.title}, ${date}, ${guests} ${guests === 1 ? "guest" : "guests"}`,
+        totalEur: r.total,
+        returnUrl: `${origin}/api/paypal/return?ref=${ref}`,
+        cancelUrl: `${origin}/api/paypal/cancel?ref=${ref}`,
+      });
+      await admin.from("bookings").update({ paypal_order_id: o.orderId }).eq("ref", ref);
+      approve_url = o.approveUrl;
+    } catch (e) {
+      console.error("[bookings] PayPal order failed", e);
+      await admin.from("bookings").update({ status: "cancelled", payment_status: "failed" }).eq("ref", ref);
+      return bad("We couldn't reach PayPal. Try again, or choose pay on the day.", "payment", 502);
+    }
+  }
+
   return NextResponse.json({
     persisted,
+    approve_url,
+    payment: payment.payment_method,
     booking: {
       ref,
       product_id: booking.product_id,

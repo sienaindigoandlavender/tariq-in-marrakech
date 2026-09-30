@@ -6,6 +6,7 @@ import { STATUS_LABEL, nextStatus } from "@/lib/dispatch";
 import type { BookingStatus } from "@/lib/types";
 
 const CHIP: Record<BookingStatus, string> = {
+  pending_payment: "bg-line text-muted",
   confirmed: "bg-sun/35 text-ink",
   reminded: "bg-sun/70 text-ink",
   picked: "bg-blue/25 text-ink",
@@ -14,7 +15,7 @@ const CHIP: Record<BookingStatus, string> = {
   cancelled: "bg-line text-muted",
 };
 
-export function StatusControls({ refCode, status: initial }: { refCode: string; status: BookingStatus }) {
+export function StatusControls({ refCode, status: initial, prepaid = false }: { refCode: string; status: BookingStatus; prepaid?: boolean }) {
   const router = useRouter();
   const [status, setStatus] = useState(initial);
   const [err, setErr] = useState("");
@@ -28,7 +29,8 @@ export function StatusControls({ refCode, status: initial }: { refCode: string; 
     const res = await fetch("/api/dispatch/status", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ref: refCode, status: s }) });
     if (!res.ok) {
       setStatus(prev);
-      setErr("Couldn't update. Tap again.");
+      const data = await res.json().catch(() => ({}));
+      setErr(data.error || "Couldn't update. Tap again.");
     } else start(() => router.refresh());
   };
 
@@ -48,6 +50,17 @@ export function StatusControls({ refCode, status: initial }: { refCode: string; 
       {status !== "noshow" && status !== "paid" && status !== "cancelled" ? (
         <button type="button" onClick={() => set("noshow")} className="min-h-[36px] whitespace-nowrap rounded-full border border-line px-3 text-xs font-bold text-muted">
           No-show
+        </button>
+      ) : null}
+      {status === "confirmed" || status === "reminded" ? (
+        <button
+          type="button"
+          onClick={() => {
+            if (window.confirm(prepaid ? `Cancel ${refCode} and refund the guest in full on PayPal?` : `Cancel ${refCode}?`)) set("cancelled");
+          }}
+          className="min-h-[36px] whitespace-nowrap rounded-full px-2 text-xs font-bold text-warn underline"
+        >
+          {prepaid ? "Cancel & refund" : "Cancel"}
         </button>
       ) : null}
       {err ? <span role="alert" className="text-xs font-bold text-warn">{err}</span> : null}

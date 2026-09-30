@@ -15,11 +15,12 @@ export function MyTrip({ products }: { products: PublicProduct[] }) {
   const { trip, saved, money, ready } = useAppState();
   if (!ready) return <div className="min-h-[40vh]" />;
 
-  const rows = [...trip].sort((a, b) => a.date.localeCompare(b.date) || a.ref.localeCompare(b.ref));
-  const sum = rows.reduce((s, m) => s + m.total, 0);
+  const rows = [...trip].filter((m) => m.payment !== "paypal").sort((a, b) => a.date.localeCompare(b.date) || a.ref.localeCompare(b.ref));
+  const due = (m: (typeof rows)[number]) => (m.payment === "paid" ? 0 : m.total);
+  const sum = rows.reduce((s, m) => s + due(m), 0);
   const text =
     rows
-      .map((m) => `${m.ref} · ${fmtDate(m.date)} · ${m.title}${m.mode === "private" ? ` (${copy.checkout.private})` : ""} · ${m.guests} · ${m.pickup} · ${money(m.total)}`)
+      .map((m) => `${m.ref} · ${fmtDate(m.date)} · ${m.title}${m.mode === "private" ? ` (${copy.checkout.private})` : ""} · ${m.guests} · ${m.pickup} · ${m.payment === "paid" ? `${T.paid} ${money(m.total)}` : money(m.total)}`)
       .join("\n") + `\n${T.total}: ${money(sum)}`;
   const savedProducts = saved.map((id) => products.find((p) => p.id === id)).filter((p): p is PublicProduct => Boolean(p));
 
@@ -51,7 +52,10 @@ export function MyTrip({ products }: { products: PublicProduct[] }) {
                     ) : null}
                   </span>
                 </div>
-                <span className="tnum font-extrabold xs:col-start-2">{money(m.total)}</span>
+                <span className="tnum grid justify-items-end font-extrabold xs:col-start-2 xs:justify-items-start">
+                  {money(m.total)}
+                  {m.payment === "paid" ? <span className="text-xs font-bold text-ok">{T.paid}</span> : null}
+                </span>
               </li>
             ))}
           </ul>

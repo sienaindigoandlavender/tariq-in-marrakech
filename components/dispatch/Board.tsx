@@ -5,11 +5,19 @@ import { StatusControls } from "./StatusControls";
 
 export type Row = Pick<
   Booking,
-  "ref" | "product_id" | "product_title" | "date" | "guests" | "mode" | "addons" | "pickup" | "notes" | "lead_name" | "phone" | "total_eur" | "extra_eur" | "status" | "source" | "partner_code"
+  "ref" | "product_id" | "product_title" | "date" | "guests" | "mode" | "addons" | "pickup" | "notes" | "lead_name" | "phone" | "total_eur" | "extra_eur" | "status" | "source" | "partner_code" | "payment_method" | "payment_status" | "paid_eur"
 >;
 
 const eur = (n: number) => "€" + Math.round(n).toLocaleString("en");
-const live = (b: Row) => b.status !== "cancelled" && b.status !== "noshow";
+const live = (b: Row) => b.status !== "cancelled" && b.status !== "noshow" && b.status !== "pending_payment";
+/** What the driver collects on the day. */
+export const dueOnDay = (b: Row) => (b.payment_status === "paid" ? Math.max(0, Number(b.total_eur) - Number(b.paid_eur)) : Number(b.total_eur));
+
+export function PayBadge({ b }: { b: Row }) {
+  if (b.payment_status === "paid") return <span className="rounded-full bg-ok/15 px-2 py-0.5 text-[11px] font-extrabold text-ok">Prepaid · PayPal</span>;
+  if (b.payment_status === "refunded") return <span className="rounded-full bg-line px-2 py-0.5 text-[11px] font-extrabold text-muted">Refunded</span>;
+  return null;
+}
 const waHref = (phone: string) => `https://wa.me/${phone.replace(/\D/g, "")}`;
 
 export function Kpis({ rows, today }: { rows: Row[]; today: string }) {
@@ -93,7 +101,7 @@ export function Days({ rows }: { rows: Row[] }) {
                     {b.product_title}
                     {b.mode === "private" ? <span className="text-blue"> · Private</span> : null}
                   </b>
-                  <b className="tnum">{eur(Number(b.total_eur))}</b>
+                  <span className="grid justify-items-end gap-1"><b className="tnum">{eur(dueOnDay(b))}</b><PayBadge b={b} /></span>
                 </div>
                 <span className="tnum text-muted">{b.ref} · {b.guests} guests{b.partner_code ? ` · ${b.partner_code}` : ""}</span>
                 <span><b>Pickup:</b> {b.pickup}</span>
@@ -103,7 +111,7 @@ export function Days({ rows }: { rows: Row[] }) {
                   {b.lead_name} · <a className="tnum font-bold" href={`tel:${b.phone.replace(/[^\d+]/g, "")}`}>{b.phone}</a> ·{" "}
                   <a className="font-bold text-wa" href={waHref(b.phone)} target="_blank" rel="noopener">WhatsApp</a>
                 </span>
-                <StatusControls refCode={b.ref} status={b.status} />
+                <StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} />
               </li>
             ))}
           </ul>
@@ -133,8 +141,8 @@ export function Days({ rows }: { rows: Row[] }) {
                         <a className="font-bold text-wa" href={waHref(b.phone)} target="_blank" rel="noopener">WhatsApp</a>
                       </span>
                     </td>
-                    <td className="tnum whitespace-nowrap font-bold">{eur(Number(b.total_eur))}</td>
-                    <td><StatusControls refCode={b.ref} status={b.status} /></td>
+                    <td className="tnum whitespace-nowrap font-bold">{eur(dueOnDay(b))}<span className="mt-1 block"><PayBadge b={b} /></span></td>
+                    <td><StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} /></td>
                   </tr>
                 ))}
               </tbody>

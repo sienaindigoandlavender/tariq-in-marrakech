@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookingBox, MobileBookBar } from "@/components/BookingBox";
+import { BookingSheetRoot } from "@/components/booking/BookingSheet";
 import { Icon } from "@/components/Icons";
 import { Poster } from "@/components/Poster";
 import { ProductCard, Heart } from "@/components/ProductCard";
@@ -86,6 +87,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
   };
 
   return (
+    <BookingSheetRoot p={pub}>
     <div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <nav aria-label="Breadcrumb" className="pt-5 text-sm text-muted">
@@ -200,5 +202,6 @@ export default async function ProductPage({ params }: { params: { id: string } }
       <div className="hidden h-[72px] phone:block" />
       <MobileBookBar p={pub} />
     </div>
+    </BookingSheetRoot>
   );
 }

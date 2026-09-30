@@ -3,16 +3,23 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { copy } from "@/lib/copy";
-import { isYmd, tomorrow } from "@/lib/dates";
-import { perLabel } from "@/lib/format";
-import { price, type PriceLine } from "@/lib/pricing";
+import { fmtDate, isYmd, tomorrow } from "@/lib/dates";
+import { price, type PriceLine, type PriceResult } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
 import { useAppState } from "./AppState";
+import { Icon } from "./Icons";
 import { Poster } from "./Poster";
+import { OptionsPanel, maxGuests, type Selection } from "./booking/OptionsPanel";
 
 const C = copy.checkout;
 const field = "min-h-[46px] w-full min-w-0 rounded-input border border-line bg-bg px-3 py-2.5 font-medium";
 const label = "grid gap-1.5 text-[13px] font-bold";
+const payCard =
+  "relative grid cursor-pointer gap-0.5 rounded-input border border-line bg-bg p-3.5 text-sm has-[:checked]:border-blue has-[:checked]:shadow-[inset_0_0_0_1px_rgb(var(--blue))] has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-sun";
+const DRAFT_KEY = "tq_draft";
+
+type Pay = "later" | "now";
+type Draft = Selection & { id: string; notes: string };
 
 export function lineLabel(l: Pick<PriceLine, "kind" | "label" | "qty" | "unit_eur">, money: (n: number) => string): string {
   if (l.kind === "base") return `${C.base}: ${l.qty} × ${money(l.unit_eur)}`;
@@ -20,86 +27,106 @@ export function lineLabel(l: Pick<PriceLine, "kind" | "label" | "qty" | "unit_eu
   return `${l.label}${l.qty > 1 ? ` × ${l.qty}` : ""}`;
 }
 
-function Steps({ step }: { step: number }) {
+function Lines({ r, money }: { r: PriceResult; money: (n: number) => string }) {
   return (
-    <ol className="m-0 flex list-none gap-2 p-0" aria-label={C.stepOf(step)}>
-      {C.steps.map((s, i) => {
-        const n = i + 1;
-        const state = n < step ? "done" : n === step ? "now" : "todo";
-        return (
-          <li key={s} aria-current={state === "now" ? "step" : undefined} className="flex flex-1 flex-col gap-1.5 text-[13px] font-bold">
-            <span className={`h-1.5 rounded-full ${state === "todo" ? "bg-line" : "bg-blue"}`} />
-            <span className={state === "todo" ? "text-muted" : "text-ink"}>
-              {n}. {s}
-            </span>
-          </li>
-        );
-      })}
-    </ol>
+    <div className="grid gap-1 text-[13.5px] font-medium text-muted">
+      {r.lines.map((l) => (
+        <span key={l.kind + l.id} className="flex justify-between gap-2.5">
+          <span>{lineLabel(l, money)}</span>
+          <span className="tnum">{money(l.eur)}</span>
+        </span>
+      ))}
+    </div>
   );
 }
 
-export function Checkout({ p }: { p: PublicProduct }) {
+function Section({ n, title, children, aside }: { n: number; title: string; children: React.ReactNode; aside?: React.ReactNode }) {
+  return (
+    <section className="grid gap-3.5 rounded-card border border-line bg-surface p-4 sm:p-5">
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="m-0 flex items-center gap-2.5 text-lg font-extrabold">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-blue text-sm text-blue-ink">{n}</span>
+          {title}
+        </h2>
+        {aside}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvailable: boolean }) {
   const router = useRouter();
   const sp = useSearchParams();
-  const { money, prefs, setPrefs, last, setLast, addTrip, ready } = useAppState();
-  const maxG = p.per === "car" ? 9 : 14;
+  const { money, prefs, setPrefs, last, setLast, addTrip, removeTrip, ready } = useAppState();
+  const maxG = maxGuests(p);
 
-  const [step, setStep] = useState(1);
-  const [date, setDate] = useState("");
-  const [guests, setGuests] = useState(2);
-  const [mode, setMode] = useState<"shared" | "private">("shared");
-  const [adds, setAdds] = useState<string[]>([]);
+  const [sel, setSel] = useState<Selection>({ date: "", guests: 2, mode: "shared", adds: [] });
+  const [editing, setEditing] = useState(false);
   const [pickup, setPickup] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
+  const [pay, setPay] = useState<Pay>("later");
   const [err, setErr] = useState("");
+  const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
-  const headRef = useRef<HTMLHeadingElement>(null);
 
-  // Pre-fill once: URL > saved prefs cookie; details from the last booking on this device.
+  // Pre-fill once: draft left before a PayPal round trip > URL (from the sheet) > prefs cookie.
   const filled = useRef(false);
   useEffect(() => {
     if (!ready || filled.current) return;
     filled.current = true;
+    const clampG = (n: number) => Math.min(maxG, Math.max(1, n || 2));
     const qd = sp.get("date");
-    const qg = Number(sp.get("guests"));
-    setDate(isYmd(qd) && qd >= tomorrow() ? qd : prefs.date || tomorrow());
-    setGuests(Math.min(maxG, Math.max(1, qg || prefs.guests || 2)));
+    const qm = sp.get("mode");
+    const next: Selection = {
+      date: isYmd(qd) && qd >= tomorrow() ? qd : prefs.date || tomorrow(),
+      guests: clampG(Number(sp.get("guests")) || prefs.guests),
+      mode: qm === "private" && p.private_per_car ? "private" : "shared",
+      adds: (sp.get("adds") ?? "").split(",").filter((a) => p.addons.some((x) => x.id === a)),
+    };
     if (last) {
       setPickup(last.pickup);
       setName(last.name);
       setPhone(last.phone);
     }
-  }, [ready, sp, prefs, last, maxG]);
-
-  useEffect(() => {
-    headRef.current?.focus();
-  }, [step]);
-
-  const r = useMemo(() => price(p, { guests, mode, addonIds: adds }), [p, guests, mode, adds]);
-  const priceFor = (m: "shared" | "private") => price(p, { guests, mode: m, addonIds: adds }).total;
-
-  const next = () => {
-    setErr("");
-    if (step === 1) {
-      if (!isYmd(date) || date < tomorrow()) return setErr(C.errors.date);
-      setPrefs({ date, guests });
+    const back = sp.get("payment");
+    if (back === "cancelled" || back === "failed") {
+      const ref = sp.get("ref");
+      if (ref) removeTrip(ref);
+      try {
+        const d = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || "null") as Draft | null;
+        if (d && d.id === p.id) {
+          if (isYmd(d.date) && d.date >= tomorrow()) next.date = d.date;
+          next.guests = clampG(d.guests);
+          next.mode = d.mode === "private" && p.private_per_car ? "private" : "shared";
+          next.adds = d.adds.filter((a) => p.addons.some((x) => x.id === a));
+          setNotes(d.notes);
+        }
+      } catch {}
+      setNotice(back === "cancelled" ? C.cancelled : C.failed);
+      setPay("now");
+      router.replace(`/book/${p.id}`, { scroll: false });
+    } else if (!qm) {
+      setEditing(true); // arrived without choosing an option (cross-sell, concierge, direct link)
     }
-    setStep((s) => Math.min(3, s + 1));
-    window.scrollTo({ top: 0 });
-  };
+    setSel(next);
+  }, [ready, sp, prefs, last, maxG, p, removeTrip, router]);
+
+  const r = useMemo(() => price(p, { guests: sel.guests, mode: sel.mode, addonIds: sel.adds }), [p, sel]);
+  const payNow = pay === "now" && payNowAvailable;
 
   const submit = async () => {
     setErr("");
-    if (!isYmd(date) || date < tomorrow()) {
-      setStep(1);
+    if (!isYmd(sel.date) || sel.date < tomorrow()) {
+      setEditing(true);
       return setErr(C.errors.date);
     }
     if (pickup.trim().length < 3) return setErr(C.errors.pickup);
     if (name.trim().length < 2) return setErr(C.errors.name);
     if (phone.replace(/\D/g, "").length < 8) return setErr(C.errors.phone);
+    setPrefs({ date: sel.date, guests: sel.guests });
     setBusy(true);
     try {
       const res = await fetch("/api/bookings", {
@@ -107,14 +134,15 @@ export function Checkout({ p }: { p: PublicProduct }) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           product_id: p.id,
-          date,
-          guests,
-          mode,
-          addon_ids: adds,
+          date: sel.date,
+          guests: sel.guests,
+          mode: sel.mode,
+          addon_ids: sel.adds,
           pickup,
           lead_name: name,
           phone,
           notes,
+          payment: payNow ? "paypal" : "on_arrival",
           source: sp.get("src") === "concierge" ? "concierge" : "web",
         }),
       });
@@ -142,7 +170,15 @@ export function Checkout({ p }: { p: PublicProduct }) {
         lines: b.lines,
         total: b.total_eur,
         persisted: !!data.persisted,
+        payment: data.approve_url ? "paypal" : "on_arrival",
       });
+      if (data.approve_url) {
+        try {
+          sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ ...sel, id: p.id, notes } satisfies Draft));
+        } catch {}
+        window.location.assign(data.approve_url);
+        return;
+      }
       router.push(`/done/${b.ref}`);
     } catch {
       setBusy(false);
@@ -150,160 +186,140 @@ export function Checkout({ p }: { p: PublicProduct }) {
     }
   };
 
-  const Total = () => (
-    <div className="flex items-start justify-between gap-4 rounded-input bg-soft p-3.5">
-      <div className="min-w-0 flex-1 text-sm font-bold">
-        {C.total}
-        <div className="mt-1.5 grid gap-1 text-[13.5px] font-medium text-muted">
-          {r.lines.map((l) => (
-            <span key={l.kind + l.id} className="flex justify-between gap-2.5">
-              <span>{lineLabel(l, money)}</span>
-              <span className="tnum">{money(l.eur)}</span>
-            </span>
-          ))}
+  const optionText = p.private_per_car ? (sel.mode === "private" ? C.private : C.shared) : C.standard;
+  const extras = r.lines.filter((l) => l.kind === "addon").map((l) => l.label);
+  const cta = busy ? (payNow ? C.redirecting : C.sending) : payNow ? C.payWith(money(r.total)) : C.confirm;
+
+  const summary = (
+    <div className="grid gap-3.5 rounded-card border border-line bg-surface p-4">
+      <div className="grid grid-cols-[88px_minmax(0,1fr)] items-center gap-3">
+        <Poster scene={p.scene} image_url={p.image_url} alt="" uid={`sum-${p.id}`} className="rounded-xl" />
+        <div className="min-w-0">
+          <p className="m-0 text-[13px] font-bold text-muted">{p.subtitle}</p>
+          <p className="m-0 font-extrabold leading-tight">{p.title}</p>
         </div>
       </div>
-      <span className="tnum text-[26px] font-extrabold leading-none" aria-live="polite">
-        {money(r.total)}
-      </span>
+      <ul className="m-0 grid list-none gap-1.5 p-0 text-sm">
+        <li className="flex items-center gap-2"><Icon name="clock" size={18} />{sel.date ? fmtDate(sel.date) : "–"} · {p.timing}</li>
+        <li className="flex items-center gap-2"><Icon name="users" size={18} />{sel.guests} {sel.guests === 1 ? "guest" : "guests"} · {optionText}</li>
+        <li className="flex items-start gap-2 text-ok"><span className="mt-0.5"><Icon name="shield" size={18} /></span><span className="font-bold">{C.cancelPolicy}</span></li>
+      </ul>
+      <div className="border-t border-line pt-3">
+        <Lines r={r} money={money} />
+        <div className="mt-2 flex items-baseline justify-between">
+          <b>{payNow ? C.payNow : C.total}</b>
+          <b className="tnum text-2xl">{money(r.total)}</b>
+        </div>
+      </div>
     </div>
   );
 
-  const option = (m: "shared" | "private", title: string, sub: string, extra?: number) => (
-    <label key={m} className="relative grid cursor-pointer gap-0.5 rounded-input border border-line bg-bg p-3.5 text-sm has-[:checked]:border-blue has-[:checked]:shadow-[inset_0_0_0_1px_rgb(var(--blue))] has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-sun">
-      <input type="radio" name="mode" value={m} checked={mode === m} onChange={() => setMode(m)} className="absolute opacity-0" />
-      <span className="flex items-baseline justify-between gap-2">
-        <b className="text-base">
-          {title}
-          {extra ? <span className="tnum font-bold text-muted"> +{money(extra)} {perLabel("car")}</span> : null}
-        </b>
-        <span className="tnum font-extrabold">{money(priceFor(m))}</span>
-      </span>
-      <small className="text-muted">{sub}</small>
-      <small className="font-bold">{p.timing}</small>
-    </label>
-  );
-
   return (
-    <div className="mx-auto grid max-w-[640px] gap-5 py-6">
-      <div className="grid grid-cols-[96px_minmax(0,1fr)] items-center gap-3.5">
-        <Poster scene={p.scene} image_url={p.image_url} alt="" uid={`ck-${p.id}`} className="rounded-xl" />
-        <div>
-          <p className="m-0 text-sm font-bold text-muted">{p.subtitle}</p>
-          <p className="m-0 text-lg font-extrabold leading-tight">{p.title}</p>
-        </div>
-      </div>
-
-      <Steps step={step} />
-
-      <h1 ref={headRef} tabIndex={-1} className="m-0 text-2xl font-extrabold focus:outline-none">
-        {C.steps[step - 1]}
-      </h1>
-
+    <div className="grid grid-cols-[minmax(0,1fr)_340px] items-start gap-8 py-6 tab:grid-cols-[minmax(0,1fr)_300px] phone:grid-cols-1 phone:gap-4">
       <form
         noValidate
-        className="grid gap-3.5"
+        className="grid min-w-0 gap-4"
         onSubmit={(e) => {
           e.preventDefault();
-          if (step < 3) next();
-          else submit();
+          submit();
         }}
       >
-        {step === 1 && (
-          <>
-            <div className="grid grid-cols-2 gap-3">
-              <label className={label}>
-                {C.date}
-                <input type="date" min={tomorrow()} value={date} onChange={(e) => setDate(e.target.value)} className={field} />
-              </label>
-              <label className={label}>
-                {C.guests}
-                <select value={guests} onChange={(e) => setGuests(Number(e.target.value))} className={field}>
-                  {Array.from({ length: maxG }, (_, i) => i + 1).map((n) => (
-                    <option key={n} value={n}>
-                      {n}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <fieldset className="m-0 grid gap-2 border-0 p-0" role="radiogroup">
-              <legend className="mb-2 text-[13px] font-bold">{C.shared} / {C.private}</legend>
-              {option("shared", p.private_per_car ? C.shared : C.standard, p.private_per_car ? C.sharedS : p.subtitle)}
-              {p.private_per_car ? option("private", C.private, C.privateS, p.private_per_car) : null}
-            </fieldset>
-          </>
-        )}
+        <h1 className="m-0 text-[26px] font-extrabold leading-tight">{C.checkoutH}</h1>
 
-        {step === 2 && (
-          <>
-            {p.addons.length ? (
-              <div className="grid gap-2">
-                {p.addons.map((a) => (
-                  <label key={a.id} className="grid cursor-pointer grid-cols-[22px_minmax(0,1fr)_auto] items-start gap-2.5 rounded-input border border-line bg-bg p-3 text-[14.5px] has-[:checked]:border-blue has-[:checked]:shadow-[inset_0_0_0_1px_rgb(var(--blue))]">
-                    <input
-                      type="checkbox"
-                      checked={adds.includes(a.id)}
-                      onChange={(e) => setAdds((prev) => (e.target.checked ? [...prev, a.id] : prev.filter((x) => x !== a.id)))}
-                      className="mt-0.5 h-[18px] w-[18px] accent-[rgb(var(--blue))]"
-                    />
-                    <span>
-                      <b className="block font-bold">
-                        {a.label}
-                        {a.popular ? <span className="text-xs font-bold text-rose-strong"> · {C.popular}</span> : null}
-                      </b>
-                      <small className="text-[13px] text-muted">{perLabel(a.per)}</small>
-                    </span>
-                    <span className="tnum whitespace-nowrap font-extrabold">+{money(a.eur)}</span>
-                  </label>
-                ))}
+        {notice ? (
+          <p role="status" className="m-0 rounded-input bg-sun/20 p-3 text-sm font-bold">
+            {notice}
+          </p>
+        ) : null}
+
+        <Section
+          n={1}
+          title={C.yourBooking}
+          aside={
+            <button type="button" aria-expanded={editing} onClick={() => setEditing((v) => !v)} className="min-h-[40px] rounded-full px-3 text-sm font-extrabold text-blue hover:bg-soft">
+              {editing ? C.done : C.edit}
+            </button>
+          }
+        >
+          {editing ? (
+            <OptionsPanel p={p} sel={sel} onChange={setSel} />
+          ) : (
+            <div className="grid grid-cols-[72px_minmax(0,1fr)] items-center gap-3">
+              <Poster scene={p.scene} image_url={p.image_url} alt="" uid={`yb-${p.id}`} className="rounded-lg" />
+              <div className="min-w-0 text-sm">
+                <b className="block text-base leading-tight">{p.title}</b>
+                <span className="text-muted">
+                  {sel.date ? fmtDate(sel.date, { weekday: "short", day: "numeric", month: "short" }) : "–"} · {p.timing} · {sel.guests} {sel.guests === 1 ? "guest" : "guests"} · {optionText}
+                </span>
+                {extras.length ? <span className="block text-muted">+ {extras.join(", ")}</span> : null}
               </div>
-            ) : (
-              <p className="m-0 rounded-input bg-soft p-4 text-muted">{C.noExtras}</p>
-            )}
-          </>
-        )}
-
-        {step === 3 && (
-          <>
-            <label className={label}>
-              {C.pickupAt}
-              <input value={pickup} onChange={(e) => setPickup(e.target.value)} maxLength={200} autoComplete="off" placeholder={C.pickupPlaceholder} className={field} />
-            </label>
-            <div className="grid grid-cols-2 gap-3 xs:grid-cols-1">
-              <label className={label}>
-                {C.name}
-                <input value={name} onChange={(e) => setName(e.target.value)} maxLength={120} autoComplete="name" className={field} />
-              </label>
-              <label className={label}>
-                {C.phone}
-                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} maxLength={40} autoComplete="tel" placeholder={C.phonePlaceholder} className={field} />
-              </label>
             </div>
-            <label className={label}>
-              {C.notes}
-              <textarea value={notes} onChange={(e) => setNotes(e.target.value)} maxLength={1000} className={`${field} min-h-[70px] resize-y`} />
-            </label>
-          </>
-        )}
+          )}
+        </Section>
 
-        <Total />
+        <Section n={2} title={C.contactH}>
+          <p className="m-0 -mt-1.5 text-sm text-muted">{C.contactP}</p>
+          <label className={label}>
+            {C.pickupAt}
+            <input value={pickup} onChange={(e) => setPickup(e.target.value)} maxLength={200} autoComplete="off" placeholder={C.pickupPlaceholder} className={field} />
+          </label>
+          <div className="grid grid-cols-2 gap-3 xs:grid-cols-1">
+            <label className={label}>
+              {C.name}
+              <input value={name} onChange={(e) => setName(e.target.value)} maxLength={120} autoComplete="name" className={field} />
+            </label>
+            <label className={label}>
+              {C.phone}
+              <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} maxLength={40} autoComplete="tel" placeholder={C.phonePlaceholder} className={field} />
+            </label>
+          </div>
+          <label className={label}>
+            {C.notes}
+            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} maxLength={1000} className={`${field} min-h-[64px] resize-y`} />
+          </label>
+        </Section>
+
+        <Section n={3} title={C.payH}>
+          <fieldset className="m-0 grid gap-2 border-0 p-0" role="radiogroup" aria-label={C.payH}>
+            {payNowAvailable ? (
+              <label className={payCard}>
+                <input type="radio" name="pay" value="now" checked={pay === "now"} onChange={() => setPay("now")} className="absolute opacity-0" />
+                <span className="flex items-baseline justify-between gap-2">
+                  <b className="text-base">{C.payNow}</b>
+                  <span className="rounded bg-[#ffc439] px-2 py-0.5 text-xs font-extrabold italic text-[#003087]">PayPal</span>
+                </span>
+                <small className="text-muted">{C.payNowS}</small>
+              </label>
+            ) : null}
+            <label className={payCard}>
+              <input type="radio" name="pay" value="later" checked={pay === "later"} onChange={() => setPay("later")} className="absolute opacity-0" />
+              <b className="text-base">{C.payLater}</b>
+              <small className="text-muted">{C.payLaterS}</small>
+            </label>
+          </fieldset>
+        </Section>
+
+        {/* phone: the total sits right above the button */}
+        <div className="hidden items-start justify-between gap-4 rounded-input bg-soft p-3.5 phone:flex">
+          <div className="min-w-0 flex-1 text-sm font-bold">
+            {payNow ? C.payNow : C.total}
+            <div className="mt-1.5"><Lines r={r} money={money} /></div>
+          </div>
+          <span className="tnum text-[26px] font-extrabold leading-none">{money(r.total)}</span>
+        </div>
+
         <p role="alert" className="m-0 min-h-[1em] text-[13px] font-bold text-warn">
           {err}
         </p>
-
-        <div className="flex gap-2.5">
-          {step > 1 ? (
-            <button type="button" onClick={() => { setErr(""); setStep((s) => s - 1); }} className="min-h-[50px] rounded-full border border-line px-5 font-extrabold">
-              {C.back}
-            </button>
-          ) : null}
-          <button type="submit" disabled={busy} className="min-h-[50px] flex-1 rounded-full bg-blue px-[18px] text-base font-extrabold text-blue-ink disabled:opacity-60">
-            {step < 3 ? C.continue : busy ? C.sending : C.confirm}
-          </button>
-        </div>
-        {step === 3 ? <p className="m-0 text-[12.5px] text-muted">{C.noPay}</p> : null}
+        <button type="submit" disabled={busy} className="min-h-[54px] rounded-full bg-blue px-[18px] text-base font-extrabold text-blue-ink disabled:opacity-60">
+          {cta}
+        </button>
+        <p className="m-0 -mt-1 text-center text-[12.5px] text-muted">{payNow ? `${C.paypalNote} ${C.paidNotice}` : C.noPay}</p>
       </form>
+
+      <aside className="sticky top-[86px] phone:hidden" aria-label={C.summary}>
+        {summary}
+      </aside>
     </div>
   );
 }

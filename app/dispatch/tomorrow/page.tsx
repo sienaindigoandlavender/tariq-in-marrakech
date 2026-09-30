@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Row } from "@/components/dispatch/Board";
+import { dueOnDay, type Row } from "@/components/dispatch/Board";
 import { LiveRefresh } from "@/components/dispatch/LiveRefresh";
 import { DispatchShell } from "@/components/dispatch/Shell";
 import { StatusControls } from "@/components/dispatch/StatusControls";
@@ -20,10 +20,10 @@ export default async function TomorrowPage() {
   const day = tomorrow();
   const { data } = await supabaseAdmin()!
     .from("bookings")
-    .select("ref, product_id, product_title, date, guests, mode, addons, pickup, notes, lead_name, phone, total_eur, extra_eur, status, source, partner_code")
+    .select("ref, product_id, product_title, date, guests, mode, addons, pickup, notes, lead_name, phone, total_eur, extra_eur, status, source, partner_code, payment_method, payment_status, paid_eur")
     .eq("city", CITY)
     .eq("date", day)
-    .not("status", "in", "(cancelled,noshow)");
+    .not("status", "in", "(cancelled,noshow,pending_payment)");
   const timing = new Map((await getProducts()).map((p) => [p.id, p.timing]));
   const rows = ((data ?? []) as Row[])
     .map((b) => ({ ...b, timing: timing.get(b.product_id) ?? "", min: pickupMinutes(timing.get(b.product_id) ?? "") }))
@@ -46,9 +46,9 @@ export default async function TomorrowPage() {
                 {b.addons.length ? <span><b>Bring:</b> {b.addons.map((a) => (a.qty > 1 ? `${a.label} × ${a.qty}` : a.label)).join(", ")}</span> : null}
                 {b.notes ? <span className="text-muted">{b.notes}</span> : null}
                 <span>
-                  {b.lead_name} · <a className="tnum font-bold" href={`tel:${b.phone.replace(/[^\d+]/g, "")}`}>{b.phone}</a> · {b.ref} · due €{Math.round(Number(b.total_eur))}
+                  {b.lead_name} · <a className="tnum font-bold" href={`tel:${b.phone.replace(/[^\d+]/g, "")}`}>{b.phone}</a> · {b.ref} · due €{Math.round(dueOnDay(b))}{b.payment_status === "paid" ? " (prepaid)" : ""}
                 </span>
-                <StatusControls refCode={b.ref} status={b.status} />
+                <StatusControls refCode={b.ref} status={b.status} prepaid={b.payment_status === "paid"} />
               </div>
             </li>
           ))}

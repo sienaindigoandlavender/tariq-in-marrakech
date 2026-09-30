@@ -2,6 +2,7 @@ import type { BookingStatus } from "./types";
 
 export const STATUS_FLOW: BookingStatus[] = ["confirmed", "reminded", "picked", "paid"];
 export const STATUS_LABEL: Record<BookingStatus, string> = {
+  pending_payment: "Awaiting payment",
   confirmed: "Confirmed",
   reminded: "Reminded",
   picked: "Picked up",

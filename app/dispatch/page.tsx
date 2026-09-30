@@ -11,7 +11,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Dispatch", robots: { index: false } };
 
-const COLS = "ref, product_id, product_title, date, guests, mode, addons, pickup, notes, lead_name, phone, total_eur, extra_eur, status, source, partner_code";
+const COLS = "ref, product_id, product_title, date, guests, mode, addons, pickup, notes, lead_name, phone, total_eur, extra_eur, status, source, partner_code, payment_method, payment_status, paid_eur";
 
 export default async function DispatchPage({ searchParams }: { searchParams: Record<string, string | undefined> }) {
   const gate = await requireOperator("/dispatch");
@@ -24,7 +24,7 @@ export default async function DispatchPage({ searchParams }: { searchParams: Rec
   const product = searchParams.product ?? "";
 
   let q = supabaseAdmin()!.from("bookings").select(COLS).eq("city", CITY).gte("date", from).lte("date", to).order("date").limit(1000);
-  if (status) q = q.eq("status", status);
+  q = status ? q.eq("status", status) : q.neq("status", "pending_payment");
   if (product) q = q.eq("product_id", product);
   const { data, error } = await q;
   const products = (await getProducts()).map(({ id, title }) => ({ id, title }));

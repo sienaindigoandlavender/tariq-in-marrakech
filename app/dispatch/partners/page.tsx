@@ -28,16 +28,16 @@ export default async function PartnersPage({ searchParams }: { searchParams: { m
   const admin = supabaseAdmin()!;
   const [{ data: partners }, { data: rows }] = await Promise.all([
     admin.from("partners").select("code, name, commission_pct, active").eq("city", CITY).order("code"),
-    admin.from("bookings").select("partner_code, total_eur, status").eq("city", CITY).not("partner_code", "is", null).gte("date", from).lt("date", to),
+    admin.from("bookings").select("partner_code, total_eur, status, payment_status").eq("city", CITY).not("partner_code", "is", null).gte("date", from).lt("date", to),
   ]);
 
   const stats = new Map<string, { n: number; booked: number; paid: number }>();
   for (const r of rows ?? []) {
-    if (r.status === "cancelled" || r.status === "noshow") continue;
+    if (r.status === "cancelled" || r.status === "noshow" || r.status === "pending_payment" || r.payment_status === "refunded") continue;
     const s = stats.get(r.partner_code) ?? { n: 0, booked: 0, paid: 0 };
     s.n++;
     s.booked += Number(r.total_eur);
-    if (r.status === "paid") s.paid += Number(r.total_eur);
+    if (r.status === "paid" || r.payment_status === "paid") s.paid += Number(r.total_eur);
     stats.set(r.partner_code, s);
   }
 
@@ -50,7 +50,7 @@ export default async function PartnersPage({ searchParams }: { searchParams: { m
         </label>
         <button className="min-h-[44px] rounded-full border border-line px-5 font-bold">Show</button>
       </form>
-      <p className="mb-4 text-sm text-muted">Commission is owed on paid bookings whose trip date falls in this month. Cancelled and no-show bookings are excluded.</p>
+      <p className="mb-4 text-sm text-muted">Commission is owed on paid bookings (cash on the day or PayPal) whose trip date falls in this month. Cancelled and no-show bookings are excluded.</p>
 
       <div className="mb-6 overflow-x-auto rounded-card border border-line">
         <table className="w-full min-w-[640px] border-collapse text-sm">

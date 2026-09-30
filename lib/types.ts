@@ -3,8 +3,10 @@ export type Role = "lead" | "core" | "cow" | "gap";
 export type Per = "pp" | "car" | "flat";
 export type AddonPer = "pp" | "car" | "unit";
 export type Mode = "shared" | "private";
-export type BookingStatus = "confirmed" | "reminded" | "picked" | "paid" | "noshow" | "cancelled";
+export type BookingStatus = "pending_payment" | "confirmed" | "reminded" | "picked" | "paid" | "noshow" | "cancelled";
 export type BookingSource = "web" | "concierge" | "riad_qr" | "whatsapp";
+export type PaymentMethod = "on_arrival" | "paypal";
+export type PaymentStatus = "unpaid" | "pending" | "paid" | "refunded" | "failed";
 
 export const CATEGORIES: Category[] = ["exc", "des", "act", "trf", "svc", "kit"];
 
@@ -72,5 +74,8 @@ export type Booking = {
   status: BookingStatus;
   source: BookingSource;
   partner_code: string | null;
+  payment_method: PaymentMethod;
+  payment_status: PaymentStatus;
+  paid_eur: number;
   created_at: string;
 };

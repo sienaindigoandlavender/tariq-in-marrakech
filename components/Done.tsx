@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { copy } from "@/lib/copy";
 import { waLink } from "@/lib/config";
 import { fmtDate } from "@/lib/dates";
@@ -11,9 +13,19 @@ import { useAppState } from "./AppState";
 const D = copy.done;
 
 export function Done({ refCode, xsell }: { refCode: string; xsell: Pick<PublicProduct, "id" | "title" | "price_eur" | "per">[] }) {
-  const { trip, money, ready } = useAppState();
+  const { trip, money, ready, updateTrip } = useAppState();
+  const paidParam = useSearchParams().get("payment") === "paid";
+  useEffect(() => {
+    if (ready && paidParam) {
+      updateTrip(refCode, { payment: "paid" });
+      try {
+        sessionStorage.removeItem("tq_draft");
+      } catch {}
+    }
+  }, [ready, paidParam, refCode, updateTrip]);
   if (!ready) return <div className="min-h-[50vh]" />;
-  const b = trip.find((t) => t.ref === refCode);
+  const found = trip.find((t) => t.ref === refCode);
+  const b = found && paidParam ? { ...found, payment: "paid" as const } : found;
 
   if (!b) {
     return (
@@ -27,7 +39,9 @@ export function Done({ refCode, xsell }: { refCode: string; xsell: Pick<PublicPr
     );
   }
 
-  const summary = bookingSummary({ ...b, totalText: money(b.total) });
+  const paid = b.payment === "paid";
+  const awaiting = b.payment === "paypal";
+  const summary = bookingSummary({ ...b, totalText: paid ? `${money(0)} (${D.paidOnline} ${money(b.total)})` : money(b.total) });
   const picks = xsell.filter((x) => x.id !== b.id && !trip.some((t) => t.id === x.id)).slice(0, 2);
 
   return (
@@ -58,11 +72,24 @@ export function Done({ refCode, xsell }: { refCode: string; xsell: Pick<PublicPr
           ) : null}
           <dt className="text-muted">{D.where}</dt>
           <dd className="m-0 break-words font-bold">{b.pickup}</dd>
-          <dt className="text-muted">{D.pay}</dt>
-          <dd className="tnum m-0 font-bold">{money(b.total)}</dd>
+          {paid ? (
+            <>
+              <dt className="text-muted">{D.paidOnline}</dt>
+              <dd className="tnum m-0 font-bold text-ok">{money(b.total)}</dd>
+              <dt className="text-muted">{D.pay}</dt>
+              <dd className="tnum m-0 font-bold">{money(0)}</dd>
+            </>
+          ) : (
+            <>
+              <dt className="text-muted">{D.pay}</dt>
+              <dd className="tnum m-0 font-bold">{money(b.total)}</dd>
+            </>
+          )}
         </dl>
       </div>
 
+      {paid ? <p className="m-0 rounded-input bg-ok/15 p-3 text-sm font-bold text-ok">{D.paidOnline} · {D.nothingDue}</p> : null}
+      {awaiting ? <p className="m-0 rounded-input bg-sun/20 p-3 text-sm font-bold">{D.payPending}</p> : null}
       {!b.persisted ? <p className="m-0 rounded-input bg-sun/20 p-3 text-sm font-bold">{D.notStored}</p> : null}
 
       {picks.length ? (

@@ -21,7 +21,7 @@ Without `ANTHROPIC_API_KEY`, Ask Tariq falls back to keyword matching and the Wh
 ## Go live with Supabase
 
 1. Create a new Supabase project for this city (don't reuse another product's database).
-2. SQL editor → run `supabase/migrations/0001_init.sql`, then `supabase/seed.sql`.
+2. SQL editor → run `supabase/migrations/0001_init.sql`, then `0002_payments.sql`, then `supabase/seed.sql`.
 3. Vercel → Settings → Environment Variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
    `SUPABASE_SERVICE_ROLE_KEY` (never prefix this one with `NEXT_PUBLIC_`), then redeploy.
 4. Supabase → Authentication → URL configuration: set the Site URL to your domain and add
@@ -31,6 +31,24 @@ Without `ANTHROPIC_API_KEY`, Ask Tariq falls back to keyword matching and the Wh
    insert into operators (user_id) select id from auth.users where email = 'partner@example.com';
    ```
    They sign in at `/login` with a magic link.
+
+## Booking and payment
+
+Product page → **Check availability** opens a sheet (bottom sheet on phones): date, participants, option
+(shared / private, with pickup time and live total), extras. **Continue** goes to a one-page checkout: contact
+details and payment choice.
+
+- **Reserve now, pay on the day**: booking is confirmed immediately; cash or card to the driver.
+- **Pay now (PayPal)**: shown only when `PAYPAL_CLIENT_ID`/`PAYPAL_CLIENT_SECRET` and Supabase are set. The booking
+  is stored as `pending_payment`, the guest approves on PayPal, and the capture happens on return
+  (`/api/paypal/return`). Cancelled or declined payments void the booking and bring the guest back to checkout
+  with everything filled in. Prices are always computed on the server.
+- **Refunds**: in `/dispatch`, **Cancel & refund** on a prepaid booking refunds it in full on PayPal first.
+- **Webhook (optional backstop)**: in the PayPal app, add `https://YOUR-DOMAIN/api/paypal/webhook` for
+  `CHECKOUT.ORDER.APPROVED`, `PAYMENT.CAPTURE.COMPLETED` and `PAYMENT.CAPTURE.REFUNDED`, and set `PAYPAL_WEBHOOK_ID`.
+  It records payments from guests who close the tab before returning, and refunds made in the PayPal dashboard.
+
+Test with sandbox credentials (`PAYPAL_ENV=sandbox`) and a PayPal sandbox buyer account before switching to live.
 
 ## Catalogue and prices
 
@@ -58,7 +76,7 @@ repeated questions are the list of products to build next.
 |---|---|
 | `/`, `/c/[category]` | Explore and category listings |
 | `/p/[id]` | Product page (static, revalidates every 5 min) |
-| `/book/[id]` → `/done/[ref]` | 3-step checkout → confirmation, cross-sell, WhatsApp handoff |
+| `/book/[id]` → `/done/[ref]` | One-page checkout (pay now or on the day) → confirmation, cross-sell, WhatsApp handoff |
 | `/trip` | My trip (this device) and saved items |
 | `/concierge` | Ask Tariq |
 | `/dispatch`, `/dispatch/tomorrow`, `/dispatch/partners` | Operator dashboard (auth) |

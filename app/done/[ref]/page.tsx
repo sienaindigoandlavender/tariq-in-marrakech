@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { Done } from "@/components/Done";
 import { XSELL } from "@/lib/merch";
 import { getProducts } from "@/lib/db";
@@ -15,7 +16,9 @@ export default async function DonePage({ params }: { params: { ref: string } }) 
     .map(({ id, title, price_eur, per }) => ({ id, title, price_eur, per }));
   return (
     <div className="wrap">
-      <Done refCode={params.ref} xsell={xsell} />
+      <Suspense>
+        <Done refCode={params.ref} xsell={xsell} />
+      </Suspense>
     </div>
   );
 }

@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Checkout } from "@/components/Checkout";
 import { getProduct, getProducts, toPublic } from "@/lib/db";
+import { paypalEnabled } from "@/lib/paypal";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 export const revalidate = 300;
 
@@ -21,7 +23,7 @@ export default async function BookPage({ params }: { params: { id: string } }) {
   return (
     <div className="wrap">
       <Suspense>
-        <Checkout p={toPublic(p)} />
+        <Checkout p={toPublic(p)} payNowAvailable={paypalEnabled() && supabaseAdmin() !== null} />
       </Suspense>
     </div>
   );
