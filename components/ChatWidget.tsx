@@ -15,6 +15,8 @@ export function askTariq(text?: string) {
 }
 
 const HIDDEN = ["/concierge", "/dispatch", "/login", "/book/", "/auth"];
+/** Pages where the floating chat is off; send people to the full /concierge page instead. */
+export const chatHidden = (path: string) => HIDDEN.some((h) => path.startsWith(h));
 
 /** Site-wide chat bubble. Desktop: a 380×600 panel bottom-right. Phone: a full-screen sheet. */
 export function ChatWidget({ products }: { products: Lite[] }) {
@@ -48,7 +50,7 @@ export function ChatWidget({ products }: { products: Lite[] }) {
 
   const close = useCallback(() => setOpen(false), []);
 
-  if (HIDDEN.some((h) => path.startsWith(h))) return null;
+  if (chatHidden(path)) return null;
   const onProduct = path.startsWith("/p/");
 
   return (

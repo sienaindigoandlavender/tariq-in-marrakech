@@ -9,8 +9,8 @@ const cols: { h: string; links: [string, string][] }[] = [
     links: [
       ["/c/trf", "Airport & transfers"],
       ["/c/exc", "Day trips"],
-      ["/c/des", "Desert treks"],
-      ["/c/act", "Tours"],
+      ["/c/des", "Multi-day tours"],
+      ["/c/act", "Activities"],
       ["/c/svc", "Concierge, kits & baby"],
       ["/packages", "Packages"],
     ],

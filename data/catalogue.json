@@ -1018,6 +1018,72 @@
     ]
   },
   {
+    "city": "marrakech",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": 320,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "id": "atlas2",
+    "category": "des",
+    "role": "core",
+    "title": "2-day Atlas trek, Imlil",
+    "subtitle": "2 days",
+    "blurb": "Walk Berber villages below Toubkal and sleep in a mountain guesthouse. Guide and mule included.",
+    "timing": "Pickup 8:00",
+    "duration": "2 days, 1 night",
+    "km": 130,
+    "drive_time": "1h30 each way",
+    "price_eur": 99,
+    "per": "pp",
+    "scene": "atlas",
+    "highlights": [
+      "Five to six hours walking a day, no summit",
+      "Night in a Berber guesthouse",
+      "Mule carries your bag"
+    ],
+    "includes": [
+      "Transport from your riad",
+      "Licensed mountain guide",
+      "1 night guesthouse",
+      "Dinner, breakfast and lunches",
+      "Mule for bags"
+    ],
+    "excludes": [
+      "Trek kit (add-on)",
+      "Tips"
+    ],
+    "know_before": [
+      "Good walking shoes. Nights are cold, even in summer",
+      "Not a Toubkal summit trip"
+    ],
+    "sort": 104,
+    "addons": [
+      {
+        "id": "tkit",
+        "label": "Trek kit waiting in the van",
+        "eur": 12,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "itinerary": [
+      {
+        "t": "Day 1",
+        "s": "Drive to Imlil, walk over the Tizi n'Mzik pass, night in a village guesthouse"
+      },
+      {
+        "t": "Day 2",
+        "s": "Walk the Ait Mizane valley back to Imlil, drive back to your riad"
+      }
+    ]
+  },
+  {
     "id": "balloon",
     "city": "marrakech",
     "category": "act",
@@ -1335,72 +1401,6 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true
-  },
-  {
-    "city": "marrakech",
-    "was_eur": null,
-    "cap": null,
-    "private_per_car": 320,
-    "badge": null,
-    "image_url": null,
-    "active": true,
-    "lead_days": 1,
-    "prepay_only": false,
-    "refundable": true,
-    "id": "atlas2",
-    "category": "act",
-    "role": "core",
-    "title": "2-day Atlas trek, Imlil",
-    "subtitle": "2 days",
-    "blurb": "Walk Berber villages below Toubkal and sleep in a mountain guesthouse. Guide and mule included.",
-    "timing": "Pickup 8:00",
-    "duration": "2 days, 1 night",
-    "km": 130,
-    "drive_time": "1h30 each way",
-    "price_eur": 99,
-    "per": "pp",
-    "scene": "atlas",
-    "highlights": [
-      "Five to six hours walking a day, no summit",
-      "Night in a Berber guesthouse",
-      "Mule carries your bag"
-    ],
-    "includes": [
-      "Transport from your riad",
-      "Licensed mountain guide",
-      "1 night guesthouse",
-      "Dinner, breakfast and lunches",
-      "Mule for bags"
-    ],
-    "excludes": [
-      "Trek kit (add-on)",
-      "Tips"
-    ],
-    "know_before": [
-      "Good walking shoes. Nights are cold, even in summer",
-      "Not a Toubkal summit trip"
-    ],
-    "sort": 145,
-    "addons": [
-      {
-        "id": "tkit",
-        "label": "Trek kit waiting in the van",
-        "eur": 12,
-        "per": "pp",
-        "popular": true,
-        "sort": 10
-      }
-    ],
-    "itinerary": [
-      {
-        "t": "Day 1",
-        "s": "Drive to Imlil, walk over the Tizi n'Mzik pass, night in a village guesthouse"
-      },
-      {
-        "t": "Day 2",
-        "s": "Walk the Ait Mizane valley back to Imlil, drive back to your riad"
-      }
-    ]
   },
   {
     "id": "henna",

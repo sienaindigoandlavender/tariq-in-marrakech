@@ -84,12 +84,12 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
     },
     {
       id: "journeys",
-      h: "Day trips, desert treks and tours",
+      h: "Day trips, tours and activities",
       items: [
         {
           q: "What's the difference between Agafay and the Sahara?",
-          a: "Agafay is a stone desert 40 minutes from Marrakech, good for a sunset dinner. The big Sahara dunes at Merzouga are about 9 hours away by road, so they need the 3-day trek, or 4 days if you finish in Fes.",
-          link: ["/c/des", "Desert treks"],
+          a: "Agafay is a stone desert 40 minutes from Marrakech, good for a sunset dinner. The big Sahara dunes at Merzouga are about 9 hours away by road, so they need the 3-day tour, or 4 days if you finish in Fes.",
+          link: ["/c/des", "Multi-day tours"],
         },
         {
           q: "Shared or private?",

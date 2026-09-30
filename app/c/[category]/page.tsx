@@ -12,8 +12,8 @@ export const dynamicParams = false;
 const SEO: Record<Category | "all", { title: string; description: string }> = {
   all: { title: "Everything to Book in Marrakech", description: "Airport transfers, day trips, multi-day tours, activities, concierge services and trip kits in Marrakech. Pay on arrival." },
   exc: { title: "Day Trips from Marrakech", description: "Ourika, Ouzoud, Essaouira, Imlil and Aït Benhaddou day trips from Marrakech. Pickup at your riad, pay on arrival." },
-  des: { title: "Desert Treks from Marrakech", description: "3-day Sahara trips to Merzouga, 4 days to Fes via the dunes and 2-day Zagora desert trips from Marrakech. Pay online or on arrival." },
-  act: { title: "Tours and Activities in Marrakech", description: "Hot air balloon, Agafay dinner, quad biking, camel rides and a 2-day Atlas trek from Marrakech. Transfers included, pay on arrival." },
+  des: { title: "Multi-day Tours from Marrakech", description: "3-day Sahara tours to Merzouga, 4 days to Fes via the dunes, 2-day Zagora desert tours and a 2-day Atlas trek from Marrakech. Pay online or on arrival." },
+  act: { title: "Activities in Marrakech", description: "Hot air balloon, Agafay dinner, quad biking and camel rides in Marrakech. Transfers included, pay on arrival." },
   trf: { title: "Marrakech Airport Transfers and Rides", description: "Airport transfers, last-day bag storage in the van and dinner rides in Marrakech. Flight tracked, pay on arrival." },
   svc: { title: "Concierge Services in Marrakech", description: "Henna artist, massage, barber, photographer, private chef, trek and desert kits, and baby gear delivered to your riad in Marrakech." },
   kit: { title: "Trek Kits, Desert Kits and Baby Kits in Marrakech", description: "Trek and desert kits waiting in your van, and a baby kit delivered to your riad in Marrakech." },
