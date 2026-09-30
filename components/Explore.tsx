@@ -5,8 +5,8 @@ import { AskBar } from "./AskBar";
 import { Listing } from "./Listing";
 import { PosterScene } from "./PosterScene";
 import { FixPrice } from "./FixPrice";
+import { FIXES } from "@/lib/merch";
 
-export const FIXES = ["lastday", "baby", "trekkit", "henna", "dinner", "desertkit"];
 
 export function Hero() {
   return (

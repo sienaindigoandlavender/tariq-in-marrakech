@@ -21,7 +21,7 @@ export type TripItem = {
   lead_name: string;
   phone: string;
   notes: string | null;
-  lines: { label: string; eur: number }[];
+  lines: { kind: "base" | "private" | "addon"; label: string; qty: number; unit_eur: number; eur: number }[];
   total: number;
   persisted: boolean;
 };

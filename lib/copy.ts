@@ -127,6 +127,13 @@ export const copy = {
     popular: "Popular",
     base: "Booking",
     continue: "Continue",
+    back: "Back",
+    steps: ["Options", "Extras", "Details"],
+    stepOf: (n: number) => `Step ${n} of 3`,
+    standard: "Standard",
+    noExtras: "Nothing to add to this one. Continue to your details.",
+    sending: "Confirming…",
+    shareFail: "Something went wrong. Please try again, or message us on WhatsApp.",
     errors: {
       date: "Choose a date from tomorrow onwards.",
       pickup: "Tell us where you're staying.",
@@ -149,6 +156,8 @@ export const copy = {
     seeTrip: "See my trip",
     xsell: "Often added next",
     add: "Add",
+    notStored: "Tap Send to WhatsApp so the team has your booking.",
+    missing: "We can't find this booking on this device. Message the team on WhatsApp with your reference and we'll sort it.",
   },
 
   product: {
