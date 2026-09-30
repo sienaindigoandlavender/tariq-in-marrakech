@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens as RGB channels so Tailwind opacity modifiers work. */
+:root {
+  --bg: 255 255 255;
+  --soft: 244 242 238;
+  --surface: 255 255 255;
+  --ink: 22 22 42;
+  --muted: 90 89 110;
+  --line: 231 227 220;
+  --blue: 31 63 191;
+  --blue-ink: 255 255 255;
+  --sun: 240 165 43;
+  --sun-ink: 35 22 5;
+  --rose: 217 83 111;
+  --ok: 31 122 77;
+  --warn: 181 86 31;
+  --wa: 31 157 85;
+  --tabh: 64px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: 15 16 34;
+    --soft: 24 26 49;
+    --surface: 26 28 52;
+    --ink: 241 239 233;
+    --muted: 179 177 197;
+    --line: 44 46 75;
+    --blue: 106 134 255;
+    --blue-ink: 12 14 34;
+    --sun: 245 182 74;
+    --rose: 255 125 151;
+    --ok: 79 191 134;
+    --warn: 240 138 76;
+    --wa: 53 193 115;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: 15 16 34;
+  --soft: 24 26 49;
+  --surface: 26 28 52;
+  --ink: 241 239 233;
+  --muted: 179 177 197;
+  --line: 44 46 75;
+  --blue: 106 134 255;
+  --blue-ink: 12 14 34;
+  --sun: 245 182 74;
+  --rose: 255 125 151;
+  --ok: 79 191 134;
+  --warn: 240 138 76;
+  --wa: 53 193 115;
+  color-scheme: dark;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-bg text-ink font-body antialiased;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid rgb(var(--sun)); outline-offset: 2px; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-4 sm:px-5; }
+  .display { @apply font-display font-black uppercase leading-none; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
