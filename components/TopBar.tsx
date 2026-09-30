@@ -62,7 +62,7 @@ export function TopBar() {
             >
               {CURRENCIES.map((c) => (
                 <option key={c} value={c}>
-                  {c === "EUR" ? "€ EUR" : c === "USD" ? "$ USD" : c === "GBP" ? "£ GBP" : "MAD"}
+                  {c === "EUR" ? "€ EUR" : c === "USD" ? "US$ USD" : c === "GBP" ? "£ GBP" : "MAD"}
                 </option>
               ))}
             </select>

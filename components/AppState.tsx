@@ -98,7 +98,7 @@ export function formatMoney(eur: number, c: Currency): string {
     case "MAD":
       return Math.round(eur * MAD_RATE).toLocaleString("fr") + " MAD";
     case "USD":
-      return "$" + Math.round(eur * USD_RATE).toLocaleString("en");
+      return "US$" + Math.round(eur * USD_RATE).toLocaleString("en");
     case "GBP":
       return "£" + Math.round(eur * GBP_RATE).toLocaleString("en");
     default:
