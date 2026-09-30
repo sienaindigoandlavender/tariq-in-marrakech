@@ -13,6 +13,8 @@ export const copy = {
     atRiad: "At your riad",
     kits: "Kits & baby",
     ask: "Ask Tariq",
+    packages: "Packages",
+    plan: "Plan my trip",
     myTrip: "My trip",
     book: "Book",
     tariq: "Tariq",
@@ -150,6 +152,8 @@ export const copy = {
     payLater: "Reserve now, pay on the day",
     payLaterS: "Cash (dirhams or euros) or card to your driver. Nothing charged now.",
     payWith: (amount: string) => `Pay ${amount} with PayPal`,
+    guideCurrency: (shown: string, eur: string, mad: string) =>
+      `${shown} is a guide at today's rate. You pay ${eur} (or ${mad}), online in euros or on the day in euros or dirhams.`,
     redirecting: "Taking you to PayPal…",
     paypalNote: "You'll be taken to PayPal to pay securely, then brought back here.",
     paidNotice: "Nothing is charged until you approve the payment on PayPal.",

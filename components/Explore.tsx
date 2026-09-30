@@ -8,6 +8,8 @@ import { FixPrice } from "./FixPrice";
 import { FIXES } from "@/lib/merch";
 import { ProductCard } from "./ProductCard";
 import { RailTrack } from "./RailTrack";
+import { PackageCard } from "./PackageCard";
+import type { PackageView } from "@/lib/packages";
 
 
 export function Hero() {
@@ -134,6 +136,30 @@ export function CategoryTiles({ counts }: { counts: Record<Category, number> }) 
           </Link>
         ))}
       </div>
+    </section>
+  );
+}
+
+export function PackagesRail({ packages }: { packages: PackageView[] }) {
+  if (!packages.length) return null;
+  return (
+    <section aria-labelledby="rail-packages" className="pt-9">
+      <div className="mb-3.5 flex items-end justify-between gap-4">
+        <div className="min-w-0">
+          <h2 id="rail-packages" className="display m-0 text-[32px] leading-none phone:text-[28px]">Ready-made trips</h2>
+          <p className="m-0 mt-1.5 text-[14.5px] text-muted">A starting point. Tell us your dates and we adapt it to your group.</p>
+        </div>
+        <Link href="/packages" className="flex-none whitespace-nowrap text-sm font-extrabold text-blue no-underline hover:underline">
+          {copy.rails.seeAll} →
+        </Link>
+      </div>
+      <RailTrack label="Ready-made trips">
+        {packages.map((p) => (
+          <div key={p.id} role="listitem" className="w-[calc((100%-36px)/3)] min-w-0 flex-none snap-start tab:w-[calc((100%-18px)/2)] phone:w-[80%] phone:max-w-[320px]">
+            <PackageCard p={p} compact />
+          </div>
+        ))}
+      </RailTrack>
     </section>
   );
 }

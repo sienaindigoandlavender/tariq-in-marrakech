@@ -3,7 +3,7 @@ import fs from "node:fs";
 const products = JSON.parse(fs.readFileSync("data/catalogue.json", "utf8"));
 const q = (v) => v === null || v === undefined ? "null" : typeof v === "number" || typeof v === "boolean" ? String(v) : `'${String(v).replace(/'/g, "''")}'`;
 const arr = (a) => `array[${a.map(q).join(", ")}]::text[]`;
-let out = `-- Tariq seed: Marrakech catalogue (20 products and their add-ons).
+let out = `-- Tariq seed: Marrakech catalogue (${products.length} products and their add-ons).
 -- ALL PRICES ARE PLACEHOLDERS until the partner's cost sheet arrives.
 -- Requires migrations 0001_init.sql and 0003_itinerary.sql.
 -- Generated from data/catalogue.json by scripts/gen-seed.mjs. Do not edit by hand.

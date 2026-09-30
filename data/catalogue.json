@@ -89,6 +89,97 @@
     ]
   },
   {
+    "id": "driver",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Private driver, full day",
+    "subtitle": "Transfer",
+    "blurb": "Your own car and driver for up to 10 hours. Go where you like: Atlas, Essaouira, shopping, or a day of riad-to-restaurant hops.",
+    "timing": "From 8:00, up to 10 hours",
+    "duration": "Up to 10 hours",
+    "km": 0,
+    "drive_time": "your day",
+    "price_eur": 120,
+    "was_eur": null,
+    "per": "car",
+    "cap": 4,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "road",
+    "image_url": null,
+    "highlights": [
+      "A car and driver just for you, for up to 10 hours",
+      "Plan the route yourself, or ask the driver for ideas",
+      "Stops wherever and whenever you want, no fixed group"
+    ],
+    "includes": [
+      "Private air-conditioned car for up to 4 guests",
+      "English- or French-speaking driver",
+      "Fuel, tolls and parking"
+    ],
+    "excludes": [
+      "Entry tickets and meals",
+      "Tips",
+      "Overnight stays (ask for multi-day)"
+    ],
+    "know_before": [
+      "Tell us your rough plan in the notes, so we pick the right car and start time",
+      "Up to 250 km in the day. Longer routes, such as Merzouga, need the multi-day desert trip",
+      "The driver is your driver, not a licensed guide. Add a local guide on WhatsApp if you want one"
+    ],
+    "itinerary": [
+      {
+        "t": "From 8:00",
+        "s": "Pickup at your riad or hotel"
+      },
+      {
+        "t": "Your day",
+        "s": "Wherever you want to go, with stops when you ask"
+      },
+      {
+        "t": "Up to 10 h later",
+        "s": "Dropped back where you're staying"
+      }
+    ],
+    "sort": 15,
+    "active": true,
+    "addons": [
+      {
+        "id": "hour",
+        "label": "Extra hour beyond 10",
+        "eur": 15,
+        "per": "car",
+        "popular": false,
+        "sort": 10
+      },
+      {
+        "id": "van",
+        "label": "Upgrade to a minivan, more room for luggage",
+        "eur": 30,
+        "per": "car",
+        "popular": true,
+        "sort": 20
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat fitted",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 30
+      },
+      {
+        "id": "sim",
+        "label": "Local SIM, 20 GB, ready in the car",
+        "eur": 12,
+        "per": "unit",
+        "popular": false,
+        "sort": 40
+      }
+    ]
+  },
+  {
     "id": "lastday",
     "city": "marrakech",
     "category": "trf",

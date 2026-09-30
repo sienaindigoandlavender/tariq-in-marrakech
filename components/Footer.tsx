@@ -18,6 +18,8 @@ const cols: { h: string; links: [string, string][] }[] = [
   {
     h: "Help",
     links: [
+      ["/plan", "Plan my trip"],
+      ["/packages", "Packages"],
       ["/contact", "Contact"],
       ["/concierge", "Ask Tariq"],
       ["/trip", "My trip"],

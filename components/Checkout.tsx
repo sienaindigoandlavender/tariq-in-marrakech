@@ -7,7 +7,7 @@ import { copy } from "@/lib/copy";
 import { fmtDate, isYmd, tomorrow } from "@/lib/dates";
 import { price, type PriceLine, type PriceResult } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
-import { useAppState } from "./AppState";
+import { formatMoney, isGuideCurrency, useAppState } from "./AppState";
 import { Icon } from "./Icons";
 import { Poster } from "./Poster";
 import { OptionsPanel, maxGuests, type Selection } from "./booking/OptionsPanel";
@@ -59,7 +59,8 @@ function Section({ n, title, children, aside }: { n: number; title: string; chil
 export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvailable: boolean }) {
   const router = useRouter();
   const sp = useSearchParams();
-  const { money, prefs, setPrefs, last, setLast, addTrip, removeTrip, ready } = useAppState();
+  const { money, payMoney, currency, prefs, setPrefs, last, setLast, addTrip, removeTrip, ready } = useAppState();
+  const guideNote = isGuideCurrency(currency);
   const maxG = maxGuests(p);
 
   const [sel, setSel] = useState<Selection>({ date: "", guests: 2, mode: "shared", adds: [] });
@@ -189,7 +190,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
 
   const optionText = p.private_per_car ? (sel.mode === "private" ? C.private : C.shared) : C.standard;
   const extras = r.lines.filter((l) => l.kind === "addon").map((l) => l.label);
-  const cta = busy ? (payNow ? C.redirecting : C.sending) : payNow ? C.payWith(money(r.total)) : C.confirm;
+  const cta = busy ? (payNow ? C.redirecting : C.sending) : payNow ? C.payWith(payMoney(r.total)) : C.confirm;
 
   const summary = (
     <div className="grid gap-3.5 rounded-card border border-line bg-surface p-4">
@@ -309,6 +310,11 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
           <span className="tnum text-[26px] font-extrabold leading-none">{money(r.total)}</span>
         </div>
 
+        {guideNote ? (
+          <p className="m-0 text-[13px] text-muted">
+            {C.guideCurrency(money(r.total), payMoney(r.total), formatMoney(r.total, "MAD"))}
+          </p>
+        ) : null}
         <p role="alert" className="m-0 min-h-[1em] text-[13px] font-bold text-warn">
           {err}
         </p>

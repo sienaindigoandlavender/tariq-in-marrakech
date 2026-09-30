@@ -22,7 +22,7 @@ Without `ANTHROPIC_API_KEY`, Ask Tariq falls back to keyword matching and the Wh
 
 1. Create a new Supabase project for this city (don't reuse another product's database).
 2. SQL editor → run, in order: `supabase/migrations/0001_init.sql`, `0002_payments.sql`, `0003_itinerary.sql`,
-   `0004_retention.sql`, then `supabase/seed.sql`. Each migration runs once; the seed can be re-run (it upserts).
+   `0004_retention.sql`, `0005_leads.sql`, then `supabase/seed.sql`. Each migration runs once; the seed can be re-run (it upserts).
 3. Vercel → Settings → Environment Variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
    `SUPABASE_SERVICE_ROLE_KEY` (never prefix this one with `NEXT_PUBLIC_`), then redeploy.
 4. Supabase → Authentication → URL configuration: set the Site URL to your domain and add
@@ -91,5 +91,14 @@ repeated questions are the list of products to build next.
 the PayPal wording automatically when PayPal is configured. The texts are drafts written for this business model:
 have them reviewed by a Moroccan lawyer before launch, and file the CNDP declaration for the booking data.
 
-The privacy policy promises retention limits. Run `supabase/migrations/0004_retention.sql`, enable `pg_cron`, and schedule
+The privacy policy promises retention limits. Run `supabase/migrations/0004_retention.sql` and `0005_leads.sql`, enable `pg_cron`, and schedule
 the purge as described at the bottom of that file.
+
+## Plan my trip and packages
+
+`/plan` collects a trip request (dates, group, style, needs, budget, contact) into the `leads` table; the team
+works them in `/dispatch/leads` (New → Contacted → Quoted → Booked / Lost) and replies with one tap on WhatsApp.
+`/packages` shows ready-made trips defined in `lib/plan.ts` (`PACKAGES`), each built from catalogue products; the
+"from" price is computed live from the catalogue for 2 travellers. **Plan this trip** opens `/plan` pre-filled.
+
+Currencies: € and MAD are payable; $ and £ are display guides (`NEXT_PUBLIC_USD_RATE`, `NEXT_PUBLIC_GBP_RATE`).

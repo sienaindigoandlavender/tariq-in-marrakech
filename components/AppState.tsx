@@ -1,10 +1,13 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { MAD_RATE } from "@/lib/config";
+import { GBP_RATE, MAD_RATE, USD_RATE } from "@/lib/config";
 import { isYmd, tomorrow } from "@/lib/dates";
 
-export type Currency = "EUR" | "MAD";
+export type Currency = "EUR" | "MAD" | "USD" | "GBP";
+export const CURRENCIES: Currency[] = ["EUR", "USD", "GBP", "MAD"];
+/** Currencies shown as a guide only; payment is always in EUR or MAD. */
+export const isGuideCurrency = (c: Currency) => c === "USD" || c === "GBP";
 
 /** A booking remembered on this device for My trip. */
 export type TripItem = {
@@ -69,6 +72,7 @@ type AppState = {
   currency: Currency;
   setCurrency: (c: Currency) => void;
   money: (eur: number) => string;
+  payMoney: (eur: number) => string;
   trip: TripItem[];
   addTrip: (t: TripItem) => void;
   updateTrip: (ref: string, patch: Partial<TripItem>) => void;
@@ -83,6 +87,19 @@ type AppState = {
 
 const Ctx = createContext<AppState | null>(null);
 
+export function formatMoney(eur: number, c: Currency): string {
+  switch (c) {
+    case "MAD":
+      return Math.round(eur * MAD_RATE).toLocaleString("fr") + " MAD";
+    case "USD":
+      return "$" + Math.round(eur * USD_RATE).toLocaleString("en");
+    case "GBP":
+      return "£" + Math.round(eur * GBP_RATE).toLocaleString("en");
+    default:
+      return "€" + Math.round(eur).toLocaleString("en");
+  }
+}
+
 export function AppStateProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [currency, setCur] = useState<Currency>("EUR");
@@ -93,7 +110,7 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const c = readJSON<Currency>(CUR_KEY, "EUR");
-    if (c === "EUR" || c === "MAD") setCur(c);
+    if (CURRENCIES.includes(c)) setCur(c);
     setTrip(readJSON<TripItem[]>(TRIP_KEY, []).filter((t) => t && t.ref && t.id));
     setSaved(readJSON<string[]>(SAVED_KEY, []));
     setLastState(readJSON<LastDetails | null>(LAST_KEY, null));
@@ -112,13 +129,9 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
     writeJSON(CUR_KEY, c);
   }, []);
 
-  const money = useCallback(
-    (eur: number) =>
-      currency === "EUR"
-        ? "€" + Math.round(eur).toLocaleString("en")
-        : Math.round(eur * MAD_RATE).toLocaleString("fr") + " MAD",
-    [currency],
-  );
+  const money = useCallback((eur: number) => formatMoney(eur, currency), [currency]);
+  /** Amount the guest actually pays: the chosen currency if payable (EUR/MAD), otherwise EUR. */
+  const payMoney = useCallback((eur: number) => formatMoney(eur, isGuideCurrency(currency) ? "EUR" : currency), [currency]);
 
   const addTrip = useCallback((t: TripItem) => {
     setTrip((prev) => {
@@ -166,8 +179,8 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ ready, currency, setCurrency, money, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast }),
-    [ready, currency, setCurrency, money, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast],
+    () => ({ ready, currency, setCurrency, money, payMoney, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast }),
+    [ready, currency, setCurrency, money, payMoney, trip, addTrip, updateTrip, removeTrip, saved, toggleSaved, prefs, setPrefs, last, setLast],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

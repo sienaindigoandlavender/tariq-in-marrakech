@@ -57,7 +57,8 @@ function buildSections(payNow: boolean): LegalSection[] {
       <>
         <p>
           Prices are set in euros. Prices shown in dirhams are converted at a fixed indicative rate and rounded; on the day you may pay the dirham or euro
-          amount shown on your confirmation. Each product page says whether the price is per person, per car or per stay, and lists what is included and
+          amount shown on your confirmation. Prices shown in US dollars or pounds sterling are a guide at an approximate rate; you always pay in euros or
+          dirhams. Each product page says whether the price is per person, per car or per stay, and lists what is included and
           what is not.
         </p>
         <p>

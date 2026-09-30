@@ -13,7 +13,7 @@ import { useAppState } from "./AppState";
 const D = copy.done;
 
 export function Done({ refCode, xsell }: { refCode: string; xsell: Pick<PublicProduct, "id" | "title" | "price_eur" | "per">[] }) {
-  const { trip, money, ready, updateTrip } = useAppState();
+  const { trip, money, payMoney, ready, updateTrip } = useAppState();
   const paidParam = useSearchParams().get("payment") === "paid";
   useEffect(() => {
     if (ready && paidParam) {
@@ -41,7 +41,7 @@ export function Done({ refCode, xsell }: { refCode: string; xsell: Pick<PublicPr
 
   const paid = b.payment === "paid";
   const awaiting = b.payment === "paypal";
-  const summary = bookingSummary({ ...b, totalText: paid ? `${money(0)} (${D.paidOnline} ${money(b.total)})` : money(b.total) });
+  const summary = bookingSummary({ ...b, totalText: paid ? `${payMoney(0)} (${D.paidOnline} ${payMoney(b.total)})` : payMoney(b.total) });
   const picks = xsell.filter((x) => x.id !== b.id && !trip.some((t) => t.id === x.id)).slice(0, 2);
 
   return (

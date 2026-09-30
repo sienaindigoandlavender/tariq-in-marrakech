@@ -4,6 +4,7 @@ import type { Gate } from "@/lib/operator";
 const TABS = [
   { href: "/dispatch", label: "Bookings", key: "bookings" },
   { href: "/dispatch/tomorrow", label: "Tomorrow's pickups", key: "tomorrow" },
+  { href: "/dispatch/leads", label: "Trip requests", key: "leads" },
   { href: "/dispatch/partners", label: "Partners", key: "partners" },
 ];
 

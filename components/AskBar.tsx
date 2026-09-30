@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { copy } from "@/lib/copy";
@@ -43,6 +44,9 @@ export function AskBar() {
             {s}
           </button>
         ))}
+        <Link href="/plan" className="inline-flex min-h-[36px] items-center rounded-full bg-[#ffd27a] px-3 text-[13px] font-extrabold text-[#231605] no-underline">
+          Plan a whole trip →
+        </Link>
       </div>
     </>
   );

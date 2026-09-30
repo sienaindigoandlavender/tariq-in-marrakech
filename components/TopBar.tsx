@@ -4,16 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { copy } from "@/lib/copy";
 import { Logo } from "./Logo";
-import { useAppState, type Currency } from "./AppState";
+import { CURRENCIES, useAppState } from "./AppState";
 
-const MENU = [
-  { href: "/", label: copy.nav.explore },
+const MENU: { href: string; label: string; short?: string }[] = [
   { href: "/c/exc", label: copy.nav.dayTrips },
   { href: "/c/des", label: copy.nav.desert },
   { href: "/c/trf", label: copy.nav.transfers },
-  { href: "/c/svc", label: copy.nav.atRiad },
-  { href: "/c/kit", label: copy.nav.kits },
-  { href: "/concierge", label: copy.nav.ask },
+  { href: "/c/svc", label: copy.nav.atRiad, short: "Riad" },
+  { href: "/c/kit", label: copy.nav.kits, short: "Kits" },
+  { href: "/packages", label: copy.nav.packages },
 ];
 
 export function TopBar() {
@@ -25,10 +24,10 @@ export function TopBar() {
       className="sticky z-30 border-b border-line bg-bg/90 backdrop-blur-md print:hidden"
       style={{ top: "env(safe-area-inset-top, 0px)" }}
     >
-      <div className="wrap flex h-[62px] items-center gap-[18px]">
+      <div className="wrap flex h-[62px] items-center gap-[18px] mid:gap-3">
         <Logo />
 
-        <nav aria-label={copy.nav.main} className="no-scrollbar flex min-w-0 flex-1 gap-1 overflow-x-auto phone:hidden">
+        <nav aria-label={copy.nav.main} className="no-scrollbar flex min-w-0 flex-1 gap-0.5 overflow-x-auto tab:gap-0 phone:hidden">
           {MENU.map((m) => {
             const active = m.href === "/" ? path === "/" : path.startsWith(m.href);
             return (
@@ -36,32 +35,57 @@ export function TopBar() {
                 key={m.href}
                 href={m.href}
                 aria-current={active ? "page" : undefined}
-                className={`whitespace-nowrap rounded-[10px] px-[11px] py-2 text-[14.5px] font-bold no-underline hover:bg-soft hover:text-ink ${
+                className={`whitespace-nowrap rounded-[10px] px-2 py-2 text-[14.5px] font-bold mid:px-1.5 mid:text-[14px] tab:px-1 tab:text-[13.5px] no-underline hover:bg-soft hover:text-ink ${
                   active ? "bg-soft text-ink" : "text-muted"
                 }`}
               >
-                {m.label}
+                {m.short ? (
+                  <>
+                    <span className="mid:hidden">{m.label}</span>
+                    <span className="hidden mid:inline" aria-hidden="true">{m.short}</span>
+                  </>
+                ) : (
+                  m.label
+                )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="ml-auto flex flex-none items-center gap-2.5">
-          <div role="group" aria-label={copy.nav.currency} className="inline-flex rounded-[10px] bg-soft p-[3px]">
-            {(["EUR", "MAD"] as Currency[]).map((c) => (
-              <button
-                key={c}
-                type="button"
-                aria-pressed={currency === c}
-                onClick={() => setCurrency(c)}
-                className={`min-h-[36px] min-w-[40px] rounded-[7px] px-2 text-[12.5px] font-extrabold ${
-                  currency === c ? "bg-surface text-ink shadow-sm" : "text-muted"
-                }`}
-              >
-                {c === "EUR" ? "€" : "MAD"}
-              </button>
-            ))}
-          </div>
+        <div className="ml-auto flex flex-none items-center gap-2.5 tab:gap-2">
+          <label className="relative inline-flex">
+            <span className="sr-only">{copy.nav.currency}</span>
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value as (typeof CURRENCIES)[number])}
+              className="min-h-[40px] appearance-none rounded-[10px] bg-soft py-1.5 pl-3 pr-7 text-[13px] font-extrabold text-ink"
+            >
+              {CURRENCIES.map((c) => (
+                <option key={c} value={c}>
+                  {c === "EUR" ? "€ EUR" : c === "USD" ? "$ USD" : c === "GBP" ? "£ GBP" : "MAD"}
+                </option>
+              ))}
+            </select>
+            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M6 9l6 6 6-6" /></svg>
+          </label>
+          <Link
+            href="/concierge"
+            aria-label={copy.nav.ask}
+            title={copy.nav.ask}
+            aria-current={path.startsWith("/concierge") ? "page" : undefined}
+            className={`grid h-10 w-10 place-items-center rounded-full no-underline hover:bg-soft tab:hidden ${path.startsWith("/concierge") ? "bg-soft text-blue" : "text-ink"}`}
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 18l-1 3 4-2h9a3 3 0 003-3V7a3 3 0 00-3-3H7a3 3 0 00-3 3v8a3 3 0 001 3z" />
+              <path d="M9 10h.01M12 10h.01M15 10h.01" />
+            </svg>
+          </Link>
+          <Link
+            href="/plan"
+            className="inline-flex min-h-[40px] items-center rounded-full border border-ink px-3.5 text-sm font-extrabold text-ink no-underline hover:bg-soft mid:hidden"
+          >
+            {copy.nav.plan}
+          </Link>
           <Link
             href="/trip"
             className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-blue px-3.5 text-sm font-extrabold text-blue-ink no-underline phone:hidden"

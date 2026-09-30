@@ -51,6 +51,11 @@ function buildSections(payNow: boolean): LegalSection[] {
           <li>the booking reference, price and status (for example, picked up or paid)</li>
           {payNow ? <li>if you pay online: the payment method (PayPal), the PayPal order and transaction references, and the amount paid or refunded</li> : null}
         </ul>
+        <h3>When you ask us to plan a trip</h3>
+        <p>
+          Your travel dates, the number of adults and children, the kind of trip, what you need, your budget range, your name, WhatsApp number, email if you
+          give it, and anything you write in the notes.
+        </p>
         <h3>When you ask Tariq, our concierge</h3>
         <p>The text of your questions and the products suggested in reply.</p>
         <h3>When you arrive through a riad&rsquo;s QR card</h3>
@@ -81,7 +86,7 @@ function buildSections(payNow: boolean): LegalSection[] {
           consent, and you can ask us to delete them at any time.
         </li>
         <li>
-          <strong>To answer your questions</strong> in the concierge chat and on WhatsApp.
+          <strong>To answer your questions and trip requests</strong> in the concierge chat, on WhatsApp and by email if you gave one.
         </li>
         <li>
           <strong>To run and improve the service</strong>: accounting, preventing fraud and abuse, paying riad partners, and reading which questions come up
@@ -143,6 +148,7 @@ function buildSections(payNow: boolean): LegalSection[] {
         <li>Booking records, including amounts paid: for the period required by Moroccan accounting and tax law, then deleted.</li>
         <li>Booking notes, which can contain allergy or health information: cleared 90 days after the date of your service.</li>
         <li>Concierge questions: stored without being linked to your name, number or booking, and deleted after 24 months.</li>
+        <li>Trip requests that don&rsquo;t become a booking: deleted after 12 months.</li>
         <li>Technical logs: kept by our hosting provider for a short period, usually under 30 days.</li>
       </ul>
     ),

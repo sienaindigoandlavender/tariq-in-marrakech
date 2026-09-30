@@ -1,5 +1,7 @@
 import { CategoryTiles, Hero, How, Promises, Rail } from "@/components/Explore";
 import { RAILS } from "@/lib/merch";
+import { resolvePackages } from "@/lib/packages";
+import { PackagesRail } from "@/components/Explore";
 import { CATEGORIES, type Category, type Product } from "@/lib/types";
 import { copy } from "@/lib/copy";
 import { OPERATOR_WHATSAPP } from "@/lib/config";
@@ -18,6 +20,7 @@ export default async function ExplorePage() {
         ? (r.ids.map((id) => byId.get(id)).filter(Boolean) as Product[])
         : all.filter((p) => p.category === r.category);
   const rails = RAILS.map((r) => ({ ...r, products: pick(r).map(toPublic) }));
+  const packages = resolvePackages(all);
   const counts = Object.fromEntries(CATEGORIES.map((c) => [c, all.filter((p) => p.category === c).length])) as Record<Category, number>;
   const agency = {
     "@context": "https://schema.org",
@@ -37,8 +40,11 @@ export default async function ExplorePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(agency).replace(/</g, "\\u003c") }} />
       <Hero />
       <Promises />
-      {rails.map((r) => (
-        <Rail key={r.key} id={r.key} h={r.h} p={r.p} href={r.href} products={r.products} />
+      {rails.map((r, i) => (
+        <div key={r.key}>
+          <Rail id={r.key} h={r.h} p={r.p} href={r.href} products={r.products} />
+          {i === 0 ? <PackagesRail packages={packages} /> : null}
+        </div>
       ))}
       <CategoryTiles counts={counts} />
       <How />
