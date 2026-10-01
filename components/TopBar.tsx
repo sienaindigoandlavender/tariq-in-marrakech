@@ -13,6 +13,7 @@ const MENU: { href: string; label: string; sub: string }[] = [
   { href: "/c/exc", label: copy.nav.dayTrips, sub: "Ourika, Ouzoud, Essaouira, Imlil" },
   { href: "/c/des", label: copy.nav.desert, sub: "Sahara, Zagora, on to Fes, the Atlas" },
   { href: "/c/act", label: copy.nav.tours, sub: "Balloon, Agafay, quad, camels" },
+  { href: "/private", label: "Private tours", sub: "Your own car and guide, or a trip built around you" },
   { href: "/c/tkt", label: copy.nav.tickets, sub: "Bacha Coffee, Bahia Palace, Saadian Tombs" },
   { href: "/c/svc", label: copy.nav.atRiad, sub: "Restaurant tables, henna, chef, barber, kits & baby" },
 ];

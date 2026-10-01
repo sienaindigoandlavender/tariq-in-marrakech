@@ -10,8 +10,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/plan" },
 };
 
-export default async function PlanPage({ searchParams }: { searchParams: { package?: string } }) {
+export default async function PlanPage({ searchParams }: { searchParams: { package?: string; private?: string } }) {
   const pkg = packageById(searchParams.package);
+  const priv = !pkg && searchParams.private === "1";
   const products = await getProducts();
   const pkgItems = pkg ? pkg.items.map((id) => products.find((p) => p.id === id)?.title).filter((t): t is string => Boolean(t)) : [];
 
@@ -25,12 +26,12 @@ export default async function PlanPage({ searchParams }: { searchParams: { packa
         <div className="min-w-0">
           <header className="mb-5">
             {pkg ? <p className="m-0 mb-1 text-sm font-extrabold uppercase tracking-[.06em] text-blue">Plan this trip · {pkg.days}</p> : null}
-            <h1 className="m-0 text-[clamp(28px,4vw,40px)] font-extrabold leading-tight">{pkg ? pkg.title : "Plan my trip"}</h1>
+            <h1 className="m-0 text-[clamp(28px,4vw,40px)] font-extrabold leading-tight">{pkg ? pkg.title : priv ? "Design your private tour" : "Plan my trip"}</h1>
             <p className="m-0 mt-2 max-w-[60ch] text-[17px] text-muted">
               Two minutes. Tell us your dates, who&rsquo;s coming and what you want. We build the plan and send it with prices on WhatsApp.
             </p>
           </header>
-          <PlanForm pkg={pkg} pkgItems={pkgItems} />
+          <PlanForm pkg={pkg} pkgItems={pkgItems} initialNeeds={priv ? ["private"] : undefined} />
         </div>
         <aside>
           <div className="sticky top-[86px] grid gap-4 rounded-card bg-soft p-5">

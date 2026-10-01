@@ -51,14 +51,14 @@ function Block({ title, hint, children }: { title: string; hint?: string; childr
 
 type Done = { ref: string; stored: boolean; summary: string };
 
-export function PlanForm({ pkg, pkgItems }: { pkg: PackageDef | null; pkgItems: string[] }) {
+export function PlanForm({ pkg, pkgItems, initialNeeds }: { pkg: PackageDef | null; pkgItems: string[]; initialNeeds?: string[] }) {
   const { last, setLast, ready } = useAppState();
   const [arrival, setArrival] = useState("");
   const [departure, setDeparture] = useState("");
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(pkg?.id === "family" ? 1 : 0);
   const [style, setStyle] = useState<string | null>(pkg?.style ?? null);
-  const [needs, setNeeds] = useState<string[]>(pkg?.needs ?? []);
+  const [needs, setNeeds] = useState<string[]>(pkg?.needs ?? initialNeeds ?? []);
   const [budget, setBudget] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");

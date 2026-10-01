@@ -102,7 +102,8 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
         },
         {
           q: "Shared or private?",
-          a: "Shared trips run in a minivan with other travellers. Most trips have a private option: your own car and driver, your own pace.",
+          a: "Shared trips run in a minivan with other travellers. Most trips have a private option: your own car and driver, your own pace. Or we design a private tour around you.",
+          link: ["/private", "Private tours"],
         },
         {
           q: "Are your monument tickets official?",

@@ -11,6 +11,7 @@ export const STYLES = [
 ] as const;
 
 export const NEEDS = [
+  { id: "private", label: "A private, tailor-made tour" },
   { id: "airport", label: "Airport transfers" },
   { id: "driver", label: "A private driver" },
   { id: "daytrips", label: "Day trips" },
