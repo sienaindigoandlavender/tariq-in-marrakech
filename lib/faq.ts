@@ -96,6 +96,11 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
           a: "Shared trips run in a minivan with other travellers. Most trips have a private option: your own car and driver, your own pace.",
         },
         {
+          q: "Are your monument tickets official?",
+          a: "We are not the monuments' ticket office. We buy the official entry ticket for you, and a host meets you at the gate at the time you chose, so you skip the ticket queue. Our price includes the ticket and that service.",
+          link: ["/c/tkt", "Tickets"],
+        },
+        {
           q: "Are there shopping stops?",
           a: "No. Our drivers don't stop at shops or carpet cooperatives unless you ask.",
         },

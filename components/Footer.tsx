@@ -11,6 +11,7 @@ const cols: { h: string; links: [string, string][] }[] = [
       ["/c/exc", "Day trips"],
       ["/c/des", "Multi-day tours"],
       ["/c/act", "Activities"],
+      ["/c/tkt", "Monument tickets"],
       ["/c/svc", "Concierge, kits & baby"],
       ["/packages", "Packages"],
     ],

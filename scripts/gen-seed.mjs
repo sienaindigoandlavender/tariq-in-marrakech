@@ -5,7 +5,7 @@ const q = (v) => v === null || v === undefined ? "null" : typeof v === "number" 
 const arr = (a) => `array[${a.map(q).join(", ")}]::text[]`;
 let out = `-- Tariq seed: Marrakech catalogue (${products.length} products and their add-ons).
 -- ALL PRICES ARE PLACEHOLDERS until the partner's cost sheet arrives.
--- Requires migrations 0001_init.sql, 0003_itinerary.sql and 0006_accounts_rules.sql.
+-- Requires migrations 0001_init.sql, 0003_itinerary.sql, 0006_accounts_rules.sql and 0007_tickets.sql.
 -- Generated from data/catalogue.json by scripts/gen-seed.mjs. Do not edit by hand.
 
 begin;

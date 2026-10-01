@@ -10,5 +10,6 @@ export const RAILS: RailDef[] = [
   { key: "trf", h: "Getting in, around and out", p: "Airport, dinner rides and your last day.", href: "/c/trf", category: "trf" },
   { key: "exc", h: "Day trips from Marrakech", p: "Pickup at your riad, back by dinner.", href: "/c/exc", category: "exc" },
   { key: "des", h: "Multi-day tours", p: "The Sahara in three days, Zagora in two, on to Fes in four, or the Atlas on foot.", href: "/c/des", category: "des" },
+  { key: "tkt", h: "Tickets without the queue", p: "Bahia, El Badi, the Saadian Tombs. We buy the ticket, a host meets you at the gate.", href: "/c/tkt", category: "tkt" },
   { key: "act", h: "Evenings and adventures", p: "Balloons at sunrise, Agafay at sunset.", href: "/c/act", category: "act" },
 ];

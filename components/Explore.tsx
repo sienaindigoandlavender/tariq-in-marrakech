@@ -113,7 +113,7 @@ export function Rail({ id, h, p, href, products }: { id: string; h: string; p: s
   );
 }
 
-const TILE_SCENE: Record<Category, string> = { exc: "valley", des: "dunes", act: "balloon", trf: "plane", svc: "tagine", kit: "nightkit" };
+const TILE_SCENE: Record<Category, string> = { exc: "valley", des: "dunes", act: "balloon", tkt: "palace", trf: "plane", svc: "tagine", kit: "nightkit" };
 
 export function CategoryTiles({ counts }: { counts: Record<Category, number> }) {
   const cats = SHOP_CATEGORIES;
@@ -125,7 +125,7 @@ export function CategoryTiles({ counts }: { counts: Record<Category, number> }) 
           {copy.rails.browseAll} →
         </Link>
       </div>
-      <div className="grid grid-cols-5 gap-3 tab:grid-cols-3 xs:grid-cols-2">
+      <div className="grid grid-cols-6 gap-3 tab:grid-cols-3 xs:grid-cols-2">
         {cats.map((c) => (
           <Link key={c} href={`/c/${c}`} className="group relative block aspect-[4/5] overflow-hidden rounded-card no-underline">
             <PosterScene scene={TILE_SCENE[c]} uid={`tile-${c}`} className="absolute inset-0 transition-transform duration-300 group-hover:scale-[1.04] motion-reduce:transform-none" />
