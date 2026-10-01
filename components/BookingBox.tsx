@@ -18,7 +18,7 @@ function Popular({ p }: { p: P }) {
   if (!a) return null;
   return (
     <p className="m-0 rounded-input bg-soft px-3 py-2.5 text-[13.5px] leading-snug">
-      <span className="font-extrabold">{copy.product.mostAdd}</span> {a.label}, <span className="tnum font-bold">+{money(a.eur)}</span> {perLabel(a.per)}
+      <span className="font-extrabold">{copy.product.mostAdd}</span> {a.label}, {a.eur ? <><span className="tnum font-bold">+{money(a.eur)}</span> {perLabel(a.per)}</> : <b>free</b>}
     </p>
   );
 }
@@ -48,7 +48,7 @@ export function BookingBox({ p }: { p: P }) {
         </li>
         <li className="grid grid-cols-[20px_minmax(0,1fr)] gap-2">
           <span className="text-ok"><Icon name="check" size={20} /></span>
-          <span><b className="block">Instant confirmation</b><span className="text-muted">Your booking reference on screen, on your phone, straight away. No hidden fees.</span></span>
+          <span><b className="block">Instant confirmation</b><span className="text-muted">Your reference straight away. Show it on your phone, no printing. No hidden fees.</span></span>
         </li>
       </ul>
     </aside>

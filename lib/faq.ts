@@ -30,6 +30,15 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
           a: "No. The price at checkout is the price you pay. Items listed as not included, such as lunches or tips, are paid directly.",
         },
         {
+          q: "Can I give a trip as a present?",
+          a: "Yes. Gift vouchers of €50, €100 or €200, sent on WhatsApp on the date you choose with your message. Valid 12 months on anything we sell.",
+          link: ["/c/gft", "Gift vouchers"],
+        },
+        {
+          q: "Can I ask for a female driver or guide?",
+          a: "Yes, on most transfers, day trips and tours. Tick it when you book. It's free, and we confirm on WhatsApp.",
+        },
+        {
           q: "Do I need an account to book?",
           a: "No. An account is optional. It keeps your wishlist on every device. You sign in with a link sent to your email, no password.",
           link: ["/account", "Create an account"],

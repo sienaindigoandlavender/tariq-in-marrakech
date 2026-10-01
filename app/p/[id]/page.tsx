@@ -8,6 +8,8 @@ import { Icon } from "@/components/Icons";
 import { Poster } from "@/components/Poster";
 import { Badges, ProductCard, Heart } from "@/components/ProductCard";
 import { copy } from "@/lib/copy";
+import { ShareButton } from "@/components/ShareButton";
+import { SOCIAL_MIN, bookedThisWeek } from "@/lib/popularity";
 import { getProduct, getProducts, toPublic } from "@/lib/db";
 import { SITE_URL, productSeoTitle } from "@/lib/seo";
 import type { Product } from "@/lib/types";
@@ -69,6 +71,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
   if (!p) notFound();
   const all = await getProducts();
   const pub = toPublic(p);
+  const booked = (await bookedThisWeek())[p.id] ?? 0;
   const inMedinaOrRiad = p.category !== "kit";
 
   const jsonLd = {
@@ -106,6 +109,11 @@ export default async function ProductPage({ params }: { params: { id: string } }
               {p.badge ? <span className="rounded-full bg-sun px-2.5 py-0.5 text-xs font-extrabold text-sun-ink">{p.badge}</span> : null}
             </div>
             <h1 className="m-0 text-[clamp(28px,4vw,40px)] font-extrabold leading-tight">{p.title}</h1>
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+              {booked >= SOCIAL_MIN ? <span className="font-bold text-rose-strong">Booked {booked} times this week</span> : null}
+              {p.lead_days <= 1 && p.category !== "gft" ? <span className="font-bold text-ok">Available tomorrow</span> : null}
+              <ShareButton title={p.title} />
+            </div>
           </header>
 
           <div className="relative">

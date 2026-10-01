@@ -22,6 +22,7 @@ const MENU: { href: string; label: string; sub: string }[] = [
 const EXTRA: [string, string][] = [
   ["/plan", "Plan my trip"],
   ["/packages", "Packages"],
+  ["/c/gft", "Gift vouchers"],
   ["/faq", "FAQ"],
   ["/contact", "Contact"],
 ];

@@ -47,7 +47,7 @@ export function OptionsPanel({ p, sel, onChange }: { p: PublicProduct; sel: Sele
       <div className="grid gap-2">
         <div className="flex gap-2">
           {pill("date", "clock", sel.date ? fmtDate(sel.date, { weekday: "short", day: "numeric", month: "short" }) : C.date, `${C.date}: ${sel.date ? fmtDate(sel.date) : "not set"}`)}
-          {pill("guests", "users", `${sel.guests} ${sel.guests === 1 ? "guest" : "guests"}`, `${C.participants}: ${sel.guests}`)}
+          {p.category === "gft" ? null : pill("guests", "users", `${sel.guests} ${sel.guests === 1 ? "guest" : "guests"}`, `${C.participants}: ${sel.guests}`)}
         </div>
         {p.lead_days > 1 ? <p className="m-0 text-[12.5px] font-bold text-muted">Book at least {p.lead_days} days ahead{p.prepay_only ? ". Paid online when you book" : ""}{p.refundable ? "" : ", non-refundable"}.</p> : null}
         {open === "date" ? (
@@ -116,7 +116,7 @@ export function OptionsPanel({ p, sel, onChange }: { p: PublicProduct; sel: Sele
                         {a.popular ? <span className="text-xs font-bold text-rose-strong"> · {C.popular}</span> : null}
                         <small className="block text-xs text-muted">{perLabel(a.per)}</small>
                       </span>
-                      <span className="tnum whitespace-nowrap font-bold">+{money(a.eur)}</span>
+                      <span className="tnum whitespace-nowrap font-bold">{a.eur ? `+${money(a.eur)}` : "Free"}</span>
                     </label>
                   ))}
                 </div>

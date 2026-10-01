@@ -11,7 +11,7 @@ import { SITE_URL } from "@/lib/seo";
 export const revalidate = 300;
 
 export default async function ExplorePage() {
-  const all = recommended(await getProducts());
+  const all = recommended(await getProducts()).filter((p) => p.category !== "gft");
   const byId = new Map(all.map((p) => [p.id, p]));
   const pick = (r: (typeof RAILS)[number]): Product[] =>
     r.best

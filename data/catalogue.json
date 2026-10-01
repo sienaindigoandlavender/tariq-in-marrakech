@@ -49,6 +49,14 @@
         "sort": 10
       },
       {
+        "id": "fasttrack",
+        "label": "Arrivals fast track, met at the gate",
+        "eur": 30,
+        "per": "pp",
+        "popular": false,
+        "sort": 15
+      },
+      {
         "id": "porter",
         "label": "Porter to the riad door",
         "eur": 5,
@@ -71,6 +79,14 @@
         "per": "unit",
         "popular": false,
         "sort": 40
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -90,7 +106,9 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [
+      "female-ok"
+    ]
   },
   {
     "id": "driver",
@@ -180,12 +198,22 @@
         "per": "unit",
         "popular": false,
         "sort": 40
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [
+      "female-ok"
+    ]
   },
   {
     "id": "lastday",
@@ -404,6 +432,14 @@
         "per": "pp",
         "popular": false,
         "sort": 30
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -432,7 +468,8 @@
     "prepay_only": false,
     "refundable": true,
     "tags": [
-      "family"
+      "family",
+      "female-ok"
     ]
   },
   {
@@ -491,6 +528,14 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -519,7 +564,8 @@
     "prepay_only": false,
     "refundable": true,
     "tags": [
-      "family"
+      "family",
+      "female-ok"
     ]
   },
   {
@@ -577,6 +623,14 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -605,7 +659,8 @@
     "prepay_only": false,
     "refundable": true,
     "tags": [
-      "family"
+      "family",
+      "female-ok"
     ]
   },
   {
@@ -673,6 +728,14 @@
         "per": "unit",
         "popular": false,
         "sort": 30
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -700,7 +763,9 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [
+      "female-ok"
+    ]
   },
   {
     "id": "abh",
@@ -759,6 +824,14 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -790,7 +863,9 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [
+      "female-ok"
+    ]
   },
   {
     "id": "sahara3",
@@ -859,6 +934,14 @@
         "per": "pp",
         "popular": false,
         "sort": 30
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -879,7 +962,8 @@
     "prepay_only": false,
     "refundable": true,
     "tags": [
-      "sunset"
+      "sunset",
+      "female-ok"
     ]
   },
   {
@@ -938,6 +1022,14 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -955,7 +1047,8 @@
     "refundable": true,
     "tags": [
       "sunset",
-      "family"
+      "family",
+      "female-ok"
     ]
   },
   {
@@ -1018,6 +1111,14 @@
         "per": "pp",
         "popular": false,
         "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -1039,7 +1140,8 @@
       }
     ],
     "tags": [
-      "sunset"
+      "sunset",
+      "female-ok"
     ]
   },
   {
@@ -1095,6 +1197,14 @@
         "per": "pp",
         "popular": true,
         "sort": 10
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "itinerary": [
@@ -1108,7 +1218,8 @@
       }
     ],
     "tags": [
-      "english"
+      "english",
+      "female-ok"
     ]
   },
   {
@@ -1591,11 +1702,20 @@
         "per": "car",
         "popular": false,
         "sort": 10
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
       }
     ],
     "tags": [
       "english",
-      "family"
+      "family",
+      "female-ok"
     ]
   },
   {
@@ -2583,5 +2703,176 @@
     "prepay_only": false,
     "refundable": true,
     "tags": []
+  },
+  {
+    "id": "gift50",
+    "city": "marrakech",
+    "category": "gft",
+    "role": "gap",
+    "title": "Gift voucher, €50",
+    "subtitle": "Gift",
+    "badge": null,
+    "blurb": "€50 to spend on anything on Tariq: the airport, a day trip, the desert, Skip the line, the chef.",
+    "timing": "Sent on the date you choose",
+    "duration": "Valid 12 months",
+    "km": 0,
+    "drive_time": "sent on WhatsApp",
+    "price_eur": 50,
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "scene": "gift",
+    "image_url": null,
+    "highlights": [
+      "Use it on anything we sell",
+      "Valid for 12 months",
+      "Sent on WhatsApp, ready to forward"
+    ],
+    "includes": [
+      "€50 voucher with its own code",
+      "Your message on it"
+    ],
+    "excludes": [],
+    "know_before": [
+      "The voucher code is the booking reference. The recipient quotes it when booking and we deduct it",
+      "Paid online when you buy",
+      "Unused vouchers can be refunded within 14 days of purchase"
+    ],
+    "itinerary": [
+      {
+        "t": "Today",
+        "s": "Choose the amount and the date to send it"
+      },
+      {
+        "t": "On that date",
+        "s": "We send the voucher and your message on WhatsApp"
+      },
+      {
+        "t": "Within 12 months",
+        "s": "They book anything and quote the code"
+      }
+    ],
+    "sort": 300,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": true,
+    "refundable": true,
+    "tags": [],
+    "addons": []
+  },
+  {
+    "id": "gift100",
+    "city": "marrakech",
+    "category": "gft",
+    "role": "gap",
+    "title": "Gift voucher, €100",
+    "subtitle": "Gift",
+    "badge": null,
+    "blurb": "€100 to spend on anything on Tariq: the airport, a day trip, the desert, Skip the line, the chef.",
+    "timing": "Sent on the date you choose",
+    "duration": "Valid 12 months",
+    "km": 0,
+    "drive_time": "sent on WhatsApp",
+    "price_eur": 100,
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "scene": "gift",
+    "image_url": null,
+    "highlights": [
+      "Use it on anything we sell",
+      "Valid for 12 months",
+      "Sent on WhatsApp, ready to forward"
+    ],
+    "includes": [
+      "€100 voucher with its own code",
+      "Your message on it"
+    ],
+    "excludes": [],
+    "know_before": [
+      "The voucher code is the booking reference. The recipient quotes it when booking and we deduct it",
+      "Paid online when you buy",
+      "Unused vouchers can be refunded within 14 days of purchase"
+    ],
+    "itinerary": [
+      {
+        "t": "Today",
+        "s": "Choose the amount and the date to send it"
+      },
+      {
+        "t": "On that date",
+        "s": "We send the voucher and your message on WhatsApp"
+      },
+      {
+        "t": "Within 12 months",
+        "s": "They book anything and quote the code"
+      }
+    ],
+    "sort": 301,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": true,
+    "refundable": true,
+    "tags": [],
+    "addons": []
+  },
+  {
+    "id": "gift200",
+    "city": "marrakech",
+    "category": "gft",
+    "role": "gap",
+    "title": "Gift voucher, €200",
+    "subtitle": "Gift",
+    "badge": null,
+    "blurb": "€200 to spend on anything on Tariq: the airport, a day trip, the desert, Skip the line, the chef.",
+    "timing": "Sent on the date you choose",
+    "duration": "Valid 12 months",
+    "km": 0,
+    "drive_time": "sent on WhatsApp",
+    "price_eur": 200,
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "scene": "gift",
+    "image_url": null,
+    "highlights": [
+      "Use it on anything we sell",
+      "Valid for 12 months",
+      "Sent on WhatsApp, ready to forward"
+    ],
+    "includes": [
+      "€200 voucher with its own code",
+      "Your message on it"
+    ],
+    "excludes": [],
+    "know_before": [
+      "The voucher code is the booking reference. The recipient quotes it when booking and we deduct it",
+      "Paid online when you buy",
+      "Unused vouchers can be refunded within 14 days of purchase"
+    ],
+    "itinerary": [
+      {
+        "t": "Today",
+        "s": "Choose the amount and the date to send it"
+      },
+      {
+        "t": "On that date",
+        "s": "We send the voucher and your message on WhatsApp"
+      },
+      {
+        "t": "Within 12 months",
+        "s": "They book anything and quote the code"
+      }
+    ],
+    "sort": 302,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": true,
+    "refundable": true,
+    "tags": [],
+    "addons": []
   }
 ]

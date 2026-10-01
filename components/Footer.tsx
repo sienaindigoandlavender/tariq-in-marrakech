@@ -14,6 +14,7 @@ const cols: { h: string; links: [string, string][] }[] = [
       ["/c/tkt", "Skip the line"],
       ["/c/svc", "Concierge, kits & baby"],
       ["/packages", "Packages"],
+      ["/c/gft", "Gift vouchers"],
     ],
   },
   {

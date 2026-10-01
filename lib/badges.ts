@@ -10,7 +10,7 @@ export const TAGS: Record<string, string> = {
   family: "Family-friendly",
   "age-5": "Age 5+",
   english: "English-speaking guide",
-  "female-ok": "Female guide on request",
+  "female-ok": "Female driver or guide on request",
 };
 
 /** The international cues travellers scan for, in priority order. Derived from the product where possible. */

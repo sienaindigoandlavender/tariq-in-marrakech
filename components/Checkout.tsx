@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { copy } from "@/lib/copy";
 import { formatWhatsapp, waLink } from "@/lib/config";
 import { rules } from "@/lib/rules";
-import { bookable, earliest, fmtDate, isYmd } from "@/lib/dates";
+import { addDays, bookable, earliest, fmtDate, isYmd } from "@/lib/dates";
 import { price, type PriceLine, type PriceResult } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
 import { formatMoney, isGuideCurrency, useAppState } from "./AppState";
@@ -72,6 +72,13 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const R = rules(p);
+  const gift = p.category === "gft";
+  const F =
+    gift
+      ? { contactP: "We send the voucher to this WhatsApp number on the date you chose, ready to forward.", pickupAt: "Who is it for?", pickupPh: "Recipient's name", notes: "Message on the voucher (optional)" }
+      : p.category === "svc" || p.category === "tkt"
+        ? { contactP: "We confirm everything on this WhatsApp number the evening before.", pickupAt: C.pickupAt, pickupPh: C.pickupPlaceholder, notes: C.notes }
+        : { contactP: C.contactP, pickupAt: C.pickupAt, pickupPh: C.pickupPlaceholder, notes: C.notes };
   const [pay, setPay] = useState<Pay>(R.prepay ? "now" : "later");
   const [err, setErr] = useState("");
   const [notice, setNotice] = useState("");
@@ -87,12 +94,12 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
     const qm = sp.get("mode");
     const next: Selection = {
       date: bookable(p, isYmd(qd) ? qd : prefs.date),
-      guests: clampG(Number(sp.get("guests")) || prefs.guests),
+      guests: p.category === "gft" ? 1 : clampG(Number(sp.get("guests")) || prefs.guests),
       mode: qm === "private" && p.private_per_car ? "private" : "shared",
       adds: (sp.get("adds") ?? "").split(",").filter((a) => p.addons.some((x) => x.id === a)),
     };
     if (last) {
-      setPickup(last.pickup);
+      if (p.category !== "gft") setPickup(last.pickup);
       setName(last.name);
       setPhone(last.phone);
     }
@@ -207,8 +214,8 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
       </div>
       <ul className="m-0 grid list-none gap-1.5 p-0 text-sm">
         <li className="flex items-center gap-2"><Icon name="clock" size={18} />{sel.date ? fmtDate(sel.date) : "–"} · {p.timing}</li>
-        <li className="flex items-center gap-2"><Icon name="users" size={18} />{sel.guests} {sel.guests === 1 ? "guest" : "guests"} · {optionText}</li>
-        <li className={`flex items-start gap-2 ${R.refundable ? "text-ok" : "text-ink"}`}><span className="mt-0.5"><Icon name="shield" size={18} /></span><span className="font-bold">{R.cancelPolicy}</span></li>
+        {gift ? null : <li className="flex items-center gap-2"><Icon name="users" size={18} />{sel.guests} {sel.guests === 1 ? "guest" : "guests"} · {optionText}</li>}
+        <li className={`flex items-start gap-2 ${R.refundable ? "text-ok" : "text-ink"}`}><span className="mt-0.5"><Icon name="shield" size={18} /></span><span className="font-bold">{gift ? "Unused vouchers refunded within 14 days of purchase." : R.refundable && sel.date ? `Free cancellation until ${fmtDate(addDays(sel.date, -1), { weekday: "short", day: "numeric", month: "short" })}, 24 h before. Prepaid bookings are refunded in full.` : R.cancelPolicy}</span></li>
         {R.leadNote ? <li className="flex items-center gap-2 text-muted"><Icon name="clock" size={18} />{R.leadNote}. {R.payFact}.</li> : null}
       </ul>
       <div className="border-t border-line pt-3">
@@ -265,10 +272,10 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
         </Section>
 
         <Section n={2} title={C.contactH}>
-          <p className="m-0 -mt-1.5 text-sm text-muted">{C.contactP}</p>
+          <p className="m-0 -mt-1.5 text-sm text-muted">{F.contactP}</p>
           <label className={label}>
-            {C.pickupAt}
-            <input value={pickup} onChange={(e) => setPickup(e.target.value)} maxLength={200} autoComplete="off" placeholder={C.pickupPlaceholder} className={field} />
+            {F.pickupAt}
+            <input value={pickup} onChange={(e) => setPickup(e.target.value)} maxLength={200} autoComplete="off" placeholder={F.pickupPh} className={field} />
           </label>
           <div className="grid grid-cols-2 gap-3 xs:grid-cols-1">
             <label className={label}>
@@ -281,7 +288,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
             </label>
           </div>
           <label className={label}>
-            {C.notes}
+            {F.notes}
             <textarea value={notes} onChange={(e) => setNotes(e.target.value)} maxLength={1000} className={`${field} min-h-[64px] resize-y`} />
           </label>
         </Section>
@@ -301,6 +308,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
                   <span className="rounded bg-[#ffc439] px-2 py-0.5 text-xs font-extrabold italic text-[#003087]">PayPal</span>
                 </span>
                 <small className="text-muted">{C.payNowS}</small>
+                <small className="mt-1 font-bold text-muted">🔒 Secure checkout · PayPal · Visa · Mastercard · Amex</small>
               </label>
             ) : null}
             {R.prepay && !payNowAvailable ? (

@@ -29,6 +29,7 @@ export const copy = {
     des: "Multi-day tours",
     act: "Activities",
     tkt: "Skip the line",
+    gft: "Gift vouchers",
     trf: "Transfers",
     svc: "Concierge",
     kit: "Kits & baby",
@@ -48,7 +49,7 @@ export const copy = {
     "A real person on WhatsApp",
   ],
 
-  book: { h: "Book", p: "Final prices. No booking fees." },
+  book: { h: "Book", p: "Final prices, taxes included. No booking fees." },
   rails: {
     seeAll: "See all",
     browseH: "Browse by what you need",

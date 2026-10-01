@@ -2,7 +2,7 @@
 // Painted poster scenes (pure SVG), ported from the prototype's scene(type).
 // Placeholders until real photos from the partner's trips exist.
 
-export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby","henna","spa","tagine","luggage","night","nightkit","road","barber","camera","palace","garden"] as const;
+export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby","henna","spa","tagine","luggage","night","nightkit","road","barber","camera","palace","garden","gift"] as const;
 
 function palm(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M-2 0 q4 -40 1 -80 l3 0 q4 40 0 80z"/><path d="M1 -80 q-26 -8 -40 6 q18 -14 40 -2z"/><path d="M1 -80 q26 -10 42 4 q-20 -12 -42 -1z"/><path d="M1 -80 q-18 -22 -36 -18 q20 -2 36 16z"/><path d="M1 -80 q18 -24 38 -20 q-22 0 -38 18z"/><path d="M1 -80 q-4 -24 -18 -34 q14 14 16 34z"/></g>`}
 function camel(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M0 -14 q3 -9 10 -10 q5 -10 12 -4 q6 -7 11 0 q3 -2 4 -8 q1 -6 5 -5 q4 1 3 5 l-4 8 q-3 7 -7 9 l0 19 h-2.5 l-1.5 -15 h-14 l-1.5 15 h-2.5 l0 -16 q-6 -1 -5 -6z"/></g>`}
@@ -16,7 +16,7 @@ export function sceneSvg(type: string, uid: string = type): string {
     henna:["#e39a72","#f8dcc6","#fff1e2"], spa:["#cfe3dc","#f5efe6","#fffaf0"], tagine:["#2a2447","#6b3f5e","#ffd27a"],
     luggage:["#bcd7ff","#eef5ff","#fffbe6"], night:["#15142e","#4a2c5a","#fff4d0"], nightkit:["#161433","#3d2a55","#fff4d0"], road:["#9fcbf2","#f3ecd9","#fff6d6"],
     barber:["#1f6f78","#cfe6e3","#fff4d6"], camera:["#f6b26b","#fbe3c4","#fff4d6"],
-    palace:["#9fd0e8","#e9f4f6","#fff4d6"], garden:["#bfe3c8","#eef7e9","#fff6d6"]
+    palace:["#9fd0e8","#e9f4f6","#fff4d6"], garden:["#bfe3c8","#eef7e9","#fff6d6"], gift:["#f6c9d0","#fdeef0","#fff6d6"]
   } as Record<string, string[]>)[type]||["#ddd","#eee","#fff"];
   let g=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${S[0]}"/><stop offset="1" stop-color="${S[1]}"/></linearGradient></defs><rect width="400" height="250" fill="url(#${id})"/>`;
   const sun=(x: number, y: number, r: number)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${S[2]}"/>`;
@@ -113,6 +113,9 @@ export function sceneSvg(type: string, uid: string = type): string {
    case "garden": g+=sun(330,60,24)+`<rect x="0" y="150" width="400" height="100" fill="#d9b38c"/><rect x="160" y="80" width="80" height="120" fill="#1f3fbf"/><path d="M160 80 h80 l-10 -14 h-60z" fill="#163199"/>
      <rect x="180" y="120" width="40" height="80" rx="20" fill="#f0c25a"/><rect x="0" y="196" width="400" height="12" fill="#6ec3c9"/>
      ${palm(70,200,1.1,"#2f6d54")}${palm(110,205,.8,"#2f6d54")}${palm(320,200,1.05,"#2f6d54")}${[40,280,350].map(x=>`<g transform="translate(${x} 200)"><path d="M0 0 q-6 -30 0 -48 q6 18 0 48z" fill="#4e8a64"/><path d="M8 0 q-2 -26 8 -40 q0 20 -8 40z" fill="#4e8a64"/></g>`).join("")}`;break;
+   case "gift": g+=`${Array.from({length:18},(_,i)=>`<circle cx="${(i*71)%400}" cy="${(i*43)%200+10}" r="${i%3?3:5}" fill="${["#f0c25a","#1f3fbf","#d9536f"][i%3]}" opacity=".55"/>`).join("")}
+     <path d="M0 215 H400 V250 H0z" fill="#e7b7bf"/><g transform="translate(130 80)"><rect x="0" y="40" width="140" height="100" rx="10" fill="#1f3fbf"/><rect x="-8" y="22" width="156" height="30" rx="8" fill="#2b4fd6"/>
+     <rect x="60" y="22" width="20" height="118" fill="#f0c25a"/><path d="M70 22 q-40 -40 -50 -10 q-6 18 50 10z" fill="#f0c25a"/><path d="M70 22 q40 -40 50 -10 q6 18 -50 10z" fill="#f0c25a"/></g>`;break;
    case "baby": g+=`<path d="M0 200 H400 V250 H0z" fill="#f2c7b5"/>${sun(320,70,26)}<g transform="translate(120 80)"><path d="M0 60 q0 -60 70 -60 v60z" fill="#d9536f"/><path d="M0 60 h120 q0 40 -40 40 h-50 q-30 0 -30 -40z" fill="#1f3fbf"/><path d="M120 60 l30 -40" stroke="#1c1b2e" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="120" r="14" fill="#1c1b2e"/><circle cx="100" cy="120" r="14" fill="#1c1b2e"/><circle cx="20" cy="120" r="5" fill="#f0a52b"/><circle cx="100" cy="120" r="5" fill="#f0a52b"/></g>`;break;
   }
     return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" style="display:block;width:100%;height:100%">${g}</svg>`;

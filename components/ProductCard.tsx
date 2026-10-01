@@ -53,10 +53,11 @@ export function PriceFrom({ p, size = "md" }: { p: Pick<CardProduct, "price_eur"
   );
 }
 
-export function Assurances({ p, className = "", compact = false }: { p?: Parameters<typeof rules>[0] & { price_eur?: number }; className?: string; compact?: boolean }) {
+export function Assurances({ p, className = "", compact = false }: { p?: Parameters<typeof rules>[0] & { price_eur?: number; category?: string }; className?: string; compact?: boolean }) {
   const r = rules(p ?? {});
   const free = p?.price_eur === 0;
   // Compact (cards): one line only. Free cancellation, or the one rule that matters.
+  if (compact && p?.category === "gft") return <span className={`text-[13px] font-bold text-muted ${className}`}>Valid 12 months · Use on anything</span>;
   if (compact)
     return r.refundable ? (
       <span className={`inline-flex items-center gap-1.5 text-[13px] font-bold text-ok ${className}`}>
