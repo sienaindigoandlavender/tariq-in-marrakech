@@ -7,10 +7,11 @@ import type { PublicProduct } from "@/lib/types";
 import { useAppState } from "./AppState";
 import { Poster, distLabel } from "./Poster";
 import { rules } from "@/lib/rules";
+import { badges } from "@/lib/badges";
 
 type CardProduct = Pick<
   PublicProduct,
-  "id" | "title" | "subtitle" | "blurb" | "duration" | "price_eur" | "was_eur" | "per" | "badge" | "scene" | "image_url" | "km" | "drive_time" | "lead_days" | "prepay_only" | "refundable"
+  "id" | "title" | "subtitle" | "blurb" | "duration" | "price_eur" | "was_eur" | "per" | "badge" | "scene" | "image_url" | "km" | "drive_time" | "lead_days" | "prepay_only" | "refundable" | "category" | "private_per_car" | "tags"
 >;
 
 export function Heart({ id, className = "" }: { id: string; className?: string }) {
@@ -76,6 +77,21 @@ export function Assurances({ p, className = "" }: { p?: Parameters<typeof rules>
   );
 }
 
+/** International cues as small chips: Skip the line, Hotel pickup, Private option, Sunrise... */
+export function Badges({ p, max, className = "" }: { p: Parameters<typeof badges>[0]; max?: number; className?: string }) {
+  const list = badges(p).slice(0, max);
+  if (!list.length) return null;
+  return (
+    <ul className={`m-0 flex list-none flex-wrap gap-1.5 p-0 ${className}`}>
+      {list.map((b) => (
+        <li key={b} className="rounded-md bg-soft px-2 py-0.5 text-[12px] font-bold text-ink">
+          {b}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function Check() {
   return (
     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -98,6 +114,7 @@ export function ProductCard({ p, uid }: { p: CardProduct; uid?: string }) {
         <h3 className="m-0 text-[16.5px] font-extrabold leading-tight group-hover:underline">{p.title}</h3>
         <p className="m-0 line-clamp-2 text-sm text-muted">{p.blurb}</p>
         <span className="text-[13px] font-semibold text-muted">{p.duration}</span>
+        <Badges p={p} max={3} />
         <Assurances p={p} />
         <PriceFrom p={p} />
       </Link>

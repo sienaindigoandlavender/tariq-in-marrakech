@@ -46,6 +46,10 @@ export function BookingBox({ p }: { p: P }) {
           <span className="text-ok"><Icon name="wallet" size={20} /></span>
           <span><b className="block">{rules(p).payH}</b><span className="text-muted">{rules(p).leadNote ? `${rules(p).leadNote}. ` : ""}{rules(p).payP}</span></span>
         </li>
+        <li className="grid grid-cols-[20px_minmax(0,1fr)] gap-2">
+          <span className="text-ok"><Icon name="check" size={20} /></span>
+          <span><b className="block">Instant confirmation</b><span className="text-muted">Your booking reference on screen, on your phone, straight away. No hidden fees.</span></span>
+        </li>
       </ul>
     </aside>
   );

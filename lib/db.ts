@@ -21,6 +21,7 @@ function normalise(row: Record<string, unknown>, addons: Record<string, unknown>
     lead_days: Math.max(1, Number(row.lead_days ?? 1)),
     prepay_only: row.prepay_only === true,
     refundable: row.refundable !== false,
+    tags: Array.isArray(row.tags) ? (row.tags as string[]) : [],
     itinerary: Array.isArray(row.itinerary) ? (row.itinerary as Product["itinerary"]) : [],
     addons: addons
       .map((a) => ({ ...(a as unknown as Addon), eur: Number(a.eur) }))

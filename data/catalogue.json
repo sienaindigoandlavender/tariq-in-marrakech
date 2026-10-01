@@ -89,7 +89,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "driver",
@@ -183,7 +184,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "lastday",
@@ -263,7 +265,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "dinner",
@@ -333,7 +336,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "ourika",
@@ -426,7 +430,10 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "family"
+    ]
   },
   {
     "id": "ouzoud",
@@ -510,7 +517,10 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "family"
+    ]
   },
   {
     "id": "essaouira",
@@ -593,7 +603,10 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "family"
+    ]
   },
   {
     "id": "imlil",
@@ -686,7 +699,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "abh",
@@ -775,7 +789,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "sahara3",
@@ -862,7 +877,10 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "sunset"
+    ]
   },
   {
     "id": "zagora",
@@ -934,7 +952,11 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "sunset",
+      "family"
+    ]
   },
   {
     "city": "marrakech",
@@ -1015,6 +1037,9 @@
         "t": "Day 4",
         "s": "Ifrane, then drop-off at your hotel in Fes"
       }
+    ],
+    "tags": [
+      "sunset"
     ]
   },
   {
@@ -1081,6 +1106,9 @@
         "t": "Day 2",
         "s": "Walk the Ait Mizane valley back to Imlil, drive back to your riad"
       }
+    ],
+    "tags": [
+      "english"
     ]
   },
   {
@@ -1166,7 +1194,11 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "sunrise",
+      "age-5"
+    ]
   },
   {
     "id": "agafay",
@@ -1259,7 +1291,11 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "sunset",
+      "family"
+    ]
   },
   {
     "id": "quad",
@@ -1330,7 +1366,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "camel",
@@ -1400,7 +1437,11 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": [
+      "sunset",
+      "family"
+    ]
   },
   {
     "city": "marrakech",
@@ -1476,6 +1517,9 @@
         "popular": false,
         "sort": 20
       }
+    ],
+    "tags": [
+      "family"
     ]
   },
   {
@@ -1548,6 +1592,10 @@
         "popular": false,
         "sort": 10
       }
+    ],
+    "tags": [
+      "english",
+      "family"
     ]
   },
   {
@@ -1616,6 +1664,9 @@
         "popular": true,
         "sort": 10
       }
+    ],
+    "tags": [
+      "family"
     ]
   },
   {
@@ -1684,7 +1735,8 @@
         "popular": true,
         "sort": 10
       }
-    ]
+    ],
+    "tags": []
   },
   {
     "city": "marrakech",
@@ -1752,7 +1804,8 @@
         "popular": true,
         "sort": 10
       }
-    ]
+    ],
+    "tags": []
   },
   {
     "city": "marrakech",
@@ -1820,7 +1873,8 @@
         "popular": true,
         "sort": 10
       }
-    ]
+    ],
+    "tags": []
   },
   {
     "city": "marrakech",
@@ -1888,6 +1942,9 @@
         "popular": true,
         "sort": 10
       }
+    ],
+    "tags": [
+      "family"
     ]
   },
   {
@@ -1954,7 +2011,8 @@
         "popular": true,
         "sort": 10
       }
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "henna",
@@ -2024,7 +2082,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "massage",
@@ -2089,7 +2148,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "chef",
@@ -2163,7 +2223,8 @@
     ],
     "lead_days": 3,
     "prepay_only": true,
-    "refundable": false
+    "refundable": false,
+    "tags": []
   },
   {
     "city": "marrakech",
@@ -2230,7 +2291,8 @@
         "t": "45–60 min",
         "s": "Cut, shave or both"
       }
-    ]
+    ],
+    "tags": []
   },
   {
     "city": "marrakech",
@@ -2302,7 +2364,8 @@
         "t": "Within 48 h",
         "s": "Edited gallery in your inbox"
       }
-    ]
+    ],
+    "tags": []
   },
   {
     "id": "trekkit",
@@ -2378,7 +2441,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "desertkit",
@@ -2435,7 +2499,8 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   },
   {
     "id": "baby",
@@ -2516,6 +2581,7 @@
     ],
     "lead_days": 1,
     "prepay_only": false,
-    "refundable": true
+    "refundable": true,
+    "tags": []
   }
 ]

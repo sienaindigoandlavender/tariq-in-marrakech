@@ -6,7 +6,7 @@ import { BookingBox, MobileBookBar } from "@/components/BookingBox";
 import { BookingSheetRoot } from "@/components/booking/BookingSheet";
 import { Icon } from "@/components/Icons";
 import { Poster } from "@/components/Poster";
-import { ProductCard, Heart } from "@/components/ProductCard";
+import { Badges, ProductCard, Heart } from "@/components/ProductCard";
 import { copy } from "@/lib/copy";
 import { getProduct, getProducts, toPublic } from "@/lib/db";
 import { SITE_URL, productSeoTitle } from "@/lib/seo";
@@ -123,6 +123,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
               </li>
             ))}
           </ul>
+          <Badges p={p} className="-mt-1 mb-6" />
 
           <Section title={copy.product.highlights}>
             <ul className="m-0 grid list-none gap-2 p-0">

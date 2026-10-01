@@ -58,6 +58,8 @@ export type Product = {
   prepay_only: boolean;
   /** False = no refund after booking. */
   refundable: boolean;
+  /** Badge tags, see lib/badges.ts. */
+  tags: string[];
   addons: Addon[];
 };
 
