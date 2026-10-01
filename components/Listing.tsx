@@ -3,12 +3,12 @@
 import { useMemo, useState } from "react";
 import { copy } from "@/lib/copy";
 import { tomorrow } from "@/lib/dates";
-import type { Category, PublicProduct } from "@/lib/types";
+import { SHOP_CATEGORIES, inTab, type Category, type PublicProduct } from "@/lib/types";
 import { useAppState } from "./AppState";
 import { ProductCard } from "./ProductCard";
 
 type Sort = "rec" | "low" | "high";
-const CHIPS: ("all" | Category)[] = ["all", "exc", "des", "act", "trf", "svc", "kit"];
+const CHIPS: ("all" | Category)[] = ["all", ...SHOP_CATEGORIES];
 
 export function DateGuests({ compact = false }: { compact?: boolean }) {
   const { prefs, setPrefs, ready } = useAppState();
@@ -48,7 +48,7 @@ export function Listing({ products, initial = "all" }: { products: PublicProduct
   const [sort, setSort] = useState<Sort>("rec");
 
   const list = useMemo(() => {
-    const l = products.filter((p) => cat === "all" || p.category === cat);
+    const l = products.filter((p) => cat === "all" || inTab(cat, p.category));
     if (sort === "low") return [...l].sort((a, b) => a.price_eur - b.price_eur);
     if (sort === "high") return [...l].sort((a, b) => b.price_eur - a.price_eur);
     return l; // server already sent them in Recommended order

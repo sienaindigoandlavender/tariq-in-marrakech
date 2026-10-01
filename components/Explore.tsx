@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { copy } from "@/lib/copy";
-import type { Category, PublicProduct } from "@/lib/types";
+import { SHOP_CATEGORIES, type Category, type PublicProduct } from "@/lib/types";
 import { AskBar } from "./AskBar";
 import { Listing } from "./Listing";
 import { PosterScene } from "./PosterScene";
@@ -113,10 +113,10 @@ export function Rail({ id, h, p, href, products }: { id: string; h: string; p: s
   );
 }
 
-const TILE_SCENE: Record<Category, string> = { exc: "valley", des: "dunes", act: "balloon", trf: "plane", svc: "tagine", kit: "nightkit" };
+const TILE_SCENE: Record<Category, string> = { exc: "valley", des: "dunes", act: "balloon", tkt: "palace", trf: "plane", svc: "tagine", kit: "nightkit" };
 
 export function CategoryTiles({ counts }: { counts: Record<Category, number> }) {
-  const cats = Object.keys(TILE_SCENE) as Category[];
+  const cats = SHOP_CATEGORIES;
   return (
     <section aria-labelledby="browse-h" className="pt-10">
       <div className="mb-3.5 flex items-end justify-between gap-4">
@@ -131,7 +131,7 @@ export function CategoryTiles({ counts }: { counts: Record<Category, number> }) 
             <PosterScene scene={TILE_SCENE[c]} uid={`tile-${c}`} className="absolute inset-0 transition-transform duration-300 group-hover:scale-[1.04] motion-reduce:transform-none" />
             <span className="absolute inset-x-0 bottom-0 grid gap-0.5 bg-gradient-to-t from-[rgb(16_10_30/.75)] to-transparent p-3 pt-10 text-white">
               <b className="text-[15px] leading-tight">{copy.categories[c]}</b>
-              <span className="text-xs font-semibold opacity-85">{copy.rails.count(counts[c])}</span>
+              <span className="text-xs font-semibold opacity-85">{copy.rails.count(counts[c] + (c === "svc" ? counts.kit : 0))}</span>
             </span>
           </Link>
         ))}

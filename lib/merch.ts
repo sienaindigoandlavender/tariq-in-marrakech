@@ -6,9 +6,10 @@ export const XSELL = ["airport", "agafay", "baby", "trekkit"];
 export type RailDef = { key: string; h: string; p: string; href: string; ids?: string[]; category?: string; best?: true };
 export const RAILS: RailDef[] = [
   { key: "best", h: "Best sellers", p: "What most people book first.", href: "/c/all", best: true },
-  { key: "solved", h: "Solved before you ask", p: "The things nobody else sorts out for you, delivered in the van that's already coming.", href: "/c/kit", ids: FIXES },
+  { key: "solved", h: "Solved before you ask", p: "The things nobody else sorts out for you, delivered in the van that's already coming.", href: "/c/svc", ids: FIXES },
   { key: "trf", h: "Getting in, around and out", p: "Airport, dinner rides and your last day.", href: "/c/trf", category: "trf" },
   { key: "exc", h: "Day trips from Marrakech", p: "Pickup at your riad, back by dinner.", href: "/c/exc", category: "exc" },
-  { key: "des", h: "Tours & journeys", p: "Two to four days: the Sahara, the Atlas, and on to Fes.", href: "/c/des", category: "des" },
+  { key: "des", h: "Multi-day tours", p: "The Sahara in three days, Zagora in two, on to Fes in four, or the Atlas on foot.", href: "/c/des", category: "des" },
+  { key: "tkt", h: "Tickets without the queue", p: "Bahia, El Badi, the Saadian Tombs. We buy the ticket, a host meets you at the gate.", href: "/c/tkt", category: "tkt" },
   { key: "act", h: "Evenings and adventures", p: "Balloons at sunrise, Agafay at sunset.", href: "/c/act", category: "act" },
 ];

@@ -1,4 +1,4 @@
-export type Category = "exc" | "des" | "act" | "trf" | "svc" | "kit";
+export type Category = "exc" | "des" | "act" | "tkt" | "trf" | "svc" | "kit";
 export type Role = "lead" | "core" | "cow" | "gap";
 export type Per = "pp" | "car" | "flat";
 export type AddonPer = "pp" | "car" | "unit";
@@ -8,7 +8,11 @@ export type BookingSource = "web" | "concierge" | "riad_qr" | "whatsapp";
 export type PaymentMethod = "on_arrival" | "paypal";
 export type PaymentStatus = "unpaid" | "pending" | "paid" | "refunded" | "failed";
 
-export const CATEGORIES: Category[] = ["exc", "des", "act", "trf", "svc", "kit"];
+export const CATEGORIES: Category[] = ["exc", "des", "act", "tkt", "trf", "svc", "kit"];
+/** Customer-facing order (menu, chips, tiles). Kits live inside Concierge. */
+export const SHOP_CATEGORIES: Category[] = ["trf", "exc", "des", "act", "tkt", "svc"];
+/** Categories a listing tab shows: Concierge also holds kits and baby gear. */
+export const inTab = (tab: Category, c: Category) => c === tab || (tab === "svc" && c === "kit");
 
 export type Addon = {
   id: string;

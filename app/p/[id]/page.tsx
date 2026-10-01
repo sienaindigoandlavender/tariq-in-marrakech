@@ -32,12 +32,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 function facts(p: Product): { icon: Parameters<typeof Icon>[0]["name"]; label: string }[] {
   const f: { icon: Parameters<typeof Icon>[0]["name"]; label: string }[] = [{ icon: "clock", label: p.duration }];
   if (p.category === "svc") f.push({ icon: "pin", label: copy.product.factAtRiad });
+  else if (p.category === "tkt") f.push({ icon: "pin", label: "Host at the gate" });
   else if (p.category === "kit") f.push({ icon: "pin", label: copy.product.factDelivered });
   else f.push({ icon: "pin", label: copy.product.factPickup });
   if (p.category === "svc") f.push({ icon: "users", label: "Just your group" });
   else if (p.per === "car") f.push({ icon: "users", label: copy.product.factPrivateCar });
   else if (p.private_per_car) f.push({ icon: "users", label: copy.product.factSharedPrivate });
-  else if (p.category !== "kit") f.push({ icon: "users", label: copy.product.factShared });
+  else if (p.category !== "kit" && p.category !== "tkt") f.push({ icon: "users", label: copy.product.factShared });
   const r = rules(p);
   f.push({ icon: "shield", label: r.cancelFact }, { icon: "wallet", label: r.payFact });
   if (r.leadNote) f.push({ icon: "clock", label: r.leadNote });

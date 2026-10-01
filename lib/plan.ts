@@ -14,7 +14,7 @@ export const NEEDS = [
   { id: "airport", label: "Airport transfers" },
   { id: "driver", label: "A private driver" },
   { id: "daytrips", label: "Day trips" },
-  { id: "desert", label: "Sahara or multi-day journey" },
+  { id: "desert", label: "Sahara or multi-day tour" },
   { id: "activities", label: "Balloon, quad, camels" },
   { id: "riad", label: "Concierge: henna, chef, barber, photographer" },
   { id: "baby", label: "Baby equipment" },

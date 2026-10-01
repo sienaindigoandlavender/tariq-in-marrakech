@@ -1403,6 +1403,418 @@
     "refundable": true
   },
   {
+    "city": "marrakech",
+    "category": "tkt",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "per": "pp",
+    "excludes": [
+      "Transport (add a ride if you need one)",
+      "Tips"
+    ],
+    "id": "monuments",
+    "title": "Medina monuments with a guide",
+    "subtitle": "Ticket",
+    "blurb": "Bahia Palace, El Badi and the Saadian Tombs in one morning, with a licensed guide and all three tickets.",
+    "timing": "Starts 9:00 or 14:00",
+    "duration": "3 hours",
+    "drive_time": "in the medina",
+    "price_eur": 49,
+    "badge": "Best value",
+    "scene": "palace",
+    "role": "cow",
+    "highlights": [
+      "Three tickets bought for you",
+      "Licensed guide for three hours",
+      "Walk between the three, no taxis"
+    ],
+    "includes": [
+      "Bahia Palace, El Badi and Saadian Tombs tickets",
+      "Licensed guide, 3 hours"
+    ],
+    "know_before": [
+      "Children under 7 enter free: don't count them as guests",
+      "Opening hours can change on religious holidays. We tell you on WhatsApp if they do",
+      "This is a booking service. We are not the monument's official ticket office"
+    ],
+    "itinerary": [
+      {
+        "t": "9:00 or 14:00",
+        "s": "Your guide meets you at your riad or at Bahia Palace"
+      },
+      {
+        "t": "1 hour",
+        "s": "Bahia Palace"
+      },
+      {
+        "t": "1 hour",
+        "s": "El Badi Palace and the terrace"
+      },
+      {
+        "t": "45 min",
+        "s": "The Saadian Tombs, then back toward Jemaa el-Fna"
+      }
+    ],
+    "sort": 145,
+    "addons": [
+      {
+        "id": "pickup",
+        "label": "Pickup from your riad",
+        "eur": 10,
+        "per": "car",
+        "popular": false,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "tkt",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "per": "pp",
+    "excludes": [
+      "Transport (add a ride if you need one)",
+      "Tips"
+    ],
+    "id": "bahia",
+    "title": "Bahia Palace ticket",
+    "subtitle": "Ticket",
+    "blurb": "The 19th-century vizier's palace: painted cedar ceilings, zellige and courtyards. Ticket in hand, no queue.",
+    "timing": "9:00 to 17:00, you choose the time",
+    "duration": "1 hour inside",
+    "drive_time": "in the medina",
+    "price_eur": 15,
+    "badge": "Most visited",
+    "scene": "palace",
+    "role": "lead",
+    "highlights": [
+      "Entry ticket bought for you",
+      "No ticket queue",
+      "Host at the gate at the time you choose"
+    ],
+    "includes": [
+      "Entry ticket",
+      "Host at the gate"
+    ],
+    "know_before": [
+      "Children under 7 enter free: don't count them as guests",
+      "Opening hours can change on religious holidays. We tell you on WhatsApp if they do",
+      "This is a booking service. We are not the monument's official ticket office"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose your time between 9:00 and 17:00"
+      },
+      {
+        "t": "At your time",
+        "s": "A Tariq host meets you at the gate at your time, hands you the ticket and walks you past the ticket queue"
+      },
+      {
+        "t": "Inside",
+        "s": "Visit at your own pace, or with a guide if you added one"
+      }
+    ],
+    "sort": 146,
+    "addons": [
+      {
+        "id": "guide",
+        "label": "Licensed guide inside, 1 hour",
+        "eur": 25,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "tkt",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "per": "pp",
+    "excludes": [
+      "Transport (add a ride if you need one)",
+      "Tips"
+    ],
+    "id": "saadian",
+    "title": "Saadian Tombs ticket",
+    "subtitle": "Ticket",
+    "blurb": "The 16th-century royal tombs, sealed for centuries. Small rooms, long queues. Skip the ticket one.",
+    "timing": "9:00 to 17:00, you choose the time",
+    "duration": "1 hour inside",
+    "drive_time": "in the medina",
+    "price_eur": 15,
+    "badge": null,
+    "scene": "city",
+    "role": "core",
+    "highlights": [
+      "Entry ticket bought for you",
+      "No ticket queue",
+      "Host at the gate at the time you choose"
+    ],
+    "includes": [
+      "Entry ticket",
+      "Host at the gate"
+    ],
+    "know_before": [
+      "Children under 7 enter free: don't count them as guests",
+      "Opening hours can change on religious holidays. We tell you on WhatsApp if they do",
+      "This is a booking service. We are not the monument's official ticket office"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose your time between 9:00 and 17:00"
+      },
+      {
+        "t": "At your time",
+        "s": "A Tariq host meets you at the gate at your time, hands you the ticket and walks you past the ticket queue"
+      },
+      {
+        "t": "Inside",
+        "s": "Visit at your own pace, or with a guide if you added one"
+      }
+    ],
+    "sort": 147,
+    "addons": [
+      {
+        "id": "guide",
+        "label": "Licensed guide inside, 1 hour",
+        "eur": 25,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "tkt",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "per": "pp",
+    "excludes": [
+      "Transport (add a ride if you need one)",
+      "Tips"
+    ],
+    "id": "badi",
+    "title": "El Badi Palace ticket",
+    "subtitle": "Ticket",
+    "blurb": "The ruined palace of the Saadian sultans, storks on the walls, the view from the terrace.",
+    "timing": "9:00 to 17:00, you choose the time",
+    "duration": "1 hour inside",
+    "drive_time": "in the medina",
+    "price_eur": 15,
+    "badge": null,
+    "scene": "ksar",
+    "role": "core",
+    "highlights": [
+      "Entry ticket bought for you",
+      "No ticket queue",
+      "Host at the gate at the time you choose"
+    ],
+    "includes": [
+      "Entry ticket",
+      "Host at the gate"
+    ],
+    "know_before": [
+      "Children under 7 enter free: don't count them as guests",
+      "Opening hours can change on religious holidays. We tell you on WhatsApp if they do",
+      "This is a booking service. We are not the monument's official ticket office"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose your time between 9:00 and 17:00"
+      },
+      {
+        "t": "At your time",
+        "s": "A Tariq host meets you at the gate at your time, hands you the ticket and walks you past the ticket queue"
+      },
+      {
+        "t": "Inside",
+        "s": "Visit at your own pace, or with a guide if you added one"
+      }
+    ],
+    "sort": 148,
+    "addons": [
+      {
+        "id": "guide",
+        "label": "Licensed guide inside, 1 hour",
+        "eur": 25,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "tkt",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "per": "pp",
+    "excludes": [
+      "Transport (add a ride if you need one)",
+      "Tips"
+    ],
+    "id": "benyoussef",
+    "title": "Ben Youssef Madrasa ticket",
+    "subtitle": "Ticket",
+    "blurb": "The old Quranic school in the north medina: carved stucco, cedar and the student cells upstairs.",
+    "timing": "9:00 to 17:00, you choose the time",
+    "duration": "1 hour inside",
+    "drive_time": "in the medina",
+    "price_eur": 12,
+    "badge": null,
+    "scene": "riad",
+    "role": "core",
+    "highlights": [
+      "Entry ticket bought for you",
+      "No ticket queue",
+      "Host at the gate at the time you choose"
+    ],
+    "includes": [
+      "Entry ticket",
+      "Host at the gate"
+    ],
+    "know_before": [
+      "Children under 7 enter free: don't count them as guests",
+      "Opening hours can change on religious holidays. We tell you on WhatsApp if they do",
+      "This is a booking service. We are not the monument's official ticket office"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose your time between 9:00 and 17:00"
+      },
+      {
+        "t": "At your time",
+        "s": "A Tariq host meets you at the gate at your time, hands you the ticket and walks you past the ticket queue"
+      },
+      {
+        "t": "Inside",
+        "s": "Visit at your own pace, or with a guide if you added one"
+      }
+    ],
+    "sort": 149,
+    "addons": [
+      {
+        "id": "guide",
+        "label": "Licensed guide inside, 1 hour",
+        "eur": 25,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "tkt",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "per": "pp",
+    "excludes": [
+      "Transport (add a ride if you need one)",
+      "Tips"
+    ],
+    "id": "secret",
+    "title": "Le Jardin Secret ticket",
+    "subtitle": "Ticket",
+    "blurb": "A restored riad garden in the heart of the medina, with a tower view over the rooftops.",
+    "timing": "9:00 to 17:00, you choose the time",
+    "duration": "1 hour inside",
+    "drive_time": "in the medina",
+    "price_eur": 15,
+    "badge": null,
+    "scene": "garden",
+    "role": "core",
+    "highlights": [
+      "Entry ticket bought for you",
+      "No ticket queue",
+      "Host at the gate at the time you choose"
+    ],
+    "includes": [
+      "Entry ticket",
+      "Host at the gate"
+    ],
+    "know_before": [
+      "Children under 7 enter free: don't count them as guests",
+      "Opening hours can change on religious holidays. We tell you on WhatsApp if they do",
+      "This is a booking service. We are not the monument's official ticket office"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose your time between 9:00 and 17:00"
+      },
+      {
+        "t": "At your time",
+        "s": "A Tariq host meets you at the gate at your time, hands you the ticket and walks you past the ticket queue"
+      },
+      {
+        "t": "Inside",
+        "s": "Visit at your own pace, or with a guide if you added one"
+      }
+    ],
+    "sort": 150,
+    "addons": [
+      {
+        "id": "guide",
+        "label": "Licensed guide inside, 1 hour",
+        "eur": 25,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
     "id": "henna",
     "city": "marrakech",
     "category": "svc",
@@ -1438,7 +1850,7 @@
       "We use natural henna only, never black henna",
       "Let it dry 1–2 hours and avoid water for the night"
     ],
-    "sort": 150,
+    "sort": 160,
     "active": true,
     "addons": [
       {
@@ -1507,7 +1919,7 @@
     "know_before": [
       "Tell us in the notes if you prefer a female or male therapist"
     ],
-    "sort": 160,
+    "sort": 170,
     "active": true,
     "addons": [
       {
@@ -1577,7 +1989,7 @@
       "Your riad needs to allow use of its kitchen. We check for you",
       "Tell us allergies in the notes"
     ],
-    "sort": 170,
+    "sort": 180,
     "active": true,
     "addons": [
       {
@@ -1652,7 +2064,7 @@
       "Tell us in the notes: cut, shave or both",
       "Kids welcome"
     ],
-    "sort": 172,
+    "sort": 182,
     "addons": [
       {
         "id": "both",
@@ -1720,7 +2132,7 @@
       "Book at least 2 days ahead",
       "Proposal? Tell us in the notes, we plan it quietly"
     ],
-    "sort": 174,
+    "sort": 184,
     "addons": [
       {
         "id": "hour",
@@ -1788,7 +2200,7 @@
     "know_before": [
       "One kit per person"
     ],
-    "sort": 180,
+    "sort": 190,
     "active": true,
     "addons": [
       {
@@ -1862,7 +2274,7 @@
     "know_before": [
       "One kit per person"
     ],
-    "sort": 190,
+    "sort": 200,
     "active": true,
     "addons": [],
     "itinerary": [
@@ -1922,7 +2334,7 @@
       "Pushchairs are hard work on medina lanes and steps. A carrier is easier",
       "Tell us your baby's age in the notes"
     ],
-    "sort": 200,
+    "sort": 210,
     "active": true,
     "addons": [
       {

@@ -84,16 +84,21 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
     },
     {
       id: "journeys",
-      h: "Day trips and journeys",
+      h: "Day trips, tours and activities",
       items: [
         {
           q: "What's the difference between Agafay and the Sahara?",
-          a: "Agafay is a stone desert 40 minutes from Marrakech, good for a sunset dinner. The big Sahara dunes at Merzouga are about 9 hours away by road, so they need the 3-day trip, or 4 days if you finish in Fes.",
-          link: ["/c/des", "Tours & journeys"],
+          a: "Agafay is a stone desert 40 minutes from Marrakech, good for a sunset dinner. The big Sahara dunes at Merzouga are about 9 hours away by road, so they need the 3-day tour, or 4 days if you finish in Fes.",
+          link: ["/c/des", "Multi-day tours"],
         },
         {
           q: "Shared or private?",
           a: "Shared trips run in a minivan with other travellers. Most trips have a private option: your own car and driver, your own pace.",
+        },
+        {
+          q: "Are your monument tickets official?",
+          a: "We are not the monuments' ticket office. We buy the official entry ticket for you, and a host meets you at the gate at the time you chose, so you skip the ticket queue. Our price includes the ticket and that service.",
+          link: ["/c/tkt", "Tickets"],
         },
         {
           q: "Are there shopping stops?",
@@ -117,7 +122,7 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
         {
           q: "Can I rent baby gear?",
           a: "Yes. The baby kit, with a travel cot, high chair and car seat, is delivered and set up at your riad.",
-          link: ["/c/kit", "Kits & baby"],
+          link: ["/c/svc", "Concierge, kits & baby"],
         },
       ],
     },

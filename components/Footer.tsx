@@ -9,17 +9,17 @@ const cols: { h: string; links: [string, string][] }[] = [
     links: [
       ["/c/trf", "Airport & transfers"],
       ["/c/exc", "Day trips"],
-      ["/c/des", "Tours & journeys"],
+      ["/c/des", "Multi-day tours"],
       ["/c/act", "Activities"],
-      ["/c/svc", "Concierge services"],
-      ["/c/kit", "Kits & baby"],
+      ["/c/tkt", "Monument tickets"],
+      ["/c/svc", "Concierge, kits & baby"],
+      ["/packages", "Packages"],
     ],
   },
   {
     h: "Help",
     links: [
       ["/plan", "Plan my trip"],
-      ["/packages", "Packages"],
       ["/contact", "Contact"],
       ["/faq", "FAQ"],
       ["/account", "Wishlist & account"],
