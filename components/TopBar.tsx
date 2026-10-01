@@ -87,21 +87,6 @@ export function TopBar() {
           </button>
           <Logo />
 
-          <nav aria-label={copy.nav.main} className="flex min-w-0 flex-1 gap-0.5 mid:hidden">
-            {MENU.map((m) => {
-              const active = path.startsWith(m.href);
-              return (
-                <Link
-                  key={m.href}
-                  href={m.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`whitespace-nowrap rounded-[10px] px-2 py-2 text-[14.5px] font-bold no-underline hover:bg-soft hover:text-ink ${active ? "bg-soft text-ink" : "text-muted"}`}
-                >
-                  {m.label}
-                </Link>
-              );
-            })}
-          </nav>
 
           <div className="ml-auto flex flex-none items-center gap-2 phone:gap-1">
             <span className="phone:hidden">

@@ -28,7 +28,7 @@ export function Hero() {
 
 export function Promises() {
   return (
-    <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2.5 p-0 pb-2 pt-4 text-sm font-bold text-muted">
+    <ul className="m-0 flex list-none flex-wrap gap-x-8 gap-y-2.5 p-0 pb-2 pt-6 text-sm font-bold text-muted">
       {copy.promises.map((p) => (
         <li key={p} className="inline-flex items-center gap-2 before:h-2 before:w-2 before:rounded-full before:bg-sun before:content-['']">
           {p}
@@ -73,7 +73,7 @@ export function Solved({ products }: { products: PublicProduct[] }) {
 
 export function How() {
   return (
-    <section className="grid grid-cols-3 gap-3.5 pb-2.5 pt-[30px] phone:grid-cols-1">
+    <section className="grid grid-cols-3 gap-8 pb-16 pt-20 phone:grid-cols-1 phone:gap-6 phone:pt-14">
       {copy.how.map((h) => (
         <div key={h.b} className="border-t-[3px] border-blue pt-3">
           <b className="mb-0.5 block text-base">{h.b}</b>
@@ -88,8 +88,8 @@ export function How() {
 export function Rail({ id, h, p, href, products }: { id: string; h: string; p: string; href: string; products: PublicProduct[] }) {
   if (!products.length) return null;
   return (
-    <section aria-labelledby={`rail-${id}`} className="pt-9">
-      <div className="mb-3.5 flex items-end justify-between gap-4">
+    <section aria-labelledby={`rail-${id}`} className="pt-20 phone:pt-14">
+      <div className="mb-6 flex items-end justify-between gap-4">
         <div className="min-w-0">
           <h2 id={`rail-${id}`} className="display m-0 text-[32px] leading-none phone:text-[28px]">{h}</h2>
           <p className="m-0 mt-1.5 text-[14.5px] text-muted">{p}</p>
@@ -118,8 +118,8 @@ const TILE_SCENE: Record<Category, string> = { exc: "valley", des: "dunes", act:
 export function CategoryTiles({ counts }: { counts: Record<Category, number> }) {
   const cats = SHOP_CATEGORIES;
   return (
-    <section aria-labelledby="browse-h" className="pt-10">
-      <div className="mb-3.5 flex items-end justify-between gap-4">
+    <section aria-labelledby="browse-h" className="pt-20 phone:pt-14">
+      <div className="mb-6 flex items-end justify-between gap-4">
         <h2 id="browse-h" className="display m-0 text-[32px] leading-none phone:text-[28px]">{copy.rails.browseH}</h2>
         <Link href="/c/all" className="flex-none whitespace-nowrap text-sm font-extrabold text-blue no-underline hover:underline">
           {copy.rails.browseAll} →
@@ -143,8 +143,8 @@ export function CategoryTiles({ counts }: { counts: Record<Category, number> }) 
 export function PackagesRail({ packages }: { packages: PackageView[] }) {
   if (!packages.length) return null;
   return (
-    <section aria-labelledby="rail-packages" className="pt-9">
-      <div className="mb-3.5 flex items-end justify-between gap-4">
+    <section aria-labelledby="rail-packages" className="pt-20 phone:pt-14">
+      <div className="mb-6 flex items-end justify-between gap-4">
         <div className="min-w-0">
           <h2 id="rail-packages" className="display m-0 text-[32px] leading-none phone:text-[28px]">Ready-made trips</h2>
           <p className="m-0 mt-1.5 text-[14.5px] text-muted">A starting point. Tell us your dates and we adapt it to your group.</p>

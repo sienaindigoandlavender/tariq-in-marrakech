@@ -40,7 +40,7 @@ export function AskBar() {
             key={s}
             type="button"
             onClick={() => go(s)}
-            className="min-h-[36px] rounded-full border border-white/55 bg-white/15 px-3 text-[13px] font-bold text-white"
+            className="min-h-[36px] rounded-full border border-white/55 bg-white/15 px-3 text-[13px] font-bold text-white phone:hidden"
           >
             {s}
           </button>

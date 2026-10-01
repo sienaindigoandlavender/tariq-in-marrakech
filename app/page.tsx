@@ -40,13 +40,13 @@ export default async function ExplorePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(agency).replace(/</g, "\\u003c") }} />
       <Hero />
       <Promises />
-      {rails.map((r, i) => (
+      {rails.map((r) => (
         <div key={r.key}>
           <Rail id={r.key} h={r.h} p={r.p} href={r.href} products={r.products} />
-          {i === 0 ? <PackagesRail packages={packages} /> : null}
         </div>
       ))}
       <CategoryTiles counts={counts} />
+      <PackagesRail packages={packages} />
       <How />
     </div>
   );

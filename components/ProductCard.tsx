@@ -53,9 +53,18 @@ export function PriceFrom({ p, size = "md" }: { p: Pick<CardProduct, "price_eur"
   );
 }
 
-export function Assurances({ p, className = "" }: { p?: Parameters<typeof rules>[0] & { price_eur?: number }; className?: string }) {
+export function Assurances({ p, className = "", compact = false }: { p?: Parameters<typeof rules>[0] & { price_eur?: number }; className?: string; compact?: boolean }) {
   const r = rules(p ?? {});
   const free = p?.price_eur === 0;
+  // Compact (cards): one line only. Free cancellation, or the one rule that matters.
+  if (compact)
+    return r.refundable ? (
+      <span className={`inline-flex items-center gap-1.5 text-[13px] font-bold text-ok ${className}`}>
+        <Check /> {copy.listing.freeCancel}
+      </span>
+    ) : (
+      <span className={`text-[13px] font-bold text-muted ${className}`}>{[r.leadNote, "Non-refundable"].filter(Boolean).join(" · ")}</span>
+    );
   return (
     <div className={`grid gap-0.5 text-[13px] font-bold ${className}`}>
       {r.refundable ? (
@@ -106,16 +115,15 @@ export function ProductCard({ p, uid }: { p: CardProduct; uid?: string }) {
     <article className="group flex min-w-0 flex-col gap-2.5">
       <div className="relative">
         <Link href={href} tabIndex={-1} aria-hidden="true">
-          <Poster scene={p.scene} image_url={p.image_url} alt={p.title} uid={uid ?? `c-${p.id}`} tag={p.subtitle} badge={p.badge} dist={distLabel(p)} hover />
+          <Poster scene={p.scene} image_url={p.image_url} alt={p.title} uid={uid ?? `c-${p.id}`} badge={p.badge} dist={distLabel(p)} hover />
         </Link>
         <Heart id={p.id} className="absolute bottom-0.5 left-0.5" />
       </div>
-      <Link href={href} className="grid gap-1.5 no-underline">
+      <Link href={href} className="grid gap-2 no-underline">
         <h3 className="m-0 text-[16.5px] font-extrabold leading-tight group-hover:underline">{p.title}</h3>
-        <p className="m-0 line-clamp-2 text-sm text-muted">{p.blurb}</p>
         <span className="text-[13px] font-semibold text-muted">{p.duration}</span>
-        <Badges p={p} max={3} />
-        <Assurances p={p} />
+        <Badges p={p} max={2} />
+        <Assurances p={p} compact />
         <PriceFrom p={p} />
       </Link>
     </article>

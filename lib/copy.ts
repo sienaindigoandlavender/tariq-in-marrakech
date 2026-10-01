@@ -44,11 +44,8 @@ export const copy = {
   promises: [
     "We queue. You don't.",
     "Free cancellation up to 24 h",
-    "Reserve now, pay later",
     "No hidden fees",
-    "Licensed guides and transport",
-    "No shopping stops",
-    "A real person on WhatsApp, 8:00–22:00",
+    "A real person on WhatsApp",
   ],
 
   book: { h: "Book", p: "Final prices. No booking fees." },

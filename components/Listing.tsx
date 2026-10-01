@@ -88,7 +88,7 @@ export function Listing({ products, initial = "all" }: { products: PublicProduct
       </div>
 
       {list.length ? (
-        <div className="grid grid-cols-4 gap-x-[18px] gap-y-6 tab:grid-cols-3 phone:grid-cols-2 phone:gap-x-3 phone:gap-y-[18px]">
+        <div className="grid grid-cols-4 gap-x-6 gap-y-12 tab:grid-cols-3 phone:grid-cols-2 phone:gap-x-3 phone:gap-y-8">
           {list.map((p) => (
             <ProductCard key={p.id} p={p} />
           ))}
