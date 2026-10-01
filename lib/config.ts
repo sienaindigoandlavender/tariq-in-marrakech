@@ -4,7 +4,7 @@ export const MAD_RATE = Number(process.env.NEXT_PUBLIC_MAD_RATE ?? process.env.M
 /** Display-only rates from EUR. Guests always pay in EUR or MAD. Update in Vercel env vars when rates move. */
 export const USD_RATE = Number(process.env.NEXT_PUBLIC_USD_RATE ?? 1.08);
 export const GBP_RATE = Number(process.env.NEXT_PUBLIC_GBP_RATE ?? 0.85);
-export const OPERATOR_WHATSAPP = process.env.NEXT_PUBLIC_OPERATOR_WHATSAPP ?? "212600000000";
+export const OPERATOR_WHATSAPP = process.env.NEXT_PUBLIC_OPERATOR_WHATSAPP || "212618070450";
 
 /** "212600000000" -> "+212 600 000 000" */
 export function formatWhatsapp(digits: string = OPERATOR_WHATSAPP): string {

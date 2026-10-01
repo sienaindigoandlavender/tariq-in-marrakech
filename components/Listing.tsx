@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { copy } from "@/lib/copy";
 import { tomorrow } from "@/lib/dates";
+import { groupConcierge } from "@/lib/conciergeGroups";
 import { SHOP_CATEGORIES, inTab, type Category, type PublicProduct } from "@/lib/types";
 import { useAppState } from "./AppState";
 import { ProductCard } from "./ProductCard";
@@ -87,7 +88,22 @@ export function Listing({ products, initial = "all" }: { products: PublicProduct
         ))}
       </div>
 
-      {list.length ? (
+      {list.length && cat === "svc" ? (
+        <div className="grid gap-14">
+          {groupConcierge(list).map((g) => (
+            <section key={g.id} aria-labelledby={`cg-${g.id}`}>
+              <h3 id={`cg-${g.id}`} className="m-0 mb-5 text-[13px] font-extrabold uppercase tracking-[.16em] text-muted">
+                {g.h}
+              </h3>
+              <div className="grid grid-cols-4 gap-x-6 gap-y-12 tab:grid-cols-3 phone:grid-cols-2 phone:gap-x-3 phone:gap-y-8">
+                {g.items.map((p) => (
+                  <ProductCard key={p.id} p={p} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : list.length ? (
         <div className="grid grid-cols-4 gap-x-6 gap-y-12 tab:grid-cols-3 phone:grid-cols-2 phone:gap-x-3 phone:gap-y-8">
           {list.map((p) => (
             <ProductCard key={p.id} p={p} />

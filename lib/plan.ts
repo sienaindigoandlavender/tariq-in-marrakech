@@ -17,7 +17,7 @@ export const NEEDS = [
   { id: "daytrips", label: "Day trips" },
   { id: "desert", label: "Sahara or multi-day tour" },
   { id: "activities", label: "Balloon, quad, camels" },
-  { id: "riad", label: "Concierge: henna, chef, barber, photographer" },
+  { id: "riad", label: "Concierge: massage, beauty, chef, photographer" },
   { id: "baby", label: "Baby equipment" },
   { id: "kits", label: "Trek or desert kits" },
 ] as const;

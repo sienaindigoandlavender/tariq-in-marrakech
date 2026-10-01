@@ -6,7 +6,8 @@ type R = Pick<Product, "lead_days" | "prepay_only" | "refundable">;
 export function rules(p: Partial<R>) {
   const refundable = p.refundable !== false;
   const prepay = p.prepay_only === true;
-  const lead = Math.max(1, Number(p.lead_days) || 1);
+  const n = Number(p.lead_days);
+  const lead = p.lead_days === null || p.lead_days === undefined || Number.isNaN(n) ? 1 : Math.max(0, Math.round(n));
   return {
     refundable,
     prepay,

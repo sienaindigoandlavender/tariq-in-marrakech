@@ -2,7 +2,7 @@
 
 -- Booking rules. Defaults keep every existing product as it was: bookable from tomorrow,
 -- pay online or on the day, free cancellation.
-alter table products add column if not exists lead_days int not null default 1 check (lead_days between 1 and 60);
+alter table products add column if not exists lead_days int not null default 1 check (lead_days between 0 and 60);
 alter table products add column if not exists prepay_only boolean not null default false;
 alter table products add column if not exists refundable boolean not null default true;
 

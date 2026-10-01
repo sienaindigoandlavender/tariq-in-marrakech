@@ -122,7 +122,7 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
       items: [
         {
           q: "What can you arrange at my riad?",
-          a: "A henna artist in the evening, a massage, a barber, a photographer for a medina shoot, and a private chef dinner. They come to you.",
+          a: "Massage, facial, manicure, pedicure, a blow-out, henna, a barber, a doctor visit, a photographer and a private chef. They come to you.",
           link: ["/c/svc", "Concierge"],
         },
         {

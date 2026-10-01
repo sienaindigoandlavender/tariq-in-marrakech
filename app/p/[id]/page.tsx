@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
             <h1 className="m-0 text-[clamp(28px,4vw,40px)] font-extrabold leading-tight">{p.title}</h1>
             <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
               {booked >= SOCIAL_MIN ? <span className="font-bold text-rose-strong">Booked {booked} times this week</span> : null}
-              {p.lead_days <= 1 && p.category !== "gft" ? <span className="font-bold text-ok">Available tomorrow</span> : null}
+              {p.category === "gft" ? null : p.lead_days === 0 ? <span className="font-bold text-ok">Available today</span> : p.lead_days === 1 ? <span className="font-bold text-ok">Available tomorrow</span> : null}
               <ShareButton title={p.title} />
             </div>
           </header>

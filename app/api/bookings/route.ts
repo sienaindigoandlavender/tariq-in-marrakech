@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { copy } from "@/lib/copy";
 import { CITY } from "@/lib/config";
-import { isYmd, tomorrow, addDays, today, fmtDate } from "@/lib/dates";
+import { isYmd, tomorrow, addDays, today, fmtDate, leadOf } from "@/lib/dates";
 import { getProduct } from "@/lib/db";
 import { hasPrivate, price } from "@/lib/pricing";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
@@ -32,8 +32,8 @@ export async function POST(req: Request) {
 
   // Validate. Any client-sent total is ignored: the server prices the booking itself.
   const date = str(body.date, 10);
-  if (!isYmd(date) || date < tomorrow() || date > addDays(tomorrow(), 400)) return bad(E.date, "date");
-  const earliest = addDays(today(), Math.max(1, product.lead_days));
+  if (!isYmd(date) || date < today() || date > addDays(tomorrow(), 400)) return bad(E.date, "date");
+  const earliest = addDays(today(), leadOf(product));
   if (date < earliest) return bad(`${product.title} needs at least ${product.lead_days} days' notice. Choose ${fmtDate(earliest)} or later.`, "date");
   const guests = Number(body.guests);
   const maxGuests = product.per === "car" ? 9 : 14;

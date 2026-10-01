@@ -3003,6 +3003,356 @@
     "private_pp": null
   },
   {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "rhassoul",
+        "label": "Rhassoul clay mask",
+        "eur": 10,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "id": "facial",
+    "title": "Facial at your riad",
+    "blurb": "A hydrating facial in your room after the sun and dust of the medina.",
+    "timing": "10:00 to 20:00",
+    "duration": "60 minutes",
+    "price_eur": 40,
+    "scene": "beauty",
+    "sort": 171,
+    "highlights": [
+      "In your room, no salon to find",
+      "Cleanse, scrub, mask, massage",
+      "Natural Moroccan products"
+    ],
+    "includes": [
+      "Beautician at your riad",
+      "Products and towels"
+    ],
+    "know_before": [
+      "Tell us about sensitive skin or allergies in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose a time between 10:00 and 20:00"
+      },
+      {
+        "t": "Arrival",
+        "s": "The beautician comes to your room"
+      },
+      {
+        "t": "60 min",
+        "s": "Cleanse, scrub, mask and face massage"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "gel",
+        "label": "Gel instead of polish",
+        "eur": 10,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "pedi",
+        "label": "Add a pedicure",
+        "eur": 20,
+        "per": "pp",
+        "popular": true,
+        "sort": 20
+      }
+    ],
+    "id": "manicure",
+    "title": "Manicure at your riad",
+    "blurb": "Nails done in your room: shape, care and polish, or gel that lasts the trip.",
+    "timing": "10:00 to 20:00",
+    "duration": "45 minutes",
+    "price_eur": 20,
+    "scene": "beauty",
+    "sort": 172,
+    "highlights": [
+      "Comes to you",
+      "Classic polish or gel",
+      "New files for every client"
+    ],
+    "includes": [
+      "Manicurist at your riad",
+      "Polish"
+    ],
+    "know_before": [
+      "Tell us classic or gel in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose a time"
+      },
+      {
+        "t": "Arrival",
+        "s": "The manicurist comes to your riad"
+      },
+      {
+        "t": "45 min",
+        "s": "Shape, care and polish"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "gel",
+        "label": "Gel instead of polish",
+        "eur": 10,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "id": "pedicure",
+    "title": "Pedicure at your riad",
+    "blurb": "After a day on the cobbles: soak, scrub, care and polish, in your room.",
+    "timing": "10:00 to 20:00",
+    "duration": "60 minutes",
+    "price_eur": 25,
+    "scene": "beauty",
+    "sort": 173,
+    "highlights": [
+      "Comes to you",
+      "Foot soak and scrub",
+      "Classic polish or gel"
+    ],
+    "includes": [
+      "Pedicurist at your riad",
+      "Polish"
+    ],
+    "know_before": [
+      "Tell us classic or gel in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose a time"
+      },
+      {
+        "t": "Arrival",
+        "s": "The pedicurist comes to your riad"
+      },
+      {
+        "t": "60 min",
+        "s": "Soak, scrub, care and polish"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "updo",
+        "label": "Updo or braids instead",
+        "eur": 15,
+        "per": "pp",
+        "popular": false,
+        "sort": 10
+      }
+    ],
+    "id": "blowout",
+    "title": "Blow-out at your riad",
+    "blurb": "A hairdresser comes to you before dinner or an event. Wash, blow-dry, styled.",
+    "timing": "9:00 to 20:00",
+    "duration": "45 minutes",
+    "price_eur": 30,
+    "scene": "hair",
+    "sort": 174,
+    "highlights": [
+      "Comes to you, with the dryer and tools",
+      "Wash, blow-dry and style",
+      "Perfect before a dinner or a shoot"
+    ],
+    "includes": [
+      "Hairdresser at your riad",
+      "Products and tools"
+    ],
+    "know_before": [
+      "Tell us your hair length and the look you want in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose a time"
+      },
+      {
+        "t": "Arrival",
+        "s": "The hairdresser comes to your riad"
+      },
+      {
+        "t": "45 min",
+        "s": "Wash, blow-dry and style"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 0,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Medicines, bought at the pharmacy",
+      "Tests or hospital care"
+    ],
+    "addons": [
+      {
+        "id": "pharmacy",
+        "label": "Pharmacy run, medicines delivered",
+        "eur": 10,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "id": "doctor",
+    "title": "Doctor visit at your riad",
+    "blurb": "An English- or French-speaking doctor comes to you. Stomach, fever, sunstroke: no clinic, no waiting room.",
+    "timing": "Today, day or evening",
+    "duration": "About 30 minutes",
+    "price_eur": 80,
+    "scene": "doctor",
+    "sort": 178,
+    "highlights": [
+      "Comes to your riad or hotel, today",
+      "English or French spoken",
+      "Receipt for your travel insurance"
+    ],
+    "includes": [
+      "Home visit by a licensed doctor",
+      "Examination and prescription"
+    ],
+    "know_before": [
+      "Emergency? Call 15 (ambulance) first. This service is not for emergencies",
+      "Write the symptoms, age and number of people in the notes",
+      "Keep the receipt for your travel insurance"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Tell us the symptoms in the notes"
+      },
+      {
+        "t": "Right away",
+        "s": "We call you on WhatsApp to arrange the visit"
+      },
+      {
+        "t": "The visit",
+        "s": "The doctor examines you at your riad and writes a prescription"
+      },
+      {
+        "t": "After",
+        "s": "A pharmacy delivery can be arranged"
+      }
+    ]
+  },
+  {
     "id": "chef",
     "city": "marrakech",
     "category": "svc",

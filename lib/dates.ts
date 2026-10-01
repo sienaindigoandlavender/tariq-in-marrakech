@@ -24,9 +24,15 @@ export function fmtDate(ymd: string, opts: Intl.DateTimeFormatOptions = { weekda
   return new Date(ymd + "T12:00:00Z").toLocaleDateString("en-GB", { ...opts, timeZone: "UTC" });
 }
 
+/** Days of notice: 1 by default, 0 = bookable today (e.g. a doctor visit). */
+export function leadOf(p: { lead_days?: number | null }): number {
+  const n = Number(p.lead_days);
+  return p.lead_days === null || p.lead_days === undefined || Number.isNaN(n) ? 1 : Math.max(0, Math.round(n));
+}
+
 /** First bookable date for a product: tomorrow, or later when it needs more notice. */
 export function earliest(p: { lead_days?: number | null }): string {
-  return addDays(today(), Math.max(1, Number(p.lead_days) || 1));
+  return addDays(today(), leadOf(p));
 }
 
 /** A preferred date if it's still bookable for this product, otherwise the first bookable one. */
