@@ -98,6 +98,8 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
       mode: qm === "private" && hasPrivate(p) ? "private" : "shared",
       adds: (sp.get("adds") ?? "").split(",").filter((a) => p.addons.some((x) => x.id === a)),
     };
+    const qn = sp.get("note");
+    if (qn) setNotes(qn.slice(0, 1000));
     if (last) {
       if (p.category !== "gft") setPickup(last.pickup);
       setName(last.name);

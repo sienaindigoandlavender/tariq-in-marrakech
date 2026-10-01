@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BookSection } from "@/components/Explore";
+import { TransferSearch } from "@/components/TransferSearch";
 import { copy } from "@/lib/copy";
 import { getProducts, recommended, toPublic } from "@/lib/db";
 import { CATEGORIES, type Category } from "@/lib/types";
@@ -40,6 +41,11 @@ export default async function CategoryPage({ params }: { params: { category: str
       <nav aria-label="Breadcrumb" className="pt-5 text-sm text-muted">
         <Link href="/">{copy.nav.explore}</Link> › <span aria-current="page">{cat === "all" ? copy.rails.browseAll : copy.categories[cat]}</span>
       </nav>
+      {cat === "trf" ? (
+        <div className="pt-6">
+          <TransferSearch products={products.filter((p) => p.category === "trf")} />
+        </div>
+      ) : null}
       <BookSection products={products} initial={cat} heading={cat === "all" ? copy.rails.browseAll : copy.categories[cat]} />
     </div>
   );

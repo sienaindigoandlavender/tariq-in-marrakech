@@ -5,6 +5,9 @@
 alter table products add column if not exists lead_days int not null default 1 check (lead_days between 0 and 60);
 alter table products add column if not exists prepay_only boolean not null default false;
 alter table products add column if not exists refundable boolean not null default true;
+-- Allow same-day services (lead_days 0), also on databases created with the earlier 1-60 rule.
+alter table products drop constraint if exists products_lead_days_check;
+alter table products add constraint products_lead_days_check check (lead_days between 0 and 60);
 
 -- Wishlist: one row per saved product per customer (Supabase Auth user).
 create table if not exists wishlists (
