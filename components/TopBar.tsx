@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { copy } from "@/lib/copy";
-import { formatWhatsapp, waLink } from "@/lib/config";
+import { waLink } from "@/lib/config";
 import { Logo } from "./Logo";
 import { CURRENCIES, useAppState } from "./AppState";
 import { askTariq, chatHidden } from "./ChatWidget";
@@ -66,12 +66,24 @@ export function TopBar() {
     };
   }, [open]);
 
-  const item = "rounded-[12px] px-3 py-2.5 text-[16px] font-bold text-ink no-underline hover:bg-soft";
+  const link = "py-1.5 text-[15px] font-bold uppercase tracking-[.16em] no-underline hover:text-blue aria-[current=page]:text-blue";
 
   return (
     <>
-      <header className="sticky z-30 border-b border-line bg-bg/90 backdrop-blur-md print:hidden" style={{ top: "env(safe-area-inset-top, 0px)" }}>
+      <header className="sticky z-[47] border-b border-line bg-bg/90 backdrop-blur-md print:hidden" style={{ top: "env(safe-area-inset-top, 0px)" }}>
         <div className="wrap flex h-[62px] items-center gap-[18px] mid:gap-3">
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="site-menu"
+            className="-ml-2 grid h-11 w-11 flex-none place-items-center rounded-full text-ink hover:bg-soft"
+          >
+            <svg viewBox="0 0 28 28" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+              {open ? <path d="M18 6L8 14l10 8" /> : <path d="M4 10h20M4 17h12" />}
+            </svg>
+          </button>
           <Logo />
 
           <nav aria-label={copy.nav.main} className="flex min-w-0 flex-1 gap-0.5 mid:hidden">
@@ -113,69 +125,34 @@ export function TopBar() {
               {copy.nav.myTrip}
               <span className="tnum inline-grid h-5 min-w-5 place-items-center rounded-full bg-sun px-[5px] text-xs text-sun-ink">{trip.length}</span>
             </Link>
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              aria-label="Open menu"
-              aria-expanded={open}
-              aria-controls="site-menu"
-              className="grid h-10 w-10 place-items-center rounded-full text-ink hover:bg-soft"
-            >
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              </svg>
-            </button>
           </div>
         </div>
       </header>
 
       {open ? (
-        <div className="fixed inset-0 z-[60] print:hidden" role="dialog" aria-modal="true" aria-label="Menu" id="site-menu">
-          <button type="button" tabIndex={-1} aria-hidden="true" onClick={() => setOpen(false)} className="absolute inset-0 h-full w-full cursor-default bg-[rgb(10_8_28/.45)]" />
-          <div
-            className="absolute inset-y-0 right-0 flex w-[420px] flex-col overflow-y-auto bg-bg shadow-[-20px_0_60px_rgb(10_8_28/.2)] phone:w-full"
-            style={{ paddingTop: "env(safe-area-inset-top, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
-          >
-            <div className="flex h-[62px] flex-none items-center justify-between border-b border-line px-5">
-              <span className="text-sm font-extrabold uppercase tracking-[.08em] text-muted">Menu</span>
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" autoFocus className="grid h-10 w-10 place-items-center rounded-full hover:bg-soft">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-                  <path d="M6 6l12 12M18 6L6 18" />
-                </svg>
-              </button>
-            </div>
-
-            <nav aria-label="Book" className="grid px-3 pt-3">
+        <div className="fixed inset-x-0 bottom-0 z-[46] print:hidden" style={{ top: "calc(62px + env(safe-area-inset-top, 0px))" }} id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+          <button type="button" tabIndex={-1} aria-hidden="true" onClick={() => setOpen(false)} className="absolute inset-0 h-full w-full cursor-default bg-[rgb(10_8_28/.35)] phone:hidden" />
+          <div className="absolute inset-y-0 left-0 flex w-[380px] flex-col overflow-y-auto bg-soft phone:w-full" style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}>
+            <nav aria-label="Book" className="grid gap-1 px-[50px] pt-12 xs:px-10">
               {MENU.map((m) => (
-                <Link
-                  key={m.href}
-                  href={m.href}
-                  aria-current={path.startsWith(m.href) ? "page" : undefined}
-                  className="grid gap-0.5 rounded-[14px] px-3 py-3 no-underline hover:bg-soft aria-[current=page]:bg-soft"
-                >
-                  <span className="text-[22px] font-extrabold leading-tight text-ink">{m.label}</span>
-                  <span className="text-[13.5px] text-muted">{m.sub}</span>
+                <Link key={m.href} href={m.href} aria-current={path.startsWith(m.href) ? "page" : undefined} className={`${link} text-ink`}>
+                  {m.label}
                 </Link>
               ))}
             </nav>
-
-            <div className="mx-6 my-3 border-t border-line" />
-
-            <nav aria-label="More" className="grid grid-cols-2 gap-x-2 px-3">
+            <nav aria-label="More" className="grid gap-1 px-[50px] pt-9 xs:px-10">
               {EXTRA.map(([href, label]) => (
-                <Link key={href} href={href} className={item}>
+                <Link key={href} href={href} className={`${link} text-muted`}>
                   {label}
                 </Link>
               ))}
-              <Link href="/trip" className={item}>
-                {copy.nav.myTrip} {trip.length ? <span className="tnum text-muted">({trip.length})</span> : null}
+              <Link href="/trip" className={`${link} text-muted`}>
+                {copy.nav.myTrip}
+                {trip.length ? ` (${trip.length})` : ""}
               </Link>
-              <Link href="/account" className={item}>
+              <Link href="/account" className={`${link} text-muted`}>
                 Wishlist
               </Link>
-            </nav>
-
-            <div className="mt-auto grid gap-3 p-5">
               <button
                 type="button"
                 onClick={() => {
@@ -183,16 +160,16 @@ export function TopBar() {
                   if (chatHidden(path)) router.push("/concierge");
                   else askTariq();
                 }}
-                className="min-h-[50px] rounded-full bg-blue px-5 font-extrabold text-blue-ink"
+                className={`${link} text-left text-muted`}
               >
                 Ask Tariq
               </button>
-              <div className="flex items-center justify-between gap-3">
-                <Currency big />
-                <a href={waLink("Hi Tariq, ")} target="_blank" rel="noopener" className="text-sm font-bold text-ink no-underline">
-                  WhatsApp <span className="tnum">{formatWhatsapp()}</span>
-                </a>
-              </div>
+            </nav>
+            <div className="mt-auto flex items-center justify-between gap-3 px-[50px] py-8 xs:px-10">
+              <Currency />
+              <a href={waLink("Hi Tariq, ")} target="_blank" rel="noopener" className="text-[13px] font-bold tracking-[.06em] text-muted no-underline">
+                WHATSAPP
+              </a>
             </div>
           </div>
         </div>
