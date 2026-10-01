@@ -10,7 +10,7 @@ export const copy = {
     dayTrips: "Day trips",
     desert: "Multi-day tours",
     tours: "Activities",
-    tickets: "Tickets",
+    tickets: "Skip the line",
     transfers: "Transfers",
     atRiad: "Concierge",
     kits: "Kits & baby",
@@ -28,7 +28,7 @@ export const copy = {
     exc: "Day trips",
     des: "Multi-day tours",
     act: "Activities",
-    tkt: "Tickets",
+    tkt: "Skip the line",
     trf: "Transfers",
     svc: "Concierge",
     kit: "Kits & baby",
@@ -42,6 +42,7 @@ export const copy = {
   },
 
   promises: [
+    "We queue. You don't.",
     "Pay on arrival",
     "Pickup time on WhatsApp",
     "Licensed transport",

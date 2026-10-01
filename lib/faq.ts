@@ -98,7 +98,7 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
         {
           q: "Are your monument tickets official?",
           a: "We are not the monuments' ticket office. We buy the official entry ticket for you, and a host meets you at the gate at the time you chose, so you skip the ticket queue. Our price includes the ticket and that service.",
-          link: ["/c/tkt", "Tickets"],
+          link: ["/c/tkt", "Skip the line"],
         },
         {
           q: "Are there shopping stops?",
@@ -117,7 +117,13 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
         },
         {
           q: "Can you book restaurants?",
-          a: "We don't take restaurant commissions. Book the dinner ride with us, tell us the restaurant and time, and we book the table for free.",
+          a: "Yes, for free. Tell us the restaurant, time and number of guests and we call, book and confirm on WhatsApp. Add a ride there and back if you need one.",
+          link: ["/p/table", "Book a table"],
+        },
+        {
+          q: "Can you get us into Bacha Coffee without the wait?",
+          a: "Bacha Coffee takes no reservations, so we get you in at opening, before the queue builds, with the Dar el Bacha ticket already bought and a host at the door.",
+          link: ["/p/bacha", "Bacha Coffee, no queue"],
         },
         {
           q: "Can I rent baby gear?",

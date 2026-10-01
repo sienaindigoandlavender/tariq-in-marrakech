@@ -15,8 +15,8 @@ const MENU: { href: string; label: string; sub: string }[] = [
   { href: "/c/exc", label: copy.nav.dayTrips, sub: "Ourika, Ouzoud, Essaouira, Imlil" },
   { href: "/c/des", label: copy.nav.desert, sub: "Sahara, Zagora, on to Fes, the Atlas" },
   { href: "/c/act", label: copy.nav.tours, sub: "Balloon, Agafay, quad, camels" },
-  { href: "/c/tkt", label: copy.nav.tickets, sub: "Bahia Palace, Saadian Tombs, El Badi" },
-  { href: "/c/svc", label: copy.nav.atRiad, sub: "Henna, chef, barber, photographer, kits & baby" },
+  { href: "/c/tkt", label: copy.nav.tickets, sub: "Bacha Coffee, Bahia Palace, Saadian Tombs" },
+  { href: "/c/svc", label: copy.nav.atRiad, sub: "Restaurant tables, henna, chef, barber, kits & baby" },
 ];
 
 const EXTRA: [string, string][] = [

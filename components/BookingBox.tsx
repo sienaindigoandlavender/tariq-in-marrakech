@@ -62,7 +62,7 @@ export function MobileBookBar({ p }: { p: P }) {
     >
       <span className="text-sm leading-tight">
         <span className="text-muted">{copy.price.from} </span>
-        <b className="tnum text-lg">{money(p.price_eur)}</b>
+        <b className="tnum text-lg">{p.price_eur ? money(p.price_eur) : "Free"}</b>
         <span className="block text-xs text-muted">{perLabel(p.per)}</span>
       </span>
       <button type="button" onClick={check} className="min-h-[46px] rounded-full bg-blue px-5 font-extrabold text-blue-ink">

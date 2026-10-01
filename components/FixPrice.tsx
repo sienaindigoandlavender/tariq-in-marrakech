@@ -8,7 +8,7 @@ export function FixPrice({ eur, per }: { eur: number; per: string }) {
   const { money } = useAppState();
   return (
     <em className="text-[13.5px] font-extrabold not-italic text-blue">
-      {copy.price.from} <span className="tnum">{money(eur)}</span> {perLabel(per)}
+      {eur ? <>{copy.price.from} <span className="tnum">{money(eur)}</span> {perLabel(per)}</> : "Free"}
     </em>
   );
 }

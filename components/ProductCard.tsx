@@ -36,6 +36,7 @@ export function Heart({ id, className = "" }: { id: string; className?: string }
 export function PriceFrom({ p, size = "md" }: { p: Pick<CardProduct, "price_eur" | "was_eur" | "per">; size?: "md" | "lg" }) {
   const { money } = useAppState();
   const off = offPct(p.price_eur, p.was_eur);
+  if (!p.price_eur) return <span className={`font-extrabold text-ok ${size === "lg" ? "text-2xl" : "text-lg"}`}>Free</span>;
   return (
     <div className="flex flex-wrap items-baseline gap-1.5">
       {off ? (
@@ -51,8 +52,9 @@ export function PriceFrom({ p, size = "md" }: { p: Pick<CardProduct, "price_eur"
   );
 }
 
-export function Assurances({ p, className = "" }: { p?: Parameters<typeof rules>[0]; className?: string }) {
+export function Assurances({ p, className = "" }: { p?: Parameters<typeof rules>[0] & { price_eur?: number }; className?: string }) {
   const r = rules(p ?? {});
+  const free = p?.price_eur === 0;
   return (
     <div className={`grid gap-0.5 text-[13px] font-bold ${className}`}>
       {r.refundable ? (
@@ -60,7 +62,7 @@ export function Assurances({ p, className = "" }: { p?: Parameters<typeof rules>
           <Check /> {copy.listing.freeCancel}
         </span>
       ) : null}
-      {r.prepay ? (
+      {free ? null : r.prepay ? (
         <span className="text-muted">
           {r.leadNote ?? r.payShort}
           {r.refundable ? "" : " · Non-refundable"}

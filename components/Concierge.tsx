@@ -148,7 +148,7 @@ export function Concierge({
                       <span>
                         <b className="block text-sm leading-tight">{p.title}</b>
                         <span className="text-[13px] text-muted">
-                          {copy.price.from} <span className="tnum">{money(p.price_eur)}</span> {perLabel(p.per)}
+                          {p.price_eur ? <>{copy.price.from} <span className="tnum">{money(p.price_eur)}</span> {perLabel(p.per)}</> : "Free"}
                         </span>
                       </span>
                     </Link>

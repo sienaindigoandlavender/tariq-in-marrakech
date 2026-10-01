@@ -120,7 +120,8 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
   }, [ready, sp, prefs, last, maxG, p, removeTrip, router]);
 
   const r = useMemo(() => price(p, { guests: sel.guests, mode: sel.mode, addonIds: sel.adds }), [p, sel]);
-  const payNow = pay === "now" && payNowAvailable;
+  const free = r.total <= 0;
+  const payNow = pay === "now" && payNowAvailable && !free;
 
   const submit = async () => {
     setErr("");
@@ -213,8 +214,8 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
       <div className="border-t border-line pt-3">
         <Lines r={r} money={money} />
         <div className="mt-2 flex items-baseline justify-between">
-          <b>{payNow ? C.payNow : R.prepay ? "Total, paid when you book" : C.total}</b>
-          <b className="tnum text-2xl">{money(r.total)}</b>
+          <b>{free ? "Total" : payNow ? C.payNow : R.prepay ? "Total, paid when you book" : C.total}</b>
+          <b className="tnum text-2xl">{free ? "Free" : money(r.total)}</b>
         </div>
       </div>
     </div>
@@ -286,8 +287,13 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
         </Section>
 
         <Section n={3} title={C.payH}>
+          {free ? (
+            <p className="m-0 rounded-input bg-soft p-3.5 text-sm">
+              <b>Free.</b> Nothing to pay. We confirm on WhatsApp.
+            </p>
+          ) : (
           <fieldset className="m-0 grid gap-2 border-0 p-0" role="radiogroup" aria-label={C.payH}>
-            {payNowAvailable ? (
+            {payNowAvailable && !free ? (
               <label className={payCard}>
                 <input type="radio" name="pay" value="now" checked={pay === "now"} onChange={() => setPay("now")} className="absolute opacity-0" />
                 <span className="flex items-baseline justify-between gap-2">
@@ -319,6 +325,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
               </p>
             ) : null}
           </fieldset>
+          )}
         </Section>
 
         {/* phone: the total sits right above the button */}

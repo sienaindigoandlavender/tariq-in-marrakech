@@ -98,7 +98,7 @@ export function Done({ refCode, xsell }: { refCode: string; xsell: Pick<PublicPr
           {picks.map((x) => (
             <div key={x.id} className="flex items-center justify-between gap-2.5 text-[14.5px]">
               <span>
-                {x.title} · <span className="tnum">{copy.price.from} {money(x.price_eur)}</span>
+                {x.title} · <span className="tnum">{x.price_eur ? `${copy.price.from} ${money(x.price_eur)}` : "Free"}</span>
               </span>
               <Link href={`/book/${x.id}?date=${b.date}&guests=${b.guests}`} className="grid min-h-[40px] place-items-center whitespace-nowrap rounded-full bg-blue px-4 text-[13px] font-extrabold text-blue-ink no-underline">
                 {D.add}

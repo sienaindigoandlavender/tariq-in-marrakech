@@ -48,9 +48,11 @@ export async function POST(req: Request) {
   const digits = phone.replace(/\D/g, "");
   if (digits.length < 8 || digits.length > 15 || !/^[+\d\s().-]+$/.test(phone)) return bad(E.phone, "phone");
   const notes = str(body.notes, 1000) || null;
-  const payNow = body.payment === "paypal";
+  const payNowAsked = body.payment === "paypal";
 
   const r = price(product, { guests, mode, addonIds });
+  // Free services (restaurant table booking) never go to PayPal.
+  const payNow = payNowAsked && r.total > 0;
 
   // Riad QR attribution: only a known, active partner code counts.
   const admin = supabaseAdmin();

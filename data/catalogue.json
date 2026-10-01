@@ -1404,6 +1404,82 @@
   },
   {
     "city": "marrakech",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "id": "bacha",
+    "category": "tkt",
+    "role": "lead",
+    "title": "Bacha Coffee, no queue",
+    "subtitle": "Skip the line",
+    "badge": "New",
+    "blurb": "The famous coffee house in Dar el Bacha, without the two-hour line. Museum ticket bought, host at the door when it opens.",
+    "timing": "At opening, 10:00",
+    "duration": "As long as you like",
+    "drive_time": "in the medina",
+    "price_eur": 25,
+    "per": "pp",
+    "scene": "tagine",
+    "highlights": [
+      "In at opening, before the queue builds",
+      "Dar el Bacha museum ticket bought for you",
+      "Host at the door, walks you in"
+    ],
+    "includes": [
+      "Dar el Bacha museum ticket",
+      "Host at the door"
+    ],
+    "excludes": [
+      "Coffee and food, paid at the café",
+      "Transport (add a ride)"
+    ],
+    "know_before": [
+      "Bacha Coffee takes no reservations. We get you in first, at opening",
+      "A table on arrival is very likely at opening, not guaranteed on the busiest days",
+      "This is a booking service, not Bacha Coffee or the museum"
+    ],
+    "itinerary": [
+      {
+        "t": "9:45",
+        "s": "Meet your host at the Dar el Bacha gate"
+      },
+      {
+        "t": "10:00",
+        "s": "In at opening: museum ticket in hand, straight to the coffee house"
+      },
+      {
+        "t": "After",
+        "s": "Coffee, pastries, the museum at your pace"
+      }
+    ],
+    "sort": 144,
+    "addons": [
+      {
+        "id": "beans",
+        "label": "Bacha coffee tin delivered to your riad",
+        "eur": 35,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "ride",
+        "label": "Ride from your riad",
+        "eur": 10,
+        "per": "car",
+        "popular": false,
+        "sort": 20
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
     "category": "tkt",
     "was_eur": null,
     "cap": null,
@@ -1809,6 +1885,72 @@
         "label": "Licensed guide inside, 1 hour",
         "eur": 25,
         "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "was_eur": null,
+    "cap": null,
+    "private_per_car": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "km": 0,
+    "id": "table",
+    "category": "svc",
+    "role": "gap",
+    "title": "Restaurant table, booked for you",
+    "subtitle": "Concierge",
+    "badge": null,
+    "blurb": "Tell us where and when. We call, book the table and send the confirmation on WhatsApp. Free.",
+    "timing": "Lunch or dinner",
+    "duration": "Your meal",
+    "drive_time": "anywhere in Marrakech",
+    "price_eur": 0,
+    "per": "flat",
+    "scene": "night",
+    "highlights": [
+      "We call the restaurant for you, in Arabic or French",
+      "Confirmation on WhatsApp",
+      "Add a ride there and back"
+    ],
+    "includes": [
+      "Table booking",
+      "Confirmation on WhatsApp"
+    ],
+    "excludes": [
+      "The meal, paid at the restaurant"
+    ],
+    "know_before": [
+      "Write the restaurant, time and number of guests in the notes",
+      "If it's full, we suggest the closest alternative before booking anything"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Tell us the restaurant and time in the notes"
+      },
+      {
+        "t": "Within hours",
+        "s": "We call and confirm on WhatsApp"
+      },
+      {
+        "t": "On the night",
+        "s": "Your table is waiting. Add a ride if you need one"
+      }
+    ],
+    "sort": 155,
+    "addons": [
+      {
+        "id": "ride",
+        "label": "Ride there and back to the medina",
+        "eur": 14,
+        "per": "car",
         "popular": true,
         "sort": 10
       }
