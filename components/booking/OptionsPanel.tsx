@@ -4,7 +4,7 @@ import { useState } from "react";
 import { copy } from "@/lib/copy";
 import { earliest, fmtDate } from "@/lib/dates";
 import { perLabel } from "@/lib/format";
-import { price } from "@/lib/pricing";
+import { hasPrivate, price } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
 import { useAppState } from "../AppState";
 import { Icon } from "../Icons";
@@ -24,8 +24,8 @@ export function OptionsPanel({ p, sel, onChange }: { p: PublicProduct; sel: Sele
   const total = (mode: Selection["mode"]) => price(p, { guests: sel.guests, mode, addonIds: sel.adds }).total;
 
   const modes: { m: Selection["mode"]; title: string; sub: string }[] = [
-    { m: "shared", title: p.private_per_car ? C.shared : C.standard, sub: p.private_per_car ? C.sharedS : p.blurb },
-    ...(p.private_per_car ? [{ m: "private" as const, title: C.private, sub: C.privateS }] : []),
+    { m: "shared", title: hasPrivate(p) ? C.shared : C.standard, sub: hasPrivate(p) ? C.sharedS : p.blurb },
+    ...(hasPrivate(p) ? [{ m: "private" as const, title: C.private, sub: p.private_pp ? "Your own vehicle, driver and guide. Your pace, your stops." : C.privateS }] : []),
   ];
 
   const pill = (k: "date" | "guests", icon: "clock" | "users", text: string, label: string) => (
@@ -95,7 +95,7 @@ export function OptionsPanel({ p, sel, onChange }: { p: PublicProduct; sel: Sele
                 <span className="text-right">
                   <b className="tnum block text-lg">{money(total(m))}</b>
                   <small className="text-xs text-muted">
-                    {m === "private" ? C.inclPrivate : p.per === "pp" ? `${sel.guests} × ${money(p.price_eur)}` : perLabel(p.per)}
+                    {m === "private" ? (p.private_pp ? `${sel.guests} × ${money(p.private_pp)}` : C.inclPrivate) : p.per === "pp" ? `${sel.guests} × ${money(p.price_eur)}` : perLabel(p.per)}
                   </small>
                 </span>
               </label>

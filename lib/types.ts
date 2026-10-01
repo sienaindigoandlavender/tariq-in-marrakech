@@ -41,6 +41,8 @@ export type Product = {
   per: Per;
   cap: number | null;
   private_per_car: number | null;
+  /** Private tour priced per person (replaces the shared price + per-car surcharge). */
+  private_pp: number | null;
   badge: string | null;
   scene: string;
   image_url: string | null;

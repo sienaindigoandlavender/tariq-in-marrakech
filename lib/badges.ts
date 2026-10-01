@@ -1,6 +1,6 @@
 import type { Product } from "./types";
 
-type B = Pick<Product, "category" | "per" | "private_per_car" | "tags">;
+type B = Pick<Product, "category" | "per" | "private_per_car" | "private_pp" | "tags">;
 
 /** Product tags set in the catalogue. Only set a tag when it is true for every departure. */
 export const TAGS: Record<string, string> = {
@@ -13,6 +13,9 @@ export const TAGS: Record<string, string> = {
   "female-ok": "Female driver or guide on request",
 };
 
+/** Logistics cues shown as an icon line, not a chip. */
+export const ICON_CUES = ["Hotel pickup", "Comes to you"];
+
 /** The international cues travellers scan for, in priority order. Derived from the product where possible. */
 export function badges(p: B): string[] {
   const out: string[] = [];
@@ -21,7 +24,7 @@ export function badges(p: B): string[] {
   if (p.category === "svc") out.push("Comes to you");
   if (["exc", "des", "act"].includes(p.category)) out.push("Hotel pickup");
   if (p.category === "trf" || p.per === "car") out.push("Private");
-  else if (p.private_per_car) out.push("Private option");
+  else if (p.private_per_car || p.private_pp) out.push("Private option");
   for (const t of tags) if (TAGS[t]) out.push(TAGS[t]);
   return [...new Set(out)];
 }

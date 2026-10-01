@@ -7,11 +7,12 @@ import type { PublicProduct } from "@/lib/types";
 import { useAppState } from "./AppState";
 import { Poster, distLabel } from "./Poster";
 import { rules } from "@/lib/rules";
-import { badges } from "@/lib/badges";
+import { ICON_CUES, badges } from "@/lib/badges";
+import { Icon } from "./Icons";
 
 type CardProduct = Pick<
   PublicProduct,
-  "id" | "title" | "subtitle" | "blurb" | "duration" | "price_eur" | "was_eur" | "per" | "badge" | "scene" | "image_url" | "km" | "drive_time" | "lead_days" | "prepay_only" | "refundable" | "category" | "private_per_car" | "tags"
+  "id" | "title" | "subtitle" | "blurb" | "duration" | "price_eur" | "was_eur" | "per" | "badge" | "scene" | "image_url" | "km" | "drive_time" | "lead_days" | "prepay_only" | "refundable" | "category" | "private_per_car" | "private_pp" | "tags"
 >;
 
 export function Heart({ id, className = "" }: { id: string; className?: string }) {
@@ -89,7 +90,7 @@ export function Assurances({ p, className = "", compact = false }: { p?: Paramet
 
 /** International cues as small chips: Skip the line, Hotel pickup, Private option, Sunrise... */
 export function Badges({ p, max, className = "" }: { p: Parameters<typeof badges>[0]; max?: number; className?: string }) {
-  const list = badges(p).slice(0, max);
+  const list = badges(p).filter((b) => !ICON_CUES.includes(b)).slice(0, max);
   if (!list.length) return null;
   return (
     <ul className={`m-0 flex list-none flex-wrap gap-1.5 p-0 ${className}`}>
@@ -122,7 +123,20 @@ export function ProductCard({ p, uid }: { p: CardProduct; uid?: string }) {
       </div>
       <Link href={href} className="grid gap-2 no-underline">
         <h3 className="m-0 text-[16.5px] font-extrabold leading-tight group-hover:underline">{p.title}</h3>
-        <span className="text-[13px] font-semibold text-muted">{p.duration}</span>
+        <span className="flex flex-wrap gap-x-3 gap-y-1 text-[13px] font-semibold text-muted">
+          <span className="inline-flex items-center gap-1">
+            <Icon name="clock" size={15} />
+            {p.duration}
+          </span>
+          {badges(p)
+            .filter((b) => ICON_CUES.includes(b))
+            .map((b) => (
+              <span key={b} className="inline-flex items-center gap-1">
+                <Icon name="pin" size={15} />
+                {b}
+              </span>
+            ))}
+        </span>
         <Badges p={p} max={2} />
         <Assurances p={p} compact />
         <PriceFrom p={p} />

@@ -18,6 +18,7 @@ function normalise(row: Record<string, unknown>, addons: Record<string, unknown>
     was_eur: num(row.was_eur),
     cap: num(row.cap),
     private_per_car: num(row.private_per_car),
+    private_pp: num(row.private_pp),
     lead_days: Math.max(1, Number(row.lead_days ?? 1)),
     prepay_only: row.prepay_only === true,
     refundable: row.refundable !== false,

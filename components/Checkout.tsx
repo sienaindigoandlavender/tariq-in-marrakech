@@ -7,7 +7,7 @@ import { copy } from "@/lib/copy";
 import { formatWhatsapp, waLink } from "@/lib/config";
 import { rules } from "@/lib/rules";
 import { addDays, bookable, earliest, fmtDate, isYmd } from "@/lib/dates";
-import { price, type PriceLine, type PriceResult } from "@/lib/pricing";
+import { hasPrivate, price, type PriceLine, type PriceResult } from "@/lib/pricing";
 import type { PublicProduct } from "@/lib/types";
 import { formatMoney, isGuideCurrency, useAppState } from "./AppState";
 import { Icon } from "./Icons";
@@ -95,7 +95,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
     const next: Selection = {
       date: bookable(p, isYmd(qd) ? qd : prefs.date),
       guests: p.category === "gft" ? 1 : clampG(Number(sp.get("guests")) || prefs.guests),
-      mode: qm === "private" && p.private_per_car ? "private" : "shared",
+      mode: qm === "private" && hasPrivate(p) ? "private" : "shared",
       adds: (sp.get("adds") ?? "").split(",").filter((a) => p.addons.some((x) => x.id === a)),
     };
     if (last) {
@@ -112,7 +112,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
         if (d && d.id === p.id) {
           if (isYmd(d.date) && d.date >= earliest(p)) next.date = d.date;
           next.guests = clampG(d.guests);
-          next.mode = d.mode === "private" && p.private_per_car ? "private" : "shared";
+          next.mode = d.mode === "private" && hasPrivate(p) ? "private" : "shared";
           next.adds = d.adds.filter((a) => p.addons.some((x) => x.id === a));
           setNotes(d.notes);
         }
@@ -199,7 +199,7 @@ export function Checkout({ p, payNowAvailable }: { p: PublicProduct; payNowAvail
     }
   };
 
-  const optionText = p.private_per_car ? (sel.mode === "private" ? C.private : C.shared) : C.standard;
+  const optionText = hasPrivate(p) ? (sel.mode === "private" ? C.private : C.shared) : C.standard;
   const extras = r.lines.filter((l) => l.kind === "addon").map((l) => l.label);
   const cta = busy ? (payNow ? C.redirecting : C.sending) : payNow ? C.payWith(payMoney(r.total)) : C.confirm;
 

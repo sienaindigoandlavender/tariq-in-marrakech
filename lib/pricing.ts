@@ -7,6 +7,7 @@ type PricedProduct = {
   per: "pp" | "car" | "flat";
   cap: number | null;
   private_per_car: number | null;
+  private_pp?: number | null;
   addons: PricedAddon[];
 };
 
@@ -35,16 +36,21 @@ export function cars(p: { cap: number | null }, guests: number): number {
   return Math.max(1, Math.ceil(guests / (p.cap ?? 4)));
 }
 
+/** True when the product has a private option, priced per car or per person. */
+export const hasPrivate = (p: { private_per_car: number | null; private_pp?: number | null }) => Boolean(p.private_per_car || p.private_pp);
+
 export function price(p: PricedProduct, o: PriceInput): PriceResult {
   const g = o.guests;
   const c = cars(p, g);
   const lines: PriceLine[] = [];
 
-  const baseQty = p.per === "pp" ? g : p.per === "car" ? c : 1;
-  const base = round2(p.price_eur * baseQty);
-  lines.push({ kind: "base", id: "base", label: "Booking", qty: baseQty, unit_eur: p.price_eur, eur: base });
+  const privatePp = o.mode === "private" && p.private_pp ? p.private_pp : null;
+  const baseQty = privatePp || p.per === "pp" ? g : p.per === "car" ? c : 1;
+  const unit = privatePp ?? p.price_eur;
+  const base = round2(unit * baseQty);
+  lines.push({ kind: "base", id: "base", label: privatePp ? "Private" : "Booking", qty: baseQty, unit_eur: unit, eur: base });
 
-  if (o.mode === "private" && p.private_per_car) {
+  if (o.mode === "private" && !privatePp && p.private_per_car) {
     lines.push({ kind: "private", id: "private", label: "Private", qty: c, unit_eur: p.private_per_car, eur: round2(p.private_per_car * c) });
   }
 

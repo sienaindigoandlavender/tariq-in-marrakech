@@ -4,7 +4,7 @@ import { copy } from "@/lib/copy";
 import { CITY } from "@/lib/config";
 import { isYmd, tomorrow, addDays, today, fmtDate } from "@/lib/dates";
 import { getProduct } from "@/lib/db";
-import { price } from "@/lib/pricing";
+import { hasPrivate, price } from "@/lib/pricing";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
 import { createOrder, paypalEnabled } from "@/lib/paypal";
 import { makeRef } from "@/lib/refs";
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
   const guests = Number(body.guests);
   const maxGuests = product.per === "car" ? 9 : 14;
   if (!Number.isInteger(guests) || guests < 1 || guests > maxGuests) return bad("Choose between 1 and " + maxGuests + " guests.", "guests");
-  const mode = body.mode === "private" && product.private_per_car ? "private" : "shared";
+  const mode = body.mode === "private" && hasPrivate(product) ? "private" : "shared";
   const addonIds = Array.isArray(body.addon_ids) ? body.addon_ids.filter((x): x is string => typeof x === "string").slice(0, 20) : [];
   const pickup = str(body.pickup, 200);
   if (pickup.length < 3) return bad(E.pickup, "pickup");

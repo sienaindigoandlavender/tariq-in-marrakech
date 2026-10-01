@@ -39,3 +39,11 @@ test("flat products charge once; car add-ons scale with cars", () => {
   assert.equal(r.base, 39);
   assert.equal(r.extra, 10);
 });
+
+test("private priced per person replaces the group price", () => {
+  const p = { price_eur: 189, per: "pp" as const, cap: null, private_per_car: null, private_pp: 450, addons: [] };
+  assert.equal(price(p, { guests: 2, mode: "shared", addonIds: [] }).total, 378);
+  const r = price(p, { guests: 2, mode: "private", addonIds: [] });
+  assert.equal(r.total, 900);
+  assert.equal(r.lines.length, 1);
+});

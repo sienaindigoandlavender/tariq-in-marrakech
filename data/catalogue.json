@@ -108,7 +108,8 @@
     "refundable": true,
     "tags": [
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "driver",
@@ -213,7 +214,8 @@
     "refundable": true,
     "tags": [
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "lastday",
@@ -294,7 +296,712 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
+  },
+  {
+    "id": "to-agafay",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Agafay",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car to your camp or lodge in the Agafay desert. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "45 min",
+    "km": 40,
+    "drive_time": "45 min",
+    "price_eur": 30,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "stone",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Write the exact address at the other end in the notes",
+      "For a return, write the return date and time in the notes",
+      "4 to 7 guests: we send a bigger van, priced as two cars"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "45 min",
+        "s": "Drive to Agafay, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 21,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 27,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
+  },
+  {
+    "id": "to-imlil",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Imlil",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car from your riad or hotel to your address in Imlil. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "1 h 30",
+    "km": 65,
+    "drive_time": "1 h 30",
+    "price_eur": 45,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "atlas",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Write the exact address at the other end in the notes",
+      "For a return, write the return date and time in the notes",
+      "4 to 7 guests: we send a bigger van, priced as two cars"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "1 h 30",
+        "s": "Drive to Imlil, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 22,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 41,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
+  },
+  {
+    "id": "to-essaouira",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Essaouira",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car from your riad or hotel to your address in Essaouira. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "2 h 45",
+    "km": 190,
+    "drive_time": "2 h 45",
+    "price_eur": 90,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "ocean",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Write the exact address at the other end in the notes",
+      "For a return, write the return date and time in the notes",
+      "4 to 7 guests: we send a bigger van, priced as two cars"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "2 h 45",
+        "s": "Drive to Essaouira, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 23,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 81,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
+  },
+  {
+    "id": "to-ouarzazate",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Ouarzazate",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car from your riad or hotel to your address in Ouarzazate. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "4 h",
+    "km": 200,
+    "drive_time": "4 h",
+    "price_eur": 110,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "ksar",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Write the exact address at the other end in the notes",
+      "For a return, write the return date and time in the notes",
+      "4 to 7 guests: we send a bigger van, priced as two cars"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "4 h",
+        "s": "Drive to Ouarzazate, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 24,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 99,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
+  },
+  {
+    "id": "to-casablanca",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Casablanca",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car to your address in Casablanca, or to Casablanca airport (CMN) for your flight. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "3 h",
+    "km": 240,
+    "drive_time": "3 h",
+    "price_eur": 110,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "city",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Write the exact address, or your flight number for CMN airport, in the notes",
+      "For a return, write the return date and time in the notes",
+      "4 to 7 guests: we send a bigger van, priced as two cars"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "3 h",
+        "s": "Drive to Casablanca, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 25,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 99,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
+  },
+  {
+    "id": "to-agadir",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Agadir and Taghazout",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car from your riad or hotel to your address in Agadir and Taghazout. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "3 h",
+    "km": 260,
+    "drive_time": "3 h",
+    "price_eur": 120,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "ocean",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Write the exact address at the other end in the notes",
+      "For a return, write the return date and time in the notes",
+      "4 to 7 guests: we send a bigger van, priced as two cars"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "3 h",
+        "s": "Drive to Agadir and Taghazout, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 26,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 108,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
+  },
+  {
+    "id": "to-rabat",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Rabat",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car from your riad or hotel to your address in Rabat. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "3 h 45",
+    "km": 330,
+    "drive_time": "3 h 45",
+    "price_eur": 150,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "city",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Write the exact address at the other end in the notes",
+      "For a return, write the return date and time in the notes",
+      "4 to 7 guests: we send a bigger van, priced as two cars"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "3 h 45",
+        "s": "Drive to Rabat, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 27,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 135,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
+  },
+  {
+    "id": "to-fes",
+    "city": "marrakech",
+    "category": "trf",
+    "role": "core",
+    "title": "Marrakech to Fes",
+    "subtitle": "Inter-city transfer",
+    "blurb": "Private car from your riad or hotel to your address in Fes. One way, or add the return.",
+    "timing": "Any time, you choose",
+    "duration": "7 h",
+    "km": 530,
+    "drive_time": "7 h",
+    "price_eur": 260,
+    "was_eur": null,
+    "per": "car",
+    "cap": 3,
+    "private_per_car": null,
+    "badge": null,
+    "scene": "road",
+    "image_url": null,
+    "highlights": [
+      "Door to door, no bus station",
+      "Private car, just your group",
+      "Stops for photos or coffee on the way"
+    ],
+    "includes": [
+      "Private air-conditioned car, up to 3 guests with luggage",
+      "Driver, fuel and tolls"
+    ],
+    "excludes": [
+      "Meals on the way",
+      "Tips"
+    ],
+    "know_before": [
+      "Long day: we stop for lunch on the way",
+      "Write the exact address in Fes in the notes",
+      "Prefer the desert route? See the 4-day Sahara to Fes tour"
+    ],
+    "itinerary": [
+      {
+        "t": "Pickup",
+        "s": "Your driver meets you at your riad or hotel"
+      },
+      {
+        "t": "7 h",
+        "s": "Drive to Fes, with a stop on the way if you like"
+      },
+      {
+        "t": "Arrival",
+        "s": "Dropped at your address"
+      }
+    ],
+    "sort": 28,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "female-ok"
+    ],
+    "addons": [
+      {
+        "id": "ret",
+        "label": "Return trip, another day",
+        "eur": 234,
+        "per": "car",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "seat",
+        "label": "Child car seat",
+        "eur": 6,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      },
+      {
+        "id": "female",
+        "label": "Female driver or guide, on request",
+        "eur": 0,
+        "per": "unit",
+        "popular": false,
+        "sort": 90
+      }
+    ],
+    "private_pp": null
   },
   {
     "id": "dinner",
@@ -365,7 +1072,8 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "ourika",
@@ -470,7 +1178,8 @@
     "tags": [
       "family",
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "ouzoud",
@@ -566,7 +1275,8 @@
     "tags": [
       "family",
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "essaouira",
@@ -661,7 +1371,8 @@
     "tags": [
       "family",
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "imlil",
@@ -765,7 +1476,8 @@
     "refundable": true,
     "tags": [
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "abh",
@@ -865,7 +1577,8 @@
     "refundable": true,
     "tags": [
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "sahara3",
@@ -879,11 +1592,11 @@
     "duration": "3 days, 2 nights",
     "km": 560,
     "drive_time": "3 days",
-    "price_eur": 139,
+    "price_eur": 189,
     "was_eur": null,
     "per": "pp",
     "cap": null,
-    "private_per_car": 420,
+    "private_per_car": null,
     "badge": "Best seller",
     "scene": "dunes",
     "image_url": null,
@@ -964,7 +1677,8 @@
     "tags": [
       "sunset",
       "female-ok"
-    ]
+    ],
+    "private_pp": 450
   },
   {
     "id": "zagora",
@@ -1049,7 +1763,8 @@
       "sunset",
       "family",
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1142,7 +1857,8 @@
     "tags": [
       "sunset",
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1220,7 +1936,8 @@
     "tags": [
       "english",
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "balloon",
@@ -1309,7 +2026,8 @@
     "tags": [
       "sunrise",
       "age-5"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "agafay",
@@ -1406,7 +2124,8 @@
     "tags": [
       "sunset",
       "family"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "id": "quad",
@@ -1478,7 +2197,8 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "camel",
@@ -1552,7 +2272,8 @@
     "tags": [
       "sunset",
       "family"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1631,7 +2352,8 @@
     ],
     "tags": [
       "family"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1716,7 +2438,8 @@
       "english",
       "family",
       "female-ok"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1787,7 +2510,8 @@
     ],
     "tags": [
       "family"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1856,7 +2580,8 @@
         "sort": 10
       }
     ],
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1925,7 +2650,8 @@
         "sort": 10
       }
     ],
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -1994,7 +2720,8 @@
         "sort": 10
       }
     ],
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -2065,7 +2792,8 @@
     ],
     "tags": [
       "family"
-    ]
+    ],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -2132,7 +2860,8 @@
         "sort": 10
       }
     ],
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "henna",
@@ -2203,7 +2932,8 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "massage",
@@ -2269,7 +2999,8 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "chef",
@@ -2344,7 +3075,8 @@
     "lead_days": 3,
     "prepay_only": true,
     "refundable": false,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -2412,7 +3144,8 @@
         "s": "Cut, shave or both"
       }
     ],
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "city": "marrakech",
@@ -2485,7 +3218,8 @@
         "s": "Edited gallery in your inbox"
       }
     ],
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "trekkit",
@@ -2562,7 +3296,8 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "desertkit",
@@ -2620,7 +3355,8 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "baby",
@@ -2702,7 +3438,8 @@
     "lead_days": 1,
     "prepay_only": false,
     "refundable": true,
-    "tags": []
+    "tags": [],
+    "private_pp": null
   },
   {
     "id": "gift50",
@@ -2759,7 +3496,8 @@
     "prepay_only": true,
     "refundable": true,
     "tags": [],
-    "addons": []
+    "addons": [],
+    "private_pp": null
   },
   {
     "id": "gift100",
@@ -2816,7 +3554,8 @@
     "prepay_only": true,
     "refundable": true,
     "tags": [],
-    "addons": []
+    "addons": [],
+    "private_pp": null
   },
   {
     "id": "gift200",
@@ -2873,6 +3612,7 @@
     "prepay_only": true,
     "refundable": true,
     "tags": [],
-    "addons": []
+    "addons": [],
+    "private_pp": null
   }
 ]

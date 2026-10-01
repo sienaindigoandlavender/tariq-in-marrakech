@@ -13,7 +13,7 @@ export function catalogueLines(products: Product[]): string {
         p.blurb,
         p.timing,
         p.addons.length ? "add-ons: " + p.addons.map((a) => `${a.label} +€${a.eur} ${a.per === "unit" ? "each" : perText(a.per)}`).join("; ") : "",
-        p.private_per_car ? `private upgrade +€${p.private_per_car} per car` : "",
+        p.private_pp ? `private tour €${p.private_pp} per person` : p.private_per_car ? `private upgrade +€${p.private_per_car} per car` : "",
         p.lead_days > 1 ? `book at least ${p.lead_days} days ahead` : "",
         p.prepay_only ? "paid online when booked" : "",
         p.refundable ? "" : "non-refundable",

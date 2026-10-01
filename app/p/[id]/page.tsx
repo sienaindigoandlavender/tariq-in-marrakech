@@ -39,7 +39,7 @@ function facts(p: Product): { icon: Parameters<typeof Icon>[0]["name"]; label: s
   else f.push({ icon: "pin", label: copy.product.factPickup });
   if (p.category === "svc") f.push({ icon: "users", label: "Just your group" });
   else if (p.per === "car") f.push({ icon: "users", label: copy.product.factPrivateCar });
-  else if (p.private_per_car) f.push({ icon: "users", label: copy.product.factSharedPrivate });
+  else if (p.private_per_car || p.private_pp) f.push({ icon: "users", label: copy.product.factSharedPrivate });
   else if (p.category !== "kit" && p.category !== "tkt") f.push({ icon: "users", label: copy.product.factShared });
   const r = rules(p);
   f.push({ icon: "shield", label: r.cancelFact }, { icon: "wallet", label: r.payFact });

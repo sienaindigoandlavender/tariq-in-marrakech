@@ -7,11 +7,9 @@ import { copy } from "@/lib/copy";
 import { waLink } from "@/lib/config";
 import { Logo } from "./Logo";
 import { CURRENCIES, useAppState } from "./AppState";
-import { askTariq, chatHidden } from "./ChatWidget";
-import { useRouter } from "next/navigation";
 
 const MENU: { href: string; label: string; sub: string }[] = [
-  { href: "/c/trf", label: copy.nav.transfers, sub: "Airport, private driver, last day" },
+  { href: "/c/trf", label: copy.nav.transfers, sub: "Airport, Essaouira, Casablanca, Agafay, driver" },
   { href: "/c/exc", label: copy.nav.dayTrips, sub: "Ourika, Ouzoud, Essaouira, Imlil" },
   { href: "/c/des", label: copy.nav.desert, sub: "Sahara, Zagora, on to Fes, the Atlas" },
   { href: "/c/act", label: copy.nav.tours, sub: "Balloon, Agafay, quad, camels" },
@@ -54,7 +52,6 @@ export function TopBar() {
   const path = usePathname();
   const { trip, saved, user } = useAppState();
   const [open, setOpen] = useState(false);
-  const router = useRouter();
 
   useEffect(() => setOpen(false), [path]);
   useEffect(() => {
@@ -140,17 +137,6 @@ export function TopBar() {
               <Link href="/account" className={`${link} text-muted`}>
                 Wishlist
               </Link>
-              <button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  if (chatHidden(path)) router.push("/concierge");
-                  else askTariq();
-                }}
-                className={`${link} text-left text-muted`}
-              >
-                Ask Tariq
-              </button>
             </nav>
             <div className="mt-auto flex items-center justify-between gap-3 px-[50px] py-8 xs:px-10">
               <Currency />
