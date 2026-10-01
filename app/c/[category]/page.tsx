@@ -18,7 +18,7 @@ const SEO: Record<Category | "all", { title: string; description: string }> = {
   tkt: { title: "Skip the Line in Marrakech: Bacha Coffee, Bahia Palace, Saadian Tombs", description: "Skip the queue in Marrakech: Bacha Coffee at opening, Bahia Palace, Saadian Tombs, El Badi, Ben Youssef and Le Jardin Secret with tickets bought for you and a host at the gate." },
   gft: { title: "Marrakech Gift Vouchers", description: "Give Marrakech: gift vouchers for transfers, day trips, desert tours, Skip the line and concierge services, sent on WhatsApp." },
   trf: { title: "Marrakech Airport and Inter-city Transfers", description: "Airport transfers and private transfers from Marrakech to Essaouira, Casablanca, Agafay, Imlil, Agadir, Rabat and Fes. Door to door, pay on arrival." },
-  svc: { title: "Concierge Services in Marrakech: Massage, Beauty, Doctor, Chef", description: "Massage, facial, manicure, pedicure, blow-out, henna, barber, a doctor visit, private chef, restaurant tables, kits and baby gear at your riad in Marrakech." },
+  svc: { title: "Concierge Services in Marrakech: Wellness, Celebrations, Kids, Mobility", description: "Massage, hammam, beauty, private chef, proposals, babysitters, baby gear, wheelchair rental, trekking gear and a doctor visit at your riad in Marrakech." },
   kit: { title: "Trek Kits, Desert Kits and Baby Kits in Marrakech", description: "Trek and desert kits waiting in your van, and a baby kit delivered to your riad in Marrakech." },
 };
 

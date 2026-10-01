@@ -2,7 +2,7 @@
 // Painted poster scenes (pure SVG), ported from the prototype's scene(type).
 // Placeholders until real photos from the partner's trips exist.
 
-export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby","henna","spa","tagine","luggage","night","nightkit","road","barber","camera","palace","garden","gift","beauty","doctor","hair"] as const;
+export const SCENES = ["city","plane","valley","falls","ocean","atlas","ksar","balloon","stone","quad","palms","dunes","riad","kit","baby","henna","spa","tagine","luggage","night","nightkit","road","barber","camera","palace","garden","gift","beauty","doctor","hair","access","tech"] as const;
 
 function palm(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M-2 0 q4 -40 1 -80 l3 0 q4 40 0 80z"/><path d="M1 -80 q-26 -8 -40 6 q18 -14 40 -2z"/><path d="M1 -80 q26 -10 42 4 q-20 -12 -42 -1z"/><path d="M1 -80 q-18 -22 -36 -18 q20 -2 36 16z"/><path d="M1 -80 q18 -24 38 -20 q-22 0 -38 18z"/><path d="M1 -80 q-4 -24 -18 -34 q14 14 16 34z"/></g>`}
 function camel(x: number, y: number, s: number, c: string): string {return `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><path d="M0 -14 q3 -9 10 -10 q5 -10 12 -4 q6 -7 11 0 q3 -2 4 -8 q1 -6 5 -5 q4 1 3 5 l-4 8 q-3 7 -7 9 l0 19 h-2.5 l-1.5 -15 h-14 l-1.5 15 h-2.5 l0 -16 q-6 -1 -5 -6z"/></g>`}
@@ -16,7 +16,7 @@ export function sceneSvg(type: string, uid: string = type): string {
     henna:["#e39a72","#f8dcc6","#fff1e2"], spa:["#cfe3dc","#f5efe6","#fffaf0"], tagine:["#2a2447","#6b3f5e","#ffd27a"],
     luggage:["#bcd7ff","#eef5ff","#fffbe6"], night:["#15142e","#4a2c5a","#fff4d0"], nightkit:["#161433","#3d2a55","#fff4d0"], road:["#9fcbf2","#f3ecd9","#fff6d6"],
     barber:["#1f6f78","#cfe6e3","#fff4d6"], camera:["#f6b26b","#fbe3c4","#fff4d6"],
-    palace:["#9fd0e8","#e9f4f6","#fff4d6"], garden:["#bfe3c8","#eef7e9","#fff6d6"], gift:["#f6c9d0","#fdeef0","#fff6d6"], beauty:["#f3d3cf","#fbefe9","#fff6ec"], doctor:["#cfe6f0","#f2f8fb","#ffffff"], hair:["#e8d6f0","#f8f0fb","#fff6ec"]
+    palace:["#9fd0e8","#e9f4f6","#fff4d6"], garden:["#bfe3c8","#eef7e9","#fff6d6"], gift:["#f6c9d0","#fdeef0","#fff6d6"], beauty:["#f3d3cf","#fbefe9","#fff6ec"], doctor:["#cfe6f0","#f2f8fb","#ffffff"], hair:["#e8d6f0","#f8f0fb","#fff6ec"], access:["#cfe3f5","#eef5fb","#fff6ec"], tech:["#d6e4f7","#f1f5fc","#fff6ec"]
   } as Record<string, string[]>)[type]||["#ddd","#eee","#fff"];
   let g=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${S[0]}"/><stop offset="1" stop-color="${S[1]}"/></linearGradient></defs><rect width="400" height="250" fill="url(#${id})"/>`;
   const sun=(x: number, y: number, r: number)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${S[2]}"/>`;
@@ -124,6 +124,11 @@ export function sceneSvg(type: string, uid: string = type): string {
      <rect x="60" y="55" width="20" height="56" rx="3" fill="#fff"/><rect x="42" y="73" width="56" height="20" rx="3" fill="#fff"/></g><path d="M300 70 q20 40 -10 70 q-20 20 -40 0" stroke="#1c1b2e" stroke-width="5" fill="none"/><circle cx="246" cy="146" r="10" fill="#1c1b2e"/>`;break;
    case "hair": g+=`<path d="M0 200 H400 V250 H0z" fill="#d5c0e0"/><g transform="translate(150 60)"><circle cx="50" cy="60" r="44" fill="#e2ab82"/><path d="M4 60 q0 -62 46 -62 q46 0 46 62 q20 40 -6 80 q-6 -46 -16 -60 q-24 -30 -48 0 q-10 14 -16 60 q-26 -40 -6 -80z" fill="#3a2418"/></g>
      <g transform="translate(270 70) rotate(30)"><rect x="0" y="0" width="34" height="60" rx="12" fill="#d9536f"/><rect x="10" y="58" width="14" height="50" rx="6" fill="#1c1b2e"/><circle cx="17" cy="-6" r="10" fill="#f0a52b" opacity=".6"/></g>`;break;
+   case "access": g+=sun(320,60,22)+`<path d="M0 200 H400 V250 H0z" fill="#c8b49a"/><g transform="translate(140 60)" fill="none" stroke="#1f3fbf" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+     <circle cx="70" cy="110" r="44"/><path d="M40 20 v70 h60 l20 50"/><path d="M40 50 h50"/></g><circle cx="180" cy="62" r="11" fill="#1f3fbf"/><circle cx="290" cy="198" r="10" fill="#1c1b2e"/>`;break;
+   case "tech": g+=`<path d="M0 200 H400 V250 H0z" fill="#b8c4d6"/><g transform="translate(110 60)"><rect x="0" y="0" width="70" height="130" rx="14" fill="#1c1b2e"/><rect x="7" y="12" width="56" height="100" rx="6" fill="#8ec5ff"/><circle cx="35" cy="121" r="4" fill="#fff"/></g>
+     <g transform="translate(210 100)"><rect x="0" y="20" width="90" height="70" rx="12" fill="#1f3fbf"/>${[0,1,2].map(i=>`<path d="M${45-14-i*12} ${10-i*10} q${14+i*12} -${12+i*8} ${28+i*24} 0" stroke="#1f3fbf" stroke-width="5" fill="none" stroke-linecap="round"/>`).join("")}<circle cx="70" cy="70" r="5" fill="#7cf0a5"/></g>
+     <path d="M180 190 q30 -40 60 -10" stroke="#1c1b2e" stroke-width="5" fill="none"/>`;break;
    case "baby": g+=`<path d="M0 200 H400 V250 H0z" fill="#f2c7b5"/>${sun(320,70,26)}<g transform="translate(120 80)"><path d="M0 60 q0 -60 70 -60 v60z" fill="#d9536f"/><path d="M0 60 h120 q0 40 -40 40 h-50 q-30 0 -30 -40z" fill="#1f3fbf"/><path d="M120 60 l30 -40" stroke="#1c1b2e" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="120" r="14" fill="#1c1b2e"/><circle cx="100" cy="120" r="14" fill="#1c1b2e"/><circle cx="20" cy="120" r="5" fill="#f0a52b"/><circle cx="100" cy="120" r="5" fill="#f0a52b"/></g>`;break;
   }
     return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" style="display:block;width:100%;height:100%">${g}</svg>`;

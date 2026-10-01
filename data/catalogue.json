@@ -2936,6 +2936,75 @@
     "private_pp": null
   },
   {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "spa in the medina",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "massage30",
+        "label": "Add a 30-minute argan massage",
+        "eur": 20,
+        "per": "pp",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "id": "hammam",
+    "title": "Hammam and scrub",
+    "blurb": "A proper hammam: steam, black soap, a full-body gommage and a rhassoul mask. Transfer from your riad included.",
+    "timing": "10:00 to 20:00",
+    "duration": "2 hours",
+    "price_eur": 45,
+    "scene": "spa",
+    "sort": 169,
+    "highlights": [
+      "Traditional steam, black soap and scrub",
+      "Private spa, not the crowded public bath",
+      "Ride there and back included"
+    ],
+    "includes": [
+      "Hammam, gommage and rhassoul",
+      "Towels and slippers",
+      "Ride from your riad and back"
+    ],
+    "know_before": [
+      "Bring swimwear, or use the disposable underwear provided",
+      "Tell us in the notes if you prefer a female or male attendant"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose your time"
+      },
+      {
+        "t": "On the day",
+        "s": "We pick you up and take you to the spa"
+      },
+      {
+        "t": "After",
+        "s": "Back to your riad, glowing"
+      }
+    ]
+  },
+  {
     "id": "massage",
     "city": "marrakech",
     "category": "svc",
@@ -3286,6 +3355,67 @@
     "km": 0,
     "drive_time": "at your riad",
     "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "sunrise",
+      "sunset"
+    ],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [],
+    "id": "yoga",
+    "title": "Yoga on your rooftop",
+    "blurb": "A private yoga class on your riad's terrace at sunrise or sunset. Mats brought.",
+    "timing": "Sunrise or sunset",
+    "duration": "60 minutes",
+    "price_eur": 30,
+    "scene": "garden",
+    "sort": 175,
+    "highlights": [
+      "Private class, all levels",
+      "On your rooftop or in the patio",
+      "Mats and props brought"
+    ],
+    "includes": [
+      "Yoga teacher at your riad",
+      "Mats and props"
+    ],
+    "know_before": [
+      "Ask your riad if the terrace is free; we check for you"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose sunrise or sunset"
+      },
+      {
+        "t": "On the day",
+        "s": "The teacher comes to your riad"
+      },
+      {
+        "t": "After",
+        "s": "Mint tea on the terrace"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
     "per": "flat",
     "cap": null,
     "private_per_car": null,
@@ -3427,6 +3557,69 @@
     "refundable": false,
     "tags": [],
     "private_pp": null
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "in the medina",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "family"
+    ],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [],
+    "id": "cooking",
+    "title": "Cooking class with a local cook",
+    "blurb": "Shop the souk, then cook a tagine, a salad and dessert with a Marrakchi cook. You eat what you make.",
+    "timing": "Starts 10:00 or 15:00",
+    "duration": "4 hours",
+    "price_eur": 45,
+    "scene": "tagine",
+    "sort": 181,
+    "highlights": [
+      "Souk shopping with the cook",
+      "Hands-on: tagine, salad, dessert",
+      "Lunch or dinner is what you cook"
+    ],
+    "includes": [
+      "Ingredients",
+      "Cook and kitchen",
+      "The meal and mint tea",
+      "Recipes to take home"
+    ],
+    "know_before": [
+      "Vegetarian? Tell us in the notes",
+      "Children welcome with an adult"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose morning or afternoon"
+      },
+      {
+        "t": "On the day",
+        "s": "Meet the cook, shop the souk, cook together"
+      },
+      {
+        "t": "After",
+        "s": "Eat what you made"
+      }
+    ]
   },
   {
     "city": "marrakech",
@@ -3572,6 +3765,287 @@
     "private_pp": null
   },
   {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 3,
+    "prepay_only": true,
+    "refundable": false,
+    "tags": [],
+    "excludes": [
+      "Ring",
+      "Dinner (add it)"
+    ],
+    "addons": [
+      {
+        "id": "dinner",
+        "label": "Private dinner for two after",
+        "eur": 120,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "musician",
+        "label": "A musician (oud or violin)",
+        "eur": 80,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      }
+    ],
+    "id": "proposal",
+    "title": "Proposal, planned for you",
+    "blurb": "Rooftop at sunset or a candlelit corner of the desert. We set it up, hide the photographer and keep the secret.",
+    "timing": "Sunset",
+    "duration": "Evening",
+    "price_eur": 249,
+    "scene": "night",
+    "sort": 185,
+    "highlights": [
+      "Setting, flowers and candles",
+      "Hidden photographer, photos in 48 h",
+      "Planned with you on WhatsApp, kept secret"
+    ],
+    "includes": [
+      "Venue set-up: flowers, candles, petals",
+      "Photographer for 1 hour",
+      "Planning with you"
+    ],
+    "know_before": [
+      "Book at least 3 days ahead",
+      "Paid online when you book. Non-refundable: we start planning and buying right away",
+      "Write the dream in the notes, we call you to plan it"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Tell us the dream; we plan it with you on WhatsApp"
+      },
+      {
+        "t": "On the day",
+        "s": "We set up, the photographer hides, you ask"
+      },
+      {
+        "t": "After",
+        "s": "Photos in your inbox within 48 hours"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 2,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "photo30",
+        "label": "Photographer for 30 minutes",
+        "eur": 45,
+        "per": "unit",
+        "popular": false,
+        "sort": 10
+      }
+    ],
+    "id": "birthday",
+    "title": "Birthday or surprise set-up",
+    "blurb": "Cake, flowers and decorations waiting in your room or on the terrace. You tell us who and when, we do the rest.",
+    "timing": "Any time",
+    "duration": "Ready when you are",
+    "price_eur": 79,
+    "scene": "gift",
+    "sort": 186,
+    "highlights": [
+      "Cake from a good Marrakech pastry shop",
+      "Flowers, balloons, a written card",
+      "Set up while you're out"
+    ],
+    "includes": [
+      "Cake for up to 6",
+      "Flowers and decorations",
+      "Set-up with your riad"
+    ],
+    "know_before": [
+      "Book at least 2 days ahead",
+      "Write the name, age and colours in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Tell us the name, the date and the colours"
+      },
+      {
+        "t": "On the day",
+        "s": "We set it up with your riad while you're out"
+      },
+      {
+        "t": "After",
+        "s": "You walk in"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "in the medina",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "What you buy"
+    ],
+    "addons": [],
+    "id": "souk",
+    "title": "Souk shopping with a local",
+    "blurb": "Two hours in the souks with a Marrakchi who knows the good workshops and the fair price. You pay us, not the shops.",
+    "timing": "10:00 or 15:00",
+    "duration": "2 hours",
+    "price_eur": 35,
+    "scene": "city",
+    "sort": 188,
+    "highlights": [
+      "Rugs, leather, ceramics, lamps",
+      "Fair prices, no tourist traps",
+      "Shipping home arranged if you buy big"
+    ],
+    "includes": [
+      "Local shopping guide, 2 hours"
+    ],
+    "know_before": [
+      "Tell us what you're looking for in the notes",
+      "Big buys can be shipped; we help you arrange it"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Tell us what you want to find"
+      },
+      {
+        "t": "On the day",
+        "s": "Two hours in the souks with your guide"
+      },
+      {
+        "t": "After",
+        "s": "Bags back to your riad"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "bag",
+        "label": "Another bag",
+        "eur": 12,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      },
+      {
+        "id": "express",
+        "label": "Same evening",
+        "eur": 8,
+        "per": "unit",
+        "popular": false,
+        "sort": 20
+      }
+    ],
+    "id": "laundry",
+    "title": "Laundry, picked up and returned",
+    "blurb": "We collect a bag from your riad, wash, dry and fold, and bring it back the next day.",
+    "timing": "Pickup in the morning",
+    "duration": "Back next day",
+    "price_eur": 15,
+    "scene": "luggage",
+    "sort": 189,
+    "highlights": [
+      "Picked up from your riad",
+      "Washed, dried and folded",
+      "Back the next day"
+    ],
+    "includes": [
+      "One bag, up to 5 kg",
+      "Pickup and return"
+    ],
+    "know_before": [
+      "Delicates and dry cleaning: tell us in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose the pickup day"
+      },
+      {
+        "t": "On the day",
+        "s": "We collect the bag in the morning"
+      },
+      {
+        "t": "After",
+        "s": "Clean and folded, back the next day"
+      }
+    ]
+  },
+  {
     "id": "trekkit",
     "city": "marrakech",
     "category": "kit",
@@ -3648,6 +4122,135 @@
     "refundable": true,
     "tags": [],
     "private_pp": null
+  },
+  {
+    "city": "marrakech",
+    "category": "svc",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "at your riad",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "family"
+    ],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "hour",
+        "label": "Extra hour",
+        "eur": 10,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "id": "babysitter",
+    "title": "Babysitter at your riad",
+    "blurb": "An experienced, vetted babysitter so you can have dinner out. English or French spoken.",
+    "timing": "Evenings, from 18:00",
+    "duration": "4 hours",
+    "price_eur": 45,
+    "scene": "baby",
+    "sort": 192,
+    "highlights": [
+      "Experienced and vetted",
+      "English or French spoken",
+      "At your riad, kids in their own bed"
+    ],
+    "includes": [
+      "Babysitter for 4 hours, up to 3 children"
+    ],
+    "know_before": [
+      "Write the children's ages, routines and allergies in the notes",
+      "We send her name and photo the day before"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose the evening"
+      },
+      {
+        "t": "On the day",
+        "s": "She arrives before you leave; you brief her"
+      },
+      {
+        "t": "After",
+        "s": "Kids asleep when you're back"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "delivered",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Boots"
+    ],
+    "addons": [],
+    "id": "gear",
+    "title": "Trekking gear rental",
+    "blurb": "Sleeping bag, poles and a warm jacket, clean and checked, waiting in the van on the way to the mountains.",
+    "timing": "In the van on the day",
+    "duration": "Your trek",
+    "price_eur": 20,
+    "scene": "kit",
+    "sort": 195,
+    "highlights": [
+      "Clean, checked gear",
+      "Waiting in the van, no shop to find in Imlil",
+      "Returned to the driver after"
+    ],
+    "includes": [
+      "Sleeping bag",
+      "Trekking poles",
+      "Warm jacket"
+    ],
+    "know_before": [
+      "Write sizes in the notes",
+      "Winter in the Atlas is cold: take the jacket"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Tell us sizes"
+      },
+      {
+        "t": "On the day",
+        "s": "Gear in the van"
+      },
+      {
+        "t": "After",
+        "s": "Hand it back to the driver"
+      }
+    ]
   },
   {
     "id": "desertkit",
@@ -3790,6 +4393,445 @@
     "refundable": true,
     "tags": [],
     "private_pp": null
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "for your stay",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "family"
+    ],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [],
+    "id": "stroller",
+    "title": "Stroller for your stay",
+    "blurb": "A light, foldable stroller delivered to your riad and collected when you leave.",
+    "timing": "Delivered the day you choose",
+    "duration": "Your whole stay",
+    "price_eur": 25,
+    "scene": "baby",
+    "sort": 211,
+    "highlights": [
+      "Light and foldable, good on cobbles",
+      "Delivered and collected",
+      "Cleaned between families"
+    ],
+    "includes": [
+      "Stroller with rain cover",
+      "Delivery and collection"
+    ],
+    "know_before": [
+      "Medina alleys are narrow: a light stroller beats a big one"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose the delivery day"
+      },
+      {
+        "t": "On the day",
+        "s": "Delivered to your riad"
+      },
+      {
+        "t": "After",
+        "s": "Collected when you leave"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "for your stay",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "helper",
+        "label": "Helper for a half-day outing",
+        "eur": 30,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "id": "wheelchair",
+    "title": "Wheelchair for your stay",
+    "blurb": "A folding manual wheelchair delivered to your riad or hotel, collected when you leave.",
+    "timing": "Delivered the day you choose",
+    "duration": "Your whole stay",
+    "price_eur": 40,
+    "scene": "access",
+    "sort": 220,
+    "highlights": [
+      "Folding, fits in our cars",
+      "Delivered and collected",
+      "Cleaned and checked"
+    ],
+    "includes": [
+      "Folding wheelchair",
+      "Delivery and collection"
+    ],
+    "know_before": [
+      "The medina has cobbles and steps: ask us about a helper for outings",
+      "Write the user's height and weight in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose the delivery day"
+      },
+      {
+        "t": "On the day",
+        "s": "Delivered to your riad or hotel"
+      },
+      {
+        "t": "After",
+        "s": "Collected when you leave"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "for your stay",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 2,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [],
+    "id": "ewheelchair",
+    "title": "Electric wheelchair or scooter",
+    "blurb": "An electric wheelchair or mobility scooter for your stay, charged and delivered.",
+    "timing": "Delivered the day you choose",
+    "duration": "Your whole stay",
+    "price_eur": 120,
+    "scene": "access",
+    "sort": 221,
+    "highlights": [
+      "Charged and ready",
+      "Delivered with the charger",
+      "Collected when you leave"
+    ],
+    "includes": [
+      "Electric wheelchair or scooter",
+      "Charger",
+      "Delivery and collection"
+    ],
+    "know_before": [
+      "Book at least 2 days ahead",
+      "Write the user's height and weight in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose the delivery day"
+      },
+      {
+        "t": "On the day",
+        "s": "Delivered charged, with a quick how-to"
+      },
+      {
+        "t": "After",
+        "s": "Collected when you leave"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Concierge",
+    "km": 0,
+    "drive_time": "for your stay",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [
+      "Tips"
+    ],
+    "addons": [
+      {
+        "id": "shower",
+        "label": "Shower chair",
+        "eur": 15,
+        "per": "unit",
+        "popular": true,
+        "sort": 10
+      }
+    ],
+    "id": "walker",
+    "title": "Walker or rollator for your stay",
+    "blurb": "A folding walker or a rollator with a seat, delivered and collected.",
+    "timing": "Delivered the day you choose",
+    "duration": "Your whole stay",
+    "price_eur": 20,
+    "scene": "access",
+    "sort": 222,
+    "highlights": [
+      "Walker or rollator with seat",
+      "Delivered and collected",
+      "Adjustable height"
+    ],
+    "includes": [
+      "Walker or rollator",
+      "Delivery and collection"
+    ],
+    "know_before": [
+      "Tell us which one in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose the delivery day"
+      },
+      {
+        "t": "On the day",
+        "s": "Delivered to your riad"
+      },
+      {
+        "t": "After",
+        "s": "Collected when you leave"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Delivered",
+    "km": 0,
+    "drive_time": "delivered",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [
+      "family"
+    ],
+    "excludes": [],
+    "addons": [
+      {
+        "id": "week",
+        "label": "Extra week",
+        "eur": 25,
+        "per": "unit",
+        "popular": false,
+        "sort": 10
+      }
+    ],
+    "scene": "tech",
+    "timing": "Delivered the day you choose",
+    "id": "wifi",
+    "title": "Pocket wifi for your stay",
+    "blurb": "A pocket 4G router: wifi for up to 5 phones, anywhere in Morocco, from the medina to the desert.",
+    "duration": "Up to 7 days",
+    "price_eur": 35,
+    "sort": 230,
+    "highlights": [
+      "Up to 5 devices at once",
+      "Works in the mountains and on the road",
+      "Charger included"
+    ],
+    "includes": [
+      "4G pocket router with data",
+      "Charger",
+      "Delivery and collection"
+    ],
+    "know_before": [
+      "No signal in some remote valleys and deep desert",
+      "Longer than 7 days? Tell us in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Choose the delivery day"
+      },
+      {
+        "t": "Delivery",
+        "s": "Delivered to your riad, or waiting in the airport car"
+      },
+      {
+        "t": "After",
+        "s": "Hand it back to your driver or riad"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Delivered",
+    "km": 0,
+    "drive_time": "delivered",
+    "was_eur": null,
+    "per": "pp",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [],
+    "addons": [],
+    "scene": "tech",
+    "timing": "Delivered the day you choose",
+    "id": "sim",
+    "title": "Local SIM with 20 GB",
+    "blurb": "A Moroccan SIM card, activated and topped up with 20 GB, delivered to your riad.",
+    "duration": "30 days",
+    "price_eur": 12,
+    "sort": 231,
+    "highlights": [
+      "Activated, ready to use",
+      "20 GB of data",
+      "Local number for calls and WhatsApp"
+    ],
+    "includes": [
+      "SIM card, activated",
+      "20 GB data"
+    ],
+    "know_before": [
+      "Your phone must be unlocked",
+      "Already landing? Add the SIM to the airport transfer and it's waiting in the car"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Book it"
+      },
+      {
+        "t": "Delivery",
+        "s": "Delivered to your riad"
+      },
+      {
+        "t": "After",
+        "s": "Top up anywhere if you need more"
+      }
+    ]
+  },
+  {
+    "city": "marrakech",
+    "category": "kit",
+    "role": "gap",
+    "subtitle": "Delivered",
+    "km": 0,
+    "drive_time": "delivered",
+    "was_eur": null,
+    "per": "flat",
+    "cap": null,
+    "private_per_car": null,
+    "private_pp": null,
+    "badge": null,
+    "image_url": null,
+    "active": true,
+    "lead_days": 1,
+    "prepay_only": false,
+    "refundable": true,
+    "tags": [],
+    "excludes": [],
+    "addons": [],
+    "scene": "tech",
+    "timing": "Delivered the day you choose",
+    "id": "power",
+    "title": "Power bank and adapter kit",
+    "blurb": "A charged power bank, a Morocco plug adapter and a fast USB charger, so your phone lasts the day.",
+    "duration": "Your whole stay",
+    "price_eur": 15,
+    "sort": 232,
+    "highlights": [
+      "20,000 mAh power bank, charged",
+      "Morocco plug adapter (C/E)",
+      "Fast USB charger and cables"
+    ],
+    "includes": [
+      "Power bank",
+      "Plug adapter",
+      "USB charger and cables",
+      "Delivery and collection"
+    ],
+    "know_before": [
+      "Tell us your phone type (USB-C or Lightning) in the notes"
+    ],
+    "itinerary": [
+      {
+        "t": "When you book",
+        "s": "Tell us your phone type"
+      },
+      {
+        "t": "Delivery",
+        "s": "Delivered charged to your riad"
+      },
+      {
+        "t": "After",
+        "s": "Collected when you leave"
+      }
+    ]
   },
   {
     "id": "gift50",

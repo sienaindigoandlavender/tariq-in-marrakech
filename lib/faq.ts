@@ -122,7 +122,7 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
       items: [
         {
           q: "What can you arrange at my riad?",
-          a: "Massage, facial, manicure, pedicure, a blow-out, henna, a barber, a doctor visit, a photographer and a private chef. They come to you.",
+          a: "Massage, hammam, facial, nails, hair, henna, a barber, yoga, a private chef, cooking classes, proposals and birthdays, souk shopping, laundry, a babysitter, baby gear, wheelchairs and walkers, trekking gear, and a doctor. Most come to you.",
           link: ["/c/svc", "Concierge"],
         },
         {
@@ -136,9 +136,14 @@ export function faqGroups(payNow: boolean): FaqGroup[] {
           link: ["/p/bacha", "Bacha Coffee, no queue"],
         },
         {
+          q: "Can you help a traveller with reduced mobility?",
+          a: "Yes. We deliver a wheelchair, an electric wheelchair or scooter, a walker or a shower chair to your riad, and a helper can join you for outings in the medina.",
+          link: ["/c/svc", "Mobility & accessibility"],
+        },
+        {
           q: "Can I rent baby gear?",
-          a: "Yes. The baby kit, with a travel cot, high chair and car seat, is delivered and set up at your riad.",
-          link: ["/c/svc", "Concierge, kits & baby"],
+          a: "Yes. The baby kit (travel cot, high chair, car seat) and a stroller are delivered to your riad, and a vetted babysitter can come in the evening.",
+          link: ["/c/svc", "Babies & kids"],
         },
       ],
     },
